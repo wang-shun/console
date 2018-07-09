@@ -1,0 +1,48 @@
+/* 重要颜色变量 */
+$aside-title:#a0abbd;
+$aside-title-hover:#2b93d3;
+$aside-title-active:#2d2d3e;
+$line-color:#e4e4e4;
+$content-active-color:#2c92d3;
+$content-table-title-color:#f5f5f5;
+$content-default-color:#303a44;
+$content-offDefault-color:#666666;
+$content-table-border-color: #dddddd;
+
+/*通用间距*/
+$_margin:10px;
+
+/*aside配置信息*/
+$asidePadding: 11px 26px;
+$asideWidth: 210px;
+$asideSubMarginRight: 15px;
+
+$searchWidth: 158px;
+
+/* 重要工具函数  */
+@mixin position($type,$vertical,$v1,$horizon,$v2){
+  position: $type;
+  #{$vertical}:$v1;
+  #{$horizon}:$v2;
+} 
+@mixin size($w:100%,$h:auto){
+  width:$w;
+  height:$h;
+}
+//此为媒体查询整合代码暂时不用
+$breakpoints: (
+  'xs': 'only screen and ( max-width: 480px)',
+  'sm': 'only screen and ( max-width: 768px)',
+  'md': 'only screen and ( max-width: 992px)',
+  'lg': 'only screen and ( max-width: 1200px)',
+) !default;
+@mixin respond-to($breakpoint) {
+  $query: map-get($breakpoints, $breakpoint);
+  @if not $query {
+    @error 'No value found for `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.';
+  }
+
+  @media #{if(type-of($query) == 'string', unquote($query), inspect($query))} {
+    @content;
+  }
+}

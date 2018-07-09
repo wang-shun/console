@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>金融云-控制台</title>
+    <link type="text/css" rel="stylesheet" href="{% static "css/rewrite.new.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "css/kalendae.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "public/build/css/financeIndex.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "public/build/css/antd.css" %}" />
+    <link rel="icon" href="{% static "favicon.ico" %}">
+
+</head>
+<body>
+    <input type="hidden" name="public_platform_name" value="{{platform_names.console_name}}"/>
+    <!-- 头部公用 -->
+    <header id="header"></header>
+    <section id="bodyContain">
+        <aside id="aside"></aside>
+        <section id="content"></section>
+    </section>
+    <script type="text/javascript" src="{% static "external/react/0.14/react.js" %}"></script>
+    <script type="text/javascript" src="{% static "external/react/0.14/react-dom.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "external/moment/2.10/moment.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "external/moment/2.10/locales.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/extends/jquery-2.1.4.min.js" %}"></script>
+    <script type="text/javascript">
+        var chartId = "59770175e4b0ec9af088c71f";
+        var definition = {
+          "page": {
+            "gridSize": 15,
+            "showGrid": true,
+            "orientation": "portrait",
+            "height": 1500,
+            "backgroundColor": "transparent",
+            "width": 1250,
+            "padding": 20
+          }, "elements": {}
+        };
+        var role = "owner";
+        var cateType = "flow";
+        var userId = "59770149e4b0eb26cb76f319";
+        var userName = "XXX";
+        var time = "1500971382704";
+        var dock = "";
+        var tutorial = true;
+        var locale = "zh";
+        var showToolbar = true;
+        var cstatus = "private";
+        var dateFormat = "yyyy-MM-dd hh:mm";
+        var showCommentIco = true;
+        var localRuntime = false;
+        var chartVersion = 0;
+        $(function() {
+          $("#publish_category").val("");
+          if ("" != "") {
+            $("#publish_language").val("");
+          }
+          $("#publish_tags").val("");
+          $("#public_edit").attr("checked", false);
+        });
+
+        var CategoryMapping = {};
+        var GlobalCommand = {};
+    </script>
+    <script type="text/javascript" src="{% static "js/extends/svg.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/extends/jsplumb.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "public/build/Chart.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "public/build/jcanvas.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "public/build/jquery.nanoscroller.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "public/build/kalendae.standalone.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "public/build/financeIndex.js" %}"></script>
+</body>
+</html>

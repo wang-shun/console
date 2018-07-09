@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}镜像管理{% endblock %}
+
+{% block crumbs %} {% endblock %}
+{% block page %} 镜像管理 {% endblock %}
+
+{% block content %}
+<div class="table-controller-field">
+    <!-- <a href="/admin/customize/create_image" class="btn btn-info table-controller icon-add" id="create_image">创建镜像</a> -->
+    <a href="javascript:;" data-href="/admin/customize/edit_image"  class="btn btn-info table-controller icon-edit" id="edit_image" disabled>修改镜像</a>
+    <button  class="btn btn-info table-controller icon-rublish" id="delete_image" disabled>删除镜像</button>
+    <button class="btn btn-default table-controller refresh icon-refresh" title="刷新" id="refresh">刷新</button>
+    </div>
+<div class="pull-top-table">
+    <table id="images_list" class="table table-striped table-bordered">
+        <thead>
+        <th>名称</th>
+        <th>类型</th>
+        <th>状态</th>
+        <th>格式</th>
+        <th>容量</th>
+        <th>镜像类型</th>
+        <th>是否保护</th>
+        <th>是否公开</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete -->
+<div class="modal" id="delete_image_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">删除镜像</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">确认删除该镜像？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delete_image_btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+ {% endblock%}

@@ -1,0 +1,24 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "_mixin.scss";
+@import "_button.scss";
+@import "_aside.scss";
+@import "_header.scss";
+@import "_footer.scss";
+@import "_tab.scss";
+@import "_container.scss";
+@import "_dashboard.scss";
+@import "_ticket_bpm.scss";
+@import "_resource.scss";
+@import "_advanced_config.scss";
+@import "_customize.scss";
+@import "_lib/_seek_bar.scss";
+@import "_lib/_select_box.scss";
+@import "_lib/_plus_minus_input.scss";
+
+body,html{
+   //font-family:"Monaco", "Menlo", "Consolas", 'Microsoft YaHei', "Courier New", "monospace" !important;
+   font-family:"Microsoft YaHei", "Hiragino Sans GB", "PingFang SC", "HanHei SC", "Helvetica Neue", "Helvetica", "STHeitiSC-Light", "Arial", "sans-serif" !important;
+}
+
+

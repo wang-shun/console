@@ -1,0 +1,58 @@
+{% extends "auth/base.html" %}
+{% load staticfiles %}
+{% block title %}注册激活{% endblock %}
+{% block content %}
+  <div class="sendBlockHome">
+      <h3>邮件已发送</h3>
+
+      <p>邮件已发送到邮箱{{ email }}, 请在24小时内点击邮件中的链接激活账户。</p>
+      <!--
+      <a target="_blank" href="{{ email_link }}">立即查看邮件</a>
+      -->
+  </div>
+  <hr>
+  <div class="haventGotMsg">
+      <h3>如果没有收到邮件，可以尝试：</h3>
+      <form action="" method="post">
+      {% csrf_token %}
+      <p>1.&nbsp;&nbsp;进入您的邮箱查看邮件是否在垃圾箱中。</p>
+
+      <p>2.&nbsp;&nbsp;<button class="resendMailBtn" type="submit">重发邮件</button>点击此处重发邮件。
+{% comment %}报错消息打印在此处 {{ message.tags }}可以是danger, warning, info{% endcomment %}
+          {% if messages %}
+            {% for message in messages %}
+              <i class="tips">{{ message }}</i>
+            {% endfor %}
+          {% endif %}
+      </p>
+      </form>
+  </div>
+  {% comment %}
+  <script>
+    $(function(){
+      var clickCounts = 0;
+      $(".haventGotMsg p a").click(function(e){
+        e.preventDefault();
+        if(clickCounts < 1){
+          resendMail();
+          clickCounts += 1;
+        }else{
+          $(".haventGotMsg p i").show();
+        }
+      })
+
+      function resendMail(){
+        //todo 重发接口
+      }
+    })
+  </script>
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}"
+               role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+  {% endif %}
+  {% endcomment %}
+{% endblock %}

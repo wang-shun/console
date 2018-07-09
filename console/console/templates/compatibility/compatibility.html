@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>浏览器支持</title>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="{% static "css/compatibility.css" %}" />
+    <link rel="icon" href="{% static "favicon.ico" %}">
+</head>
+<body>
+	<div class="container">
+		<img src="{% static "images/logo_2x.png" %}" class="logo">
+		<p class="hint">Cloundin云英的控制台目前只支持以下浏览器</p>
+		<ul class="naviUl">
+			<li>
+				<a href="https://www.google.com/chrome/" target="_blank">
+					<img src="{% static "images/chrome.jpg" %}">
+					<p>Chrome</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.firefox.com.cn/" target="_blank">
+					<img src="{% static "images/firefox.jpg" %}">
+					<p>FireFox</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.apple.com/cn/safari/" target="_blank">
+					<img src="{% static "images/safari.jpg" %}">
+					<p>Safari</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.microsoft.com/" target="_blank">
+					<img src="{% static "images/ie.jpg" %}">
+					<p>Internet Explorer</p>
+					<p style="margin-top:10px;font-size:16px;">(仅支持IE10以上)</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

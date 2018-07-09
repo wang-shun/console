@@ -1,0 +1,611 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CloudIn控制台--帮助指南</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+        /* Author: Nicolas Hery - http://nicolashery.com */
+        /* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+        /* Source: https://github.com/nicolahery/markdownpad-github */
+
+        /* RESET
+        =============================================================================*/
+
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        /* BODY
+        =============================================================================*/
+
+        body {
+            font-family: "Microsoft Yahei", Helvetica, arial, freesans, clean, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            padding: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        body > *:first-child {
+            margin-top: 0 !important;
+        }
+
+        body > *:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        /* BLOCKS
+        =============================================================================*/
+
+        p, blockquote, ul, ol, dl, table, pre {
+            margin: 15px 0;
+        }
+
+        /* HEADERS
+        =============================================================================*/
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 20px 0 10px;
+            padding: 0;
+            font-weight: bold;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+            font-size: inherit;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 24px;
+            border-bottom: 1px solid #ccc;
+            color: #000;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        h5 {
+            font-size: 14px;
+        }
+
+        h6 {
+            color: #777;
+            font-size: 14px;
+        }
+
+        body > h2:first-child, body > h1:first-child, body > h1:first-child + h2, body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
+            margin-top: 10px;
+        }
+
+        /* LINKS
+        =============================================================================*/
+
+        a {
+            color: #4183C4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* LISTS
+        =============================================================================*/
+
+        ul, ol {
+            padding-left: 30px;
+        }
+
+        ul li > :first-child,
+        ol li > :first-child,
+        ul li ul:first-of-type,
+        ol li ol:first-of-type,
+        ul li ol:first-of-type,
+        ol li ul:first-of-type {
+            margin-top: 0px;
+        }
+
+        ul ul, ul ol, ol ol, ol ul {
+            margin-bottom: 0;
+        }
+
+        dl {
+            padding: 0;
+        }
+
+        dl dt {
+            font-size: 14px;
+            font-weight: bold;
+            font-style: italic;
+            padding: 0;
+            margin: 15px 0 5px;
+        }
+
+        dl dt:first-child {
+            padding: 0;
+        }
+
+        dl dt > :first-child {
+            margin-top: 0px;
+        }
+
+        dl dt > :last-child {
+            margin-bottom: 0px;
+        }
+
+        dl dd {
+            margin: 0 0 15px;
+            padding: 0 15px;
+        }
+
+        dl dd > :first-child {
+            margin-top: 0px;
+        }
+
+        dl dd > :last-child {
+            margin-bottom: 0px;
+        }
+
+        /* CODE
+        =============================================================================*/
+
+        pre, code, tt {
+            font-size: 12px;
+            font-family: Consolas, "Liberation Mono", Courier, monospace;
+        }
+
+        code, tt {
+            margin: 0 0px;
+            padding: 0px 0px;
+            white-space: nowrap;
+            border: 1px solid #eaeaea;
+            background-color: #f8f8f8;
+            border-radius: 3px;
+        }
+
+        pre > code {
+            margin: 0;
+            padding: 0;
+            white-space: pre;
+            border: none;
+            background: transparent;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            line-height: 19px;
+            overflow: auto;
+            padding: 6px 10px;
+            border-radius: 3px;
+        }
+
+        pre code, pre tt {
+            background-color: transparent;
+            border: none;
+        }
+
+        kbd {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background-color: #DDDDDD;
+            background-image: linear-gradient(#F1F1F1, #DDDDDD);
+            background-repeat: repeat-x;
+            border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+            border-image: none;
+            border-radius: 2px 2px 2px 2px;
+            border-style: solid;
+            border-width: 1px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 10px;
+            padding: 1px 4px;
+        }
+
+        /* QUOTES
+        =============================================================================*/
+
+        blockquote {
+            border-left: 4px solid #DDD;
+            padding: 0 15px;
+            color: #777;
+        }
+
+        blockquote > :first-child {
+            margin-top: 0px;
+        }
+
+        blockquote > :last-child {
+            margin-bottom: 0px;
+        }
+
+        /* HORIZONTAL RULES
+        =============================================================================*/
+
+        hr {
+            clear: both;
+            margin: 15px 0;
+            height: 0px;
+            overflow: hidden;
+            border: none;
+            background: transparent;
+            border-bottom: 4px solid #ddd;
+            padding: 0;
+        }
+
+        /* TABLES
+        =============================================================================*/
+
+        table th {
+            font-weight: bold;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 6px 13px;
+        }
+
+        table tr {
+            border-top: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        table tr:nth-child(2n) {
+            background-color: #f8f8f8;
+        }
+
+        /* IMAGES
+        =============================================================================*/
+
+        img {
+            max-width: 100%
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?68d94b35e5291a1b41d0d8e0e4b2fb74";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<!--<div class="context">-->
+    <!--<a href="#q1" class="title1">CloudIn云英用户指南</a>-->
+    <!--<a href="#q11" class="title2">CloudIn简介</a>-->
+    <!--<a href="#q11" class="title3">主要概念</a>-->
+    <!--<a href="#q111" class="title4">主机</a>-->
+    <!--<a href="#q112">存储</a>-->
+    <!--<a href="#q113">网络</a>-->
+    <!--<a href="#q114">安全</a>-->
+    <!--<a href="#q115">服务优势</a>-->
+    <!--<a href="#q1">CloudIn云英用户指南</a>-->
+    <!--<a href="#q1">CloudIn云英用户指南</a>-->
+    <!--<a href="#q1">CloudIn云英用户指南</a>-->
+<!--</div>-->
+<div class="content">
+<h1>CloudIn云英用户指南</h1>
+
+<h2>CloudIn简介</h2>
+
+<p>CloudIn是一款面向于中小型创业者的公有云产品，包括了云主机、云存储、负载均衡（测试中）、云分发（测试中）等产品，可以有效简化研发体系日常过程中的业务部署过程，提高工作效率。</p>
+
+<h3>主要概念</h3>
+<h4>主机</h4>
+
+<p>云主机基于服务器虚拟化技术整合高性能服务器资源，用户根据业务需求自由地配置所需的云主机的CPU、内存、硬盘及网络资源，并在其上部署日常业务，通过公网对外提供服务。</p>
+
+<p>目前CloudIn的镜像为支持各类Linux操作系统，可以使用初始本地终端用户名和密码。</p>
+<h4>存储</h4>
+
+<p>CloudIn基于下一代分布式存储系统，作为云主机、硬盘、镜像服务的统一存储平台。</p>
+
+<p>硬盘主要是用来给云主机提供云硬盘，底层支持镜像复制、数据快照的能力，用户可以自定义硬盘大小，支持TB级，IO吞吐带宽高达上百 Mb/s，硬盘的生命周期独立于所挂载云主机，支持全天侯自动备份</p>
+<h4>网络</h4>
+
+<p>CloudIn提供了两种网络方式：公网子网、内网子网。公网子网用来与路由器连接以满足和公网连接的需要，内网子网则专门用于云主机直接的内部通信。</p>
+
+<p>基础网络是一个由CloudIn维护的默认公网子网，无需用户做任何配置与管理，即可直接使用， 但其只能通过依靠安全组来保障安全。用户也可自主创建其他子网并管理， 各子网之间是相互隔离的，以满足用户的各种安全需求。</p>
+
+<p>公网 IP 地址是在互联网上合法的静态 IP 地址。 在CloudIn系统中，公网 IP 地址也是您的账户资源的一部分， 您可以将申请到的公网 IP 地址分配到任意的主机上， 并随时可以解绑、再分配到其他资源。</p>
+<h4>安全</h4>
+
+<p>CloudIn默认为每个用户创建了一个缺省安全组。 初始状态下，缺省安全组放开了 TCP 22号端口， ICMP for ping和远程桌面 3389号端口， 其他安全组都不包含任何规则，即全部端口都是封闭的。
+    您可以任意调整规则和创建新的安全组来满足您的安全需求。</p>
+
+<h3>服务优势</h3>
+
+<p>CloudIn的优势在于，它依托于强大的自研能力、硬件资源、网络带宽资源及多年服务企业客户的经验。</p>
+
+<h3>高可用性</h3>
+
+<p>动态资源管理并调度底层物理硬件，实现对不同类型硬件资源的集群管理，根据物理资源的使用情况自动分配用户请求，支持故障云主机的冷热迁移，增强系统可靠性。</p>
+
+<h3>高隔离性</h3>
+
+<p>不同用户在存储资源、网络资源上的带宽及 IOPS上的完全隔离，全方位保障用户业务的顺利进行。</p>
+
+<h3>多场景适用</h3>
+<ul>
+    <li>网站建设：门户网站、企业网站、视频网站、资讯发布网站等；</li>
+    <li>在线应用 ：在线 ERP、在线 OA、企业应用、移动应用等；</li>
+    <li>行业客户：金融、游戏、政府、电商等。</li>
+</ul>
+<h2>云主机</h2>
+
+<h3>创建主机</h3>
+
+<p>在CloudIn控制台，选择“计算￫主机”，点击“创建”按钮，这时会弹出创建主机的向导：
+    <img src="{% static "markdown/help/host-create.jpg" %}" title="创建主机" /></p>
+
+<p>1. 选择所需的系统镜像
+    <img src="{% static "markdown/help/host-create-step-1.jpg" %}" /></p>
+
+<p>2. 选择CPU和内存配置（右侧显示有本账户当前剩余配额）</p>
+
+<p>3.为该主机挂载空闲硬盘（可选）
+    <img src="{% static "markdown/help/host-create-step-2.jpg" %}" /></p>
+
+<p>4. 选择该主机所属网络</p>
+
+<p>5. 设置该主机的安全组
+    <img src="{% static "markdown/help/host-create-step-3.jpg" %}" /></p>
+
+<p>6. 给主机命名（其中主机名限制在20个字符以内，密码至少8位，并包括大小写字母及数字）</p>
+
+<p>7. 设置主机登录方式</p>
+
+<p>8. 指定主机数量，点击创建即完成主机创建流程
+    <img src="{% static "markdown/help/host-create-step-4.jpg" %}" /></p>
+
+<p>通常创建过程在10秒钟左右。</p>
+
+<h3>主机管理</h3>
+
+<p><img src="{% static "markdown/help/host-manage.jpg" %}" /></p>
+
+<p>您可对主机进行开关机、删除、备份、加载密钥、升级配置等管理操作。</p>
+
+<h3>连接主机</h3>
+
+<p>CloudIn提供了两种方法来连接主机。</p>
+
+<p>方法一：控制台连接</p>
+
+<p><img src="{% static "markdown/help/host-vnc.jpg" %}" /></p>
+
+<p>登录CloudIn控制台，选择“计算￫主机”，在每台主机的名称旁边都有一个显示器模样的按钮，点击它， 即可打开远程连接页面连接到主机的本地显示器。（如果未有页面弹出请检查是否有被浏览器拦截）</p>
+
+<p>方法二：使用SSH</p>
+<ol>
+    <li>
+        <p>密码登录：</p>
+<pre><code>$ ssh root@ip_address
+</code></pre>
+
+    </li>
+    <li>
+        <p>密钥登录：见后文密钥功能模块指南</p>
+    </li>
+</ol>
+<h3>主机备份</h3>
+
+<p>在主机详情中的备份页点击创建按钮，或者在主机列表页选择主机后点击备份按钮， 填写备份的名称即可完成备份。</p>
+
+<h3>备份恢复</h3>
+
+<p>登录CloudIn控制台，选择“计算￫备份”，在主机备份页中选择所需恢复的备份，点击恢复按钮，即可完成恢复。（注意：恢复前最好对当前状态再次进行备份，否则会导致当前数据丢失）</p>
+
+<h3>加入网络</h3>
+
+<p>每个云主机可以加入多个内网子网，但是只能加入一个公网子网（包括基础网络）。当要加入新的公网子网时，需先断开现有公网子网。</p>
+
+<h2>云硬盘</h2>
+
+<h3>创建硬盘</h3>
+
+<p><img src="{% static "markdown/help/disk-create.jpg" %}" /></p>
+
+<p>登录CloudIn控制台，选择“计算￫硬盘”，在右边主显示区域中，点击“创建”按钮，填写名称、数量，选择容量，点击“确定”。</p>
+
+<h3>挂载到主机</h3>
+
+<p>在硬盘列表页中选择要挂载的硬盘，点击“挂载到主机”， 在弹出的对话框中选择您所要挂载的主机，点击“确定”。 然后登录到您的主机详情页就能看到刚才挂载上的硬盘。</p>
+
+<h3>硬盘扩容</h3>
+
+<p><img src="{% static "markdown/help/disk-resize.jpg" %}" /></p>
+
+<p>在硬盘列表页中选择要扩容的硬盘，点击“硬盘扩容”，在弹出的对话框中选择所要新增的容量，点击确定。（已挂载在主机上的硬盘必须先卸载才可执行扩容操作）</p>
+
+<h3>硬盘挂载后如何使用</h3>
+
+<p>挂载到主机上的硬盘默认是未做分区和格式化的，使用前需要先挂载数据盘，步骤如下：</p>
+
+<p>1. 查看数据盘</p>
+<pre><code> $ sudo fdisk –l
+</code></pre>
+
+<p><img src="{% static "markdown/help/disk-view.jpg" %}" /></p>
+
+<p>可以看到/dev/vdb是我们新挂载在主机上的硬盘</p>
+
+<p>2. 对数据盘进行分区</p>
+<pre><code> $ fdisk /dev/vdb
+</code></pre>
+
+<p>根据提示，依次输入“n”、“p”、“1”、两次回车，“w”，分区就开始了，很快就会完成。</p>
+
+<p>3. 查看新的分区</p>
+
+<p><img src="{% static "markdown/help/disk-partition.jpg" %}" /></p>
+
+<p>执行fdisk –l，可以看见新的分区vdb1已经创建完成了。</p>
+
+<p>4. 格式化新分区</p>
+<pre><code> $ mkfs.ext3 /dev/vdb1 # 可选用多种数据格式，这里用ext3作为示例
+</code></pre>
+
+<p>5. 添加分区信息</p>
+<pre><code> $ echo '/dev/vdb1 /mnt/vdb ext3 defaults 0 0' &gt;&gt; /etc/fstab # 写入新分区信息
+    $ cat /etc/fstab # 查看是否写入成功
+</code></pre>
+
+<p>6. 挂载新分区</p>
+<pre><code> $ mkdir -p /mnt/vdb &amp;&amp; mount /dev/vdb1 /mnt/vdb
+</code></pre>
+
+<p>挂载完成，可以使用新的硬盘了。</p>
+
+<h2>密钥</h2>
+
+<h3>创建密钥</h3>
+
+<p><img src="{% static "markdown/help/key-create.jpg" %}" /></p>
+
+<p>登录CloudIn控制台，选择“计算￫密钥”，在右边主显示区域中，点击“创建”按钮，填写密钥名称，选择是“新建密钥对”还是“根据公钥创建密钥”，点击“确定”。</p>
+
+<h3>加载密钥</h3>
+
+<p>在密钥列表页中选择要加载的密钥，点击“加载到主机”， 在弹出的对话框中选择您所要挂载的主机，点击“确定”。然后密钥就注入到该主机当中了。</p>
+
+<h3>下载私钥</h3>
+
+<p>密钥创建成功后会自动将私钥发送到您的本地计算机上，CloudIn不会保存您的私钥，请您妥善保管。</p>
+
+<h3>通过密钥登录主机</h3>
+<pre><code> $ chmod 600 my_key # 更改您的私钥文件的权限
+    $ ssh -i my_key root@ip_address # 使用密钥进行SSH登录
+</code></pre>
+
+<h2>网络</h2>
+
+<h3>子网类型</h3>
+
+<p>子网分为公网子网与内网子网两种。</p>
+
+<p>公网子网用于各子网间通信以及与公网通信，具有默认网关和DHCP服务。每个公网子网能且只能连接一个路由器，通过连接路由器来与公网通信。同时，各公网子网之间也可通过路由器相互通信。（基础网络是每个用户默认的公网子网）</p>
+
+<p>内网子网仅用于各主机间的内网通信，内网子网没有默认网关，也不能连接路由器，但是有DHCP服务。您也可以选择关闭DHCP服务来自行配置网络。</p>
+
+<h3>创建子网</h3>
+
+<p><img src="{% static "markdown/help/net-create.jpg" %}" /></p>
+
+<p>登录CloudIn控制台，选择“网络￫子网”，在右边主显示区域中，点击“创建子网”按钮，填写子网名称、子网类型、网络地址，网关地址、DHCP，点击“确定”。</p>
+
+<h3>创建路由器</h3>
+
+<p><img src="{% static "markdown/help/router-create.jpg" %}" /></p>
+
+<p>登录CloudIn控制台，选择“网络￫路由器”，在右边主显示区域中，点击“创建路由器”按钮，填写路由器名称、数量，设置网关，点击“确定”。</p>
+
+<h3>关联路由器</h3>
+
+<p><img src="{% static "markdown/help/router-connect.jpg" %}" /></p>
+
+<p>在子网列表页选择目标子网，点击“连接路由器”，在弹框中指定所管理的路由器，点击“确定”。</p>
+
+<h3>添加云主机</h3>
+
+<p><img src="{% static "markdown/help/net-add-host.jpg" %}" /></p>
+
+<p>在子网列表页选择目标子网，点击“添加云主机”，选择需要添加的主机，点击“确定”。</p>
+
+<h3>主机子网配置</h3>
+
+<p>虚拟机在创建时默认网卡已经写入系统设置，因此创建后再加入子网需要手动添加新的网卡。</p>
+<ul>
+    <li>
+        <p>Centos系统</p>
+<pre><code>$ vi /etc/sysconfig/network-scripts/ifcfg-eth1
+    # 添加如下信息
+    DEVICE=eth1
+    TYPE=Ethernet
+    ONBOOT=yes
+    NM_CONTROLLED=no
+    BOOTPROTO=dhcp
+    # 保存文件并重启虚拟机
+</code></pre>
+
+    </li>
+    <li>
+        <p>Ubuntu系统</p>
+<pre><code>$ vi /etc/network/interface
+    # 添加如下信息
+    auto eth1
+    iface eth1 inet dhcp
+    # 保存文件并重启虚拟机
+</code></pre>
+
+    </li>
+</ul>
+<h3>申请公网IP</h3>
+
+<p>登录CloudIn控制台，选择“网络￫公网IP”， 在右边主显示区域中，点击“申请”按钮，在弹出框中填写名称、数量、带宽、计费模式，点击“确定”。（已申请的公网IP的带宽和计费方式都可以随时调整）</p>
+
+<p><img src="{% static "markdown/help/ip-create.jpg" %}" /></p>
+
+<p>选择已申请到的公网IP，点击“分配到主机”或“分配到路由器”，选择想要分配给的资源，点击“确定”，该资源就暴露在了互联网上了。</p>
+
+<p><img src="{% static "markdown/help/ip-to-host.jpg" %}" /></p>
+
+<h2>安全组</h2>
+
+<h3>创建安全组</h3>
+
+<p>登录CloudIn控制台，选择“安全组”， 在右边主显示区域中，点击“创建安全组”按钮，在弹出框中填写安全组名称，点击“确定”。</p>
+
+<p><img src="{% static "markdown/help/sg-create.jpg" %}" /></p>
+
+<h3>创建安全组规则</h3>
+
+<p>所有安全组规则默认都是禁止的，请根据您的需要自行添加允许的规则，目前暂时只支持下行规则。</p>
+
+<p>点击安全组名称进入安全组详情，在安全组规则页点击“添加规则”，在弹出框中填写该条规则的协议、起始端口、结束端口、源IP。</p>
+
+<p><img src="{% static "markdown/help/sg-rule-create.jpg" %}" /></p>
+
+<h3>应用到主机</h3>
+
+<p>在安全组列表页选择目标安全组，点击“应用到主机”选择要应用到的主机，点击“确定”，该安全组就应用到该资源上了。（每个主机仅能应用一个安全组）</p>
+
+<p><img src="{% static "markdown/help/sg-to-host.jpg" %}" /></p>
+
+
+
+
+</div>
+</body>
+</html>

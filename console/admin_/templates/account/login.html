@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{platform_names.admin_name}}-登录</title>
+
+        <link href="{% static "libs/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+		<!-- Error CSS -->
+		<link href="{% static "css/login/login.css" %}" rel="stylesheet" media="screen">
+
+		<!-- Animate CSS -->
+		<link href="{% static "css/animate/animate.css" %}" rel="stylesheet" media="screen">
+	</head>
+	<body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+		<form action="" id="wrapper" method="post">
+            {% csrf_token %}
+			<div id="box" class="animated bounceIn">
+				<div id="top_header">
+					<a href="/admin/">
+						<img class="logo" src="{% static "images/admin_logo.png" %}" alt="logo">
+					</a>
+					<h5>
+						Console Admin 登录<br />
+					</h5>
+				</div>
+				<div id="inputs" style="display: none; height: auto">
+					<div>
+						<input type="email" name="email" placeholder="邮箱">
+						<i class="glyphicon glyphicon-envelope"></i>
+					</div>
+					<div>
+						<input type="password" name="password" placeholder="密码">
+						<i class="glyphicon glyphicon-lock"></i>
+					</div>
+					<input type="submit" value="登录">
+				</div>
+				<div id="licenseError" class="panel" style="width: 90%; margin-left: 5%; display: none;">
+					<h5 class="text-danger">license有错误,请联系管理员</h5>
+					<div class="form-group">
+						<textarea class="form-control" rows="3"id="license" placeholder="请输入license"></textarea>
+					</div>
+					<button type="button" class="btn btn-success" style="width: 100%;" id="licenseSubmit">确定</button>
+				</div>
+				<div id="bottom">
+					<a class="right_a" href="javascript:;" id="active_license">激活license</a>
+				</div>
+			</div>
+		</form>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="{% static "js/lib/jquery.min.js" %}"></script>
+		<script src="{% static "js/lib/require.js" %}"></script>
+		<script src="{% static "js/admin/router.js" %}"></script>
+	</body>
+</html>

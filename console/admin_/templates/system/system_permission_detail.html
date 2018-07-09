@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}权限管理详情{% endblock %}
+
+{% block page %} 权限管理详情 {% endblock %}
+
+{% block content %}
+    <form action="" method="post" id="id-edit-perm-form">
+      {% csrf_token %}
+      <div class="row">
+	    <div class="col-xs-5">
+			<h2>未加入权限</h2>
+	    	<select name="perm_from" id="search" class="form-control" size="15" multiple="multiple">
+	    		{% for perm in all_perm_list %}
+                <option value="{{ perm.name }}">{{ perm.info }}</option>
+                {% endfor %}
+	    	</select>
+	    </div>
+
+	    <div class="col-xs-2" style="margin-top: 100px">
+	    	<button type="button" id="search_rightAll" class="btn btn-info btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+	    	<button type="button" id="search_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+	    	<button type="button" id="search_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+	    	<button type="button" id="search_leftAll" class="btn btn-info btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+	    </div>
+
+	    <div class="col-xs-5">
+			<h2>已加入权限</h2>
+	    	<select name="perm_to" id="search_to" class="form-control" size="15" multiple="multiple">
+                {% for perm in group_perm_list %}
+                <option value="{{ perm.name }}">{{ perm.info }}</option>
+                {% endfor %}
+	    	</select>
+	    </div>
+      </div>
+      <button type="submit" class="btn btn-info btn-block save-perm" onclick="alert('保存权限成功');return true" id="id-save-permission-detail">保存</button>
+    </form>
+{% endblock %}
+

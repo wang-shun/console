@@ -1,0 +1,148 @@
+{
+  "flavor_map": {
+    "name": "name",
+    "id": "flavor_id",
+    "vcpus": "vcpus",
+    "ram": "memory",
+    "none": "description"
+  },
+  "image_map": {
+    "id": "api_image_id",
+    "name": "image_name",
+    "status": "status",
+    "created_at": "create_datetime",
+    "size": "size"
+  },
+  "zone_list": [
+    "yz",
+    "test",
+    "prod",
+    "dev",
+    "all",
+    "ALL",
+    "bj"
+  ],
+  "user_list": [
+    "system_image"
+  ],
+  "quota_map": {
+    "test": {
+      "cpu": 120,
+      "memory": 120,
+      "instance": 30,
+      "disk_num": 30,
+      "disk_sata_cap": 2000,
+      "disk_ssd_cap": 2000,
+      "pub_ip": 0,
+      "bandwidth": 0,
+      "pub_nets": 10,
+      "pri_nets": 10,
+      "security_group": 20,
+      "backup": 60,
+      "instance_backup": 50,
+      "disk_backup": 50,
+      "keypair": 50,
+      "router": 10,
+      "rds_num": 10,
+      "lb_num": 10,
+      "disk_cap": 1000
+    },
+    "prod": {
+      "cpu": 120,
+      "memory": 120,
+      "instance": 30,
+      "disk_num": 30,
+      "disk_sata_cap": 2000,
+      "disk_ssd_cap": 2000,
+      "pub_ip": 0,
+      "bandwidth": 0,
+      "pub_nets": 10,
+      "pri_nets": 10,
+      "security_group": 20,
+      "backup": 60,
+      "instance_backup": 50,
+      "disk_backup": 50,
+      "keypair": 50,
+      "router": 10,
+      "rds_num": 10,
+      "lb_num": 10,
+      "disk_cap": 1000
+    },
+    "dev": {
+      "cpu": 120,
+      "memory": 120,
+      "instance": 30,
+      "disk_num": 30,
+      "disk_sata_cap": 2000,
+      "disk_ssd_cap": 2000,
+      "pub_ip": 0,
+      "bandwidth": 0,
+      "pub_nets": 10,
+      "pri_nets": 10,
+      "security_group": 20,
+      "backup": 60,
+      "instance_backup": 50,
+      "disk_backup": 50,
+      "keypair": 50,
+      "router": 10,
+      "rds_num": 10,
+      "lb_num": 10,
+      "disk_cap": 1000
+    },
+    "yz": {
+      "cpu": 120,
+      "memory": 120,
+      "instance": 30,
+      "disk_num": 30,
+      "disk_sata_cap": 2000,
+      "disk_ssd_cap": 2000,
+      "pub_ip": 0,
+      "bandwidth": 0,
+      "pub_nets": 10,
+      "pri_nets": 10,
+      "security_group": 20,
+      "backup": 60,
+      "instance_backup": 50,
+      "disk_backup": 50,
+      "keypair": 50,
+      "router": 10,
+      "rds_num": 10,
+      "lb_num": 10,
+      "disk_cap": 1000
+    },
+    "bj": {
+      "cpu": 120,
+      "memory": 120,
+      "instance": 30,
+      "disk_num": 30,
+      "disk_sata_cap": 2000,
+      "disk_ssd_cap": 2000,
+      "pub_ip": 0,
+      "bandwidth": 0,
+      "pub_nets": 10,
+      "pri_nets": 10,
+      "security_group": 20,
+      "backup": 60,
+      "instance_backup": 50,
+      "disk_backup": 50,
+      "keypair": 50,
+      "router": 10,
+      "rds_num": 10,
+      "lb_num": 10,
+      "disk_cap": 1000
+    }
+  },
+
+  "ip_pool_map": {
+    "平行网络":{
+        "ip_pool_id": "平行网络",
+        "bandwidth": 10,
+        "line": "cnc"
+    },
+    "ext-net": {
+        "ip_pool_id": "ext-net",
+        "bandwidth": 10,
+        "line": "cnc"
+    }
+  }
+}

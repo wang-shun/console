@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}手机重置密码{% endblock %}</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/register.css" %}"/>
+    <link rel="icon" href="{% static "favicon.ico" %}">
+</head>
+<body>
+  <div class="header">
+    <div class="headerinside">
+      <h1 class="logo"></h1>
+      <ul>
+        <li><a href="https://www.cloudin.cn/index.html">首页</a></li>
+        <li><a href="https://www.cloudin.cn/product.html">产品</a></li>
+        <li><a href="https://console.cloudin.cn/">控制台</a></li>
+        <li><a href="https://www.cloudin.cn/about.html">关于</a></li>
+        <li><a href="https://www.cloudin.cn/docs.html">文档中心</a></li>
+        <li style="margin-left: 30px;"><a href="https://console.cloudin.cn/login">登录</a></li>
+        <li><a href="https://console.cloudin.cn/register">注册</a></li>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static "js/extends/jquery-2.1.4.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/common/common.js" %}"></script>
+  <div class="bigcontainer">
+      {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

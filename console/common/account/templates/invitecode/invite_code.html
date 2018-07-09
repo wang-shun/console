@@ -1,0 +1,25 @@
+{% extends "auth/base.html" %}
+
+{% block title %}邀请码注册{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+      <form class="form-horizontal" method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="col-sm-3 control-label" id="invite_lable">邀请码</label>
+          <div class="col-sm-6">
+            <input class="form-control col-sm-6" name="invite_code" placeholder="邀请码">
+              {% if messages %}
+              {% for message in messages %}
+              <p class="text-{{ message.tags }} message">{{ message }}</p>
+              {% endfor %}
+              {% endif %}
+          </div>
+          <button class="col-sm-3 btn btn-info btn-block">提交</button>
+
+        </div>
+      </form>
+    </div>
+{% endblock %}

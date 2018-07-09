@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}子网管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 子网详情 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            名称:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="subnets_name"></div>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            CIDR:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="subnets_cidr"></div>
+        </div>
+    </div>
+    <div class="box-list" id="switch_ivp4_list">
+        <label class="box-list-label">
+            IP段:
+        </label>
+        <div class="box-list-content" id="subnets_ip_group">
+        </div>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            DNS解析:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="subnets_dns"></div>
+        </div>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            是否公开:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="is_public"></div>
+        </div>
+    </div>
+    <div class="box-list" id="owner_list_box">
+        <label class="box-list-label">
+            公开人员:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="owner_list"></div>
+        </div>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            关联主机:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="host_list"></div>
+        </div>
+    </div>
+</div>
+{% endblock%}

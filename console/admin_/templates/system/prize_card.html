@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% load translate %}
+{% load perm_check %}
+
+{% block title %}兑换券{% endblock %}
+
+{% block page %} 兑换券 {% endblock %}
+
+{% block content %}
+  <div class="table-controller-field">
+    <button class="btn btn-default table-controller refresh">
+      <i class="glyphicon glyphicon-refresh"></i>
+    </button>
+    {% perm_check "create_prize_card" as has_create_prize_card_perm %}
+    {% perm_check "create_prize_card_group" as has_create_prize_card_group_perm %}
+    {% perm_check "edit_prize_card_group" as has_edit_prize_card_group_perm %}
+    {% perm_check "export_prize_card" as has_export_prize_card_perm %}
+    {% if has_create_prize_card_perm %}
+    <button class="btn btn-info table-controller" id="id-create-prize-card">创建兑换券</button>
+    {% endif %}
+    {% if has_create_prize_card_group_perm %}
+    <button class="btn btn-info table-controller" id="id-create-prize-card-group">创建兑换券种</button>
+    {% endif %}
+    {% if has_edit_prize_card_group_perm %}
+    <button class="btn btn-info table-controller" id="id-edit-prize-card-group">查看修改兑换券种</button>
+    {% endif %}
+    {% if has_export_prize_card_perm %}
+    <button class="btn btn-info table-controller" id="id-export-prize-card">导出兑换券种</button>
+    {% endif %}
+  </div>
+  <div>
+    <table id="id-prize-card-list-table" class="table table-hover table-striped table-bordered">
+      <thead>
+          <th>ID</th>
+          <th>兑换券</th>
+          <th>兑换券种</th>
+          <th>关联用户邮箱</th>
+          <th>创建人邮箱</th>
+          <th>创建日期时间</th>
+          <th>是否使用</th>
+          <th>使用日期时间</th>
+          <th>过期日期时间</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Create Prize Card -->
+  <div class="modal" id="id-create-prize-card-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">创建兑换券</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-create-prize-card-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">兑换券种</label>
+              <div class="col-md-6">
+                <select class="form-control" name="prize_card_group">
+                  <option value="">----------------------</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">兑换券数量</label>
+              <div class="col-md-6">
+                <input class="form-control" type="number" name="prize_card_num" placeholder="兑换券数量">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-create-prize-card-submit-btn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Prize Card Group -->
+  <div class="modal" id="id-create-prize-card-group-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">创建兑换券种</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-create-prize-card-group-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">名称</label>
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="prize_card_group_name" placeholder="名称">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">说明</label>
+              <div class="col-md-6">
+                <textarea class="form-control" name="prize_card_group_info"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">兑换券面值</label>
+              <div class="col-md-6">
+                <input class="form-control" type="number" name="prize_card_value" placeholder="兑换券面值">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">有效时间</label>
+              <div class="col-md-6">
+                <input class="form-control" type="datetime" name="expired_datetime" placeholder="有效时间">
+                <span class="help-block">日期时间格式: 1970-01-01 00:00:00, 有效时间至少为1天</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">是否冻结</label>
+              <div class="col-md-6">
+                <select class="form-control" name="freezed">
+                  <option value="no">否</option>
+                  <option value="yes">是</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-create-prize-card-group-submit-btn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Prize Card Group -->
+  <div class="modal" id="id-edit-prize-card-group-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">查看修改兑换券种</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-edit-prize-card-group-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">名称</label>
+              <div class="col-md-6">
+                <select class="form-control" name="prize_card_group">
+                  <option value="">----------------------</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">说明</label>
+              <div class="col-md-6">
+                <textarea class="form-control" name="prize_card_group_info"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">兑换券面值</label>
+              <div class="col-md-6">
+                <input class="form-control" type="number" name="prize_card_value" placeholder="兑换券面值">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">有效时间</label>
+              <div class="col-md-6">
+                <input class="form-control" type="datetime" name="expired_datetime" placeholder="有效时间">
+                <span class="help-block">日期时间格式: 1970-01-01 00:00:00, 有效时间至少为1天</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">是否冻结</label>
+              <div class="col-md-6">
+                <select class="form-control" name="freezed">
+                  <option value="no">否</option>
+                  <option value="yes">是</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-edit-prize-card-group-submit-btn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Prize Card Group -->
+  <div class="modal" id="id-export-prize-card-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">导出兑换券</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-export-prize-card-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">兑换券种类名称</label>
+              <div class="col-md-6">
+                <select class="form-control" name="prize_card_group">
+                  <option value="">----------------------</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-export-prize-card-submit-btn">导出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

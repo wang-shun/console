@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}Flavor{% endblock %}
+
+{% block crumbs %} {% endblock %}
+{% block page %} 创建Flavor {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="create_flavor_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label box-list-seekbar-label">
+            <span>*</span>VCPUS:
+        </label>
+        <div class="box-list-seekbar" id="create_flavor_VCPUS">
+
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label box-list-seekbar-label">
+            <span>*</span>内存:
+        </label>
+        <div class="box-list-seekbar" id="create_flavor_memory">
+
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label box-list-seekbar-label">
+            <span>*</span>系统盘:
+        </label>
+        <div class="box-list-seekbar" id="create_flavor_ghost">
+
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否公开:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button active" id="open_gateway">公开</li>
+                    <li class="switch_button" id="close_gateway">不公开</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    <div class="box-list noEmpty" id="box-select-content" style="display: none">
+        <label class="box-list-label">
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="创建" class="box-button" id="create_flavor">
+    </div>
+</div>
+{% endblock%}

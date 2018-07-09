@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} 高级设置 {% endblock %}
+{% block page %} 高级设置 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+
+{% block content %}
+<div class="panel advanced-config">
+    <div class="panel-body">
+
+    <table id="" class="table table-hover table-striped table-bordered">
+        <thead>
+        <th>功能</th>
+        <th>配置</th>
+        <th>操作</th>
+        <th>备注</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>DRS动态资源调度</td>
+                <td><span id="tableDrsSwitch">关闭</span>CPU:<span id="tableDrsInputCPU">0</span>%;&nbsp;内存:<span id="tableDrsInputRAM">0</span>% </td>
+                <td><button type="button" id="drsBtn" class="advanced-btn glyphicon glyphicon-cog">设置</button></td>
+                <td>开启此功能后，资源可以做到自动负载，动态漂移</td>
+            </tr>
+            <tr>
+                <td>配置调度策略</td>
+                <td><span id="tablePolicy">默认策略</span></td>
+                <td><button type="button" id="tacticBtn" class="advanced-btn glyphicon glyphicon-indent-right"> 选择策略</button></td>
+                <td>不同配置服务器的调度策略</td>
+            </tr>
+            <tr>
+                <td>用户配额</td>
+                <td id='quota_switch_label'>{% if user_quota_switch %}开启{% else %} 关闭{% endif %}</td>
+                <td>
+                      <div class="checkbox checkbox-slider--b">
+                        <label id="quota_switch">
+                          <input type="checkbox" {% if user_quota_switch %}checked{% endif %} ><span></span>
+                        </label>
+                      </div>         
+                </td>
+                <td>配置用户是否开启资源配额限制</td>
+            </tr>
+            <tr class="hide">
+                <td>管理平台logo</td>
+                <td><img src="{% static "images/console_logo.png" %}" class="logo-img" /></td>
+                <td><button type="button" id="console_logo" class="advanced-btn glyphicon glyphicon-picture"> 上传logo</button></td>
+                <td>*图片格式要求(支持png/jpg/gif/jpeg,建议大小为280*48)</td>
+            </tr>
+            <tr class="hide">
+                <td>自服务平台logo</td>
+                <td><img src="{% static "images/admin_logo.png" %}" class="logo-img" /></td>
+                <td><button type="button" id="admin_logo" class="advanced-btn glyphicon glyphicon-picture"> 上传logo</button></td>
+                <td>*图片格式要求(支持png/jpg/gif/jpeg,建议大小为280*48)</td>
+            </tr>
+            <tr class="hide">
+                <td>管理平台名称</td>
+                <td>{{platform_names.console_name}}</td>
+                <td><button type="button" id="editName_consoleBtn" class="advanced-btn glyphicon glyphicon-pencil"> 编辑</button></td>
+                <td>不能超过20个字符</td>
+            </tr>
+            <tr class="hide">
+                <td>自服务平台名称</td>
+                <td>{{platform_names.admin_name}}</td>
+                <td><button type="button" id="editName_adminBtn" class="advanced-btn glyphicon glyphicon-pencil"> 编辑</button></td>
+                <td>不能超过20个字符</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<!--DRS弹框-->
+<div class="modal fade" id="drsModal" tabindex="-1" role="dialog" aria-labelledby="drsModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">DRS动态资源调度</h4>
+            </div>
+            <div class="modal-body">
+                <p class="bg-warning" style="padding: 10px">主机cpu或者内存利用率 达到所限定的百分比，则把资源利用较低的虚拟机平均迁移到其他资源利用率较低的物理机上！</p>
+                <form class="form-horizontal" id="drsForm" method="post" action="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态:</label>
+                          <div class="col-sm-10">
+                            <div class="radio-inline">
+                              <label>
+                                <input value='ture' type="radio" name='switch' id='isSwitch_true'> 开启
+                              </label>
+                            </div>
+                            <div class="radio-inline">
+                              <label>
+                                <input value='' type="radio" name='switch' id='isSwitch_false'> 关闭 
+                              </label>
+                            </div>
+                          </div>
+                    </div>
+                    <input type="hidden" value="SetDrs" name="action">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="inputCPU" class="col-sm-2 control-label">CPU(%):</label>
+                        <div class="col-sm-10">
+                            <input type="number" max="100" min="0" class="form-control" id="inputCPU" name="CPU">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMemory" class="col-sm-2 control-label">内存(%):</label>
+                        <div class="col-sm-10">
+                            <input type="number" max="100" min="0" class="form-control" id="inputMemory" name="RAM">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="drsSubmit" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--选择策略弹框-->
+<div class="modal fade" id="tacticModal" tabindex="-1" role="dialog" aria-labelledby="tacticModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">配置调度策略</h4>
+            </div>
+            <div class="modal-body">
+                    {% csrf_token %}
+                    <div id="tacticSelect"></div>
+                    <input type="hidden" value="SetPolicy" name="action">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="tacticSubmit" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--平台名称弹框-->
+<div class="modal fade" id="editName_consoleModal" tabindex="-1" role="dialog" aria-labelledby="nameModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">平台名称</h4>
+            </div>
+            <div class="modal-body">
+              <form class='form-horizontal'>
+                    <div class="form-group">
+                        <label for="inputConsole" class="col-sm-3 control-label">Console平台名称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputConsole" name="console_name" value="{{platform_names.console_name}}">
+                            <span class="text-danger input-text-tip">不能超过20个字符</span>
+                        </div>
+                    </div>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit_consoleBtn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--平台名称弹框-->
+<div class="modal fade" id="editName_adminModal" tabindex="-1" role="dialog" aria-labelledby="nameModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">平台名称</h4>
+            </div>
+            <div class="modal-body">
+                <form class='form-horizontal'>
+                    <div class="form-group">
+                        <label for="inputAdmin" class="col-sm-3 control-label">Admin平台名称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputAdmin" name="admin_name" value="{{platform_names.admin_name}}">
+                            <span class="text-danger input-text-tip">不能超过20个字符</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit_adminBtn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 平台logo 上传 -->
+<form id="console_logo_form" style="display:none" method="post" enctype="multipart/form-data">
+    <input type="hidden" value="logo" name="action">
+    {% csrf_token %}
+    <input type="file" name="console_logo" />
+    <input type="submit" />
+</form>
+
+<form id="admin_logo_form" style="display:none" method="post" enctype="multipart/form-data">
+    <input type="hidden" value="logo" name="action">
+    {% csrf_token %}
+    <input type="file" name="admin_logo" />
+    <input type="submit" />
+</form>
+
+{% endblock %}

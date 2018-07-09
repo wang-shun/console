@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<title>404错误</title>
+		<meta charset="utf-8">
+    	<link rel="icon" href="{% static "favicon.ico" %}">
+        <style>
+            body,div,p{
+            padding: 0;
+            margin: 0;
+            }
+            body{
+                background:#ededed;
+            }
+            div.container{
+                text-align: center;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-60%);
+                width:800px;
+            }
+            div.banner404{
+                background: url("{% static "images/banner404.png" %}") no-repeat;
+                height: 280px;
+                background-position: center -40px;
+                background-size: 600px auto;
+            }
+            div.text404{
+                background: url("{% static "/images/text404.png" %}") no-repeat;
+                height: 89px;
+                background-position: top center;
+                background-size: 200px auto;
+            }
+            p.hint{
+                font-style: italic;
+                font-size: 20px;
+                font-family: "微软雅黑";
+            }
+            p.back{
+                margin-top: 10px;
+            }
+            p.back a{
+                font-size: 16px;
+                color: #61aad8;
+                text-decoration: none;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="banner404"></div>
+			<div class="text404"></div>
+			<p class="hint">哎呀呀，你访问的页面已经不存在了……</p>
+			<p class="back"><a href="https://www.cloudin.cn/"><span id="time">3</span>秒后，返回首页 ></a></p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var time = 3;
+		var timeSpan = document.getElementById("time");
+		var clear = setInterval(function(){
+			time--;
+			if(time <= 0){
+				clearTimeout(clear);
+				window.location = "https://www.cloudin.cn/";
+			}else{
+				timeSpan.innerHTML = time;
+			}
+		},1000);
+	</script>
+
+
+</html>

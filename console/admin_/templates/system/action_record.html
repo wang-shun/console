@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}操作日志{% endblock %}
+
+{% block page %} 操作日志 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+{% block content %}
+  <div class="table-controller-field">
+    <button class="btn btn-default table-controller refresh icon-refresh" id="refresh">刷新</button>    
+  </div>
+  <div class="pull-top-table">
+    <table id="id-action-record-list-table" class="table table-hover table-striped table-bordered">
+      <thead>
+          <th>操作人</th>
+          <th>操作类型</th>
+          <th>操作详情</th>
+          <th>操作时间</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

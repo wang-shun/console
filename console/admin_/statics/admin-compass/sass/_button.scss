@@ -1,0 +1,23 @@
+$btnBgColor:#2b93d3;
+$btnDisabledBgColor: #d9d9d9;
+$btnWidth:106px;
+$btnHeight:34px;
+
+.btn{
+    padding: 0 $_margin;
+    width: $btnWidth;
+    height: $btnHeight;
+    line-height: $btnHeight;
+    &.refresh{
+        width: 68px;
+        border: solid 1px #e4e4e4;
+    }
+}
+.btn-info{
+    background-color: $btnBgColor; 
+    border-color: $btnBgColor;
+}
+.btn-info.disabled, .btn-info.disabled.active, .btn-info.disabled.focus, .btn-info.disabled:active, .btn-info.disabled:focus, .btn-info.disabled:hover, .btn-info[disabled], .btn-info[disabled].active, .btn-info[disabled].focus, .btn-info[disabled]:active, .btn-info[disabled]:focus, .btn-info[disabled]:hover, fieldset[disabled] .btn-info, fieldset[disabled] .btn-info.active, fieldset[disabled] .btn-info.focus, fieldset[disabled] .btn-info:active, fieldset[disabled] .btn-info:focus, fieldset[disabled] .btn-info:hover{
+    background: $btnDisabledBgColor;
+    border: none;
+}

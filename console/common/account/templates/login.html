@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="{% static "css/login.css" %}" />
+    <link rel="icon" href="{% static "favicon.ico" %}" />
+    <title>{{platform_names.console_name}}--登录</title>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?68d94b35e5291a1b41d0d8e0e4b2fb74";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <div class="bodyContainer">
+        <div class="BackgroundImage Module active animate_background">
+        <div class="BackgroundImage Module active animate_background">
+            <div class="background loaded loginPic"></div>
+        </div>
+        <div class="loginForm">
+            <!--认证报错信息 -->
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-{{ message.tags }} message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% if send_activate %}
+            <form action="{{ activate_link }}" method="post" target="_blank" id="ActivateEmailForm">
+            {% csrf_token %}
+            <p class="text-danger message">账户未激活，点击<a href="#" id="sendActivateEmail" class="activate">激活</a></p>
+            </form>
+            {% endif %}
+            <p class="text-danger message error-message" style="display: none"></p>
+            <!--认证表单（密码登录） -->
+            <form id="passwordLoginForm" action="" method="post" s>
+                {% csrf_token %}
+                <ul class="basic">
+                    <li><input type="text" name="identifier" value="{{ pre_identifier|default:'' }}" spellcheck="false" autocapitalize="off"
+                                            autocomplete="off" autocorrect="off" placeholder="邮箱/手机号" autofocus="true"/></li>
+                    <li><input type="text" name="password" onfocus="this.type='password'" value="" placeholder="密码"/></li>
+                    
+                    <!--<li>-->
+                        <!--<label>验证码<s>*</s></label><input type="text" class="shortInput" name="captcha_value"-->
+                                                         <!--id="captcha_value" value="" />-->
+                        <!--<img src="" />-->
+                        <!--<input type="hidden" name="captcha_key" value="">-->
+                        <!--<div class="refresh"></div>-->
+                        <!--<i></i>-->
+                    <!--</li>-->
+                </ul>
+                {% if show_captcha %}
+                <ul class="captcha_ul">
+                    <li><input type="text" name="captcha_value" placeholder="图片验证码"/><img src="" class="captcha_img" /></li>
+                </ul>
+                {% endif %}
+                <div>
+                    <!--p class="switchLogin"><i class="iconPhone"></i><span>手机验证码登录</span></p-->
+                    <!--a href="/password/reset">忘记密码？</a-->
+                </div>
+                {% if show_captcha %}
+                <span style="color: #ffffff"></span>
+                <input type="hidden" name="captcha_key" value="">
+                {% endif %}
+                <input type="hidden" name="auth_type" value="password">
+                <input type="hidden" name="redirect_to" value="{{ redirect_to }}">
+                <button type="submit" class="btn-info" id="passwordFormSubmit">登录</button>
+                <!--a href="/register" class="immeRegister" style="">立即注册</a-->
+            </form>
+            <!--认证表单（动态密码登录） -->
+            <form id="dynamicCodeLoginForm" action="" style="display: none" method="post">
+                {% csrf_token %}
+                <ul class="basic">
+                    <li>
+                        <label>手机号</label>
+                        <input type="text" name="cell_phone" value="{{ pre_cell_phone|default:'' }}" spellcheck="false" autocapitalize="off"
+                                autocomplete="off" autofocus="true"  />
+                        <i style="display: none;color: #ffffff">请输入手机号</i>
+                    </li>
+                    <li  class="dynamic-code">
+                        <label>动态密码</label>
+                        <input type="text" name="code" value="">
+                        <i style="display: none">请输入动态密码</i>
+                        <button class="btn-password" type="button" id="getDynamicPassword">获取动态密码</button>
+                    </li>
+                </ul>
+                {% if show_captcha %}
+                <ul class="captcha_ul">
+                    <li>
+                        <label>图片验证码</label>
+                        <input type="text" name="captcha_value" value=""/><img src="" class="captcha_img" />
+                        <i style="display: none">请输入图片验证码</i>
+                    </li>
+                </ul>
+                {% endif %}
+                <div>
+                    <p class="switchLogin"><span>&lt;&nbsp;返回普通登录</span></p>
+                </div>
+                {% if show_captcha %}
+                <span style="color: #ffffff"></span>
+                <input type="hidden" name="captcha_key" value="">
+                {% endif %}
+                <input type="hidden" name="auth_type" value="code">
+                <input type="hidden" name="redirect_to" value="{{ redirect_to }}">
+                <button type="submit" class="btn-info" id="codeFormSubmit">登录</button>
+            </form>
+            <div id="passwordLoginMessage" class="text-danger message" style=" text-align: center;">
+
+            </div>
+            <div id="licenseBox">
+                <div id="licenseError" class="panel" style="width: 90%; margin-left: 5%; display: none;">
+                    <h5 class="text-danger" id="licenseDanger">license有错误,请联系管理员</h5>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="licenseTextarea" placeholder="请输入license"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-success" style="width: 100%;" id="licenseSubmit">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static "js/extends/jquery-2.1.4.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "public/build/login.js" %}"></script>
+</body>
+</html>

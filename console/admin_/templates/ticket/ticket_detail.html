@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load translate %}
+{% load ticket_closed %}
+{% load send_to_me %}
+{% load ticket_finish %}
+{% load ticket_send %}
+{% load ticket_process %}
+
+{% block title %}工单详情{% endblock %}
+{% block page %}工单详情{% endblock %}
+
+{% block content %}
+    <div style="margin: 30px">
+      <button class="btn btn-default refresh-buttons"><span class="glyphicon glyphicon-refresh"></span></button>
+      {% if request.user.perms.close_ticket %}
+      <button class="btn btn-info ticket-control" data-toggle="modal"
+              data-target="#closeTicket" {% if ticket.ticket_id|ticket_closed:request.user.username %}disabled{% endif %}>
+          关闭工单
+      </button>
+      {% endif %}
+      {% if request.user.perms.process_ticket %}
+      <button class="btn btn-info ticket-control"
+              id="id-send-ticket-to-me" {% if ticket.ticket_id|send_to_me:request.user.username %}disabled{% endif %}>
+          我来处理
+      </button>
+      {% endif %}
+      {% if request.user.perms.send_ticket %}
+      <button class="btn btn-info ticket-control" data-toggle="modal"
+              data-target="#sendTicket" {% if ticket.ticket_id|ticket_send:request.user.username %}disabled{% endif %}>
+          分派工单
+      </button>
+      {% endif %}
+    </div>
+    <div class="col-sm-12">
+      <div class="col-sm-5">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>基本信息</h4>
+          </div>
+          <table class="table table-responsive">
+            <thead>
+              <th style="width: 26%"></th>
+              <th></th>
+            </thead>
+            <tr>
+              <td>ID:</td><td>{{ ticket.ticket_id }}</td>
+            </tr>
+            <tr>
+              <td>客户ID:</td><td>{{ ticket.account_id }}</td>
+            </tr>
+            <tr>
+              <td>邮箱账号:</td><td>{{ ticket.account_email }}</td>
+            </tr>
+            <tr>
+              <td>姓名:</td><td>{{ ticket.account_name|default:'' }}</td>
+            </tr>
+            <tr>
+              <td>公司:</td><td>{{ ticket.account_company|default:'' }}</td>
+            </tr>
+            <tr>
+              <td>提交时间:</td><td>{{ ticket.create_datetime|date:"Y-m-d H:i:s" }}</td>
+            </tr>
+            <tr>
+              <td>工单状态:</td><td>{{ ticket.status|translate:"TICKET_STATUS_MAP" }}</td>
+            </tr>
+            <tr>
+              <td>工单类型:</td><td>{{ ticket.ticket_type|translate:"TICKET_TYPE_MAP" }}</td>
+            </tr>
+            <tr>
+              <td>参与人:</td><td>{{ ticket.edit_users }}</td>
+            </tr>
+            <tr>
+              <td>最后处理人:</td><td>{{ ticket.last_edit_user.nickname }}</td>
+            </tr>
+            <tr>
+              <td>最后处理时间:</td>
+              <td>
+                {{ ticket.last_edit_datetime|date:'Y-m-d H:i:s' }}
+                <input type="hidden" name="ticket_start_datetime"
+                       value="{{ ticket.start_datetime|date:'Y-m-d H:i:s' }}">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>工单详情<small class="pull-right" id="ticket-detail-time-count"></small></h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-responsive" style="width:100%;">
+              <tbody>
+
+                <!-- Ticket Title Field -->
+                <tr class="ticket-subject-line">
+                  <td class="ticket-subject center">工单标题：{{ ticket.subject }}</td>
+                </tr>
+
+                <!-- Ticket Content Field -->
+                <tr>
+                  <td style="color: #12a4f4">
+                    <a href="/admin/customer/account/{{ ticket.submit_user.user.username }}" style="color: #12a4f4">
+                      <abbr title="{{ ticket.submit_user.nickname }}" data-toggle="tooltip" data-placement="bottom">
+                        {{ ticket.submit_user.nickname|truncatechars:10 }} [customer]
+                      </abbr>
+                    </a>
+                    @ {{ ticket.create_datetime|date:'Y-m-d H:i:s' }}
+                    <div>
+                      {{ ticket.description|default_if_none:"空" }}
+                    </div>
+                    {% for attach in ticket.attachment_list %}
+                      {% if attach.attachment_type == "txt" %}
+                        <img src="{% static "images/upload_images/fileType/txt.png" %}" width="60" height="60"
+                                class="ticket-attachment-thumbnail">
+                      {% else %}
+                        <img src="{{ attach.attachment_thumbnail.url }}" width="60" height="60"
+                            class="ticket-attachment-thumbnail">
+                      {% endif %}
+                        <input type="hidden" class="ticket-attachment" value="{{ attach.attachment.url }}">
+                        <input type="hidden" class="ticket-attachment-type" value="{{ attach.attachment_type }}">
+                        <input type="hidden" class="ticket-attachment-name" value="{{ attach.name }}">
+                      {% endfor %}
+                  </td>
+                </tr>
+                {% for dialog in dialog_list %}
+                  <tr>
+                    <td>
+                      {% if dialog.dialog_type == "staff" %}
+                        <div style="color: #22b525">
+                          {{ dialog.account.nickname|truncatechars:10 }} [staff] @
+                          {{ dialog.create_datetime|date:"Y-m-d H:i:s" }}
+                        </div>
+                        <div style="color: #22b525">
+                          {{ dialog.content|default_if_none:'' }}
+                        </div>
+                      {% else %}
+                        <div style="color: #12A4F4">
+                          <a href="/admin/customer/account/{{ dialog.ticket.submit_user.user.username }}" style="color: #12a4f4">
+                            <abbr title="nickname: {{ dialog.ticket.submit_user.nickname }}"
+                                  data-toggle="tooltip" data-placement="bottom">
+                              {{ dialog.ticket.submit_user.nickname|truncatechars:10 }}
+                            </abbr>
+                          </a> [customer]
+                          @ {{ dialog.create_datetime|date:"Y-m-d H:i:s" }}
+                        </div>
+                        <div style="color: #12A4F4">
+                          {{ dialog.content|default_if_none:"" }}
+                        </div>
+                        {% for attach in dialog.attachment_list %}
+                          {% if attach.attachment_type == "txt" %}
+                            <img src="{% static "images/upload_images/fileType/txt.png" %}" width="60" height="60"
+                                    class="ticket-attachment-thumbnail">
+                          {% else %}
+                            <img src="{{ attach.attachment_thumbnail.url }}" width="60" height="60"
+                                    class="ticket-attachment-thumbnail">
+                          {% endif %}
+                          <input type="hidden" class="ticket-attachment" value="{{ attach.attachment.url }}">
+                          <input type="hidden" class="ticket-attachment-type" value="{{ attach.attachment_type }}">
+                          <input type="hidden" class="ticket-attachment-name" value="{{ attach.name }}">
+                        {% endfor %}
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+{##}
+{#                <!-- Ticket Input Field -->#}
+{#                <tr>#}
+{#                  <td class="dialog-input-field">#}
+{#                    {% if request.user.perms.process_ticket %}#}
+{#                    {% if request.user.username == ticket.last_edit_user.user.username %}#}
+{#                    <form class="" action="" method="post">#}
+{#                      {% csrf_token %}#}
+{#                      <textarea class="form-control dialog-input" name="dialog_content" rows="6" placeholder="输入工单回复"#}
+{#                                {% if ticket.status != "processing" and ticket.status != "pending" %}disabled{% endif %} required=""></textarea>#}
+{#                      <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">#}
+{#                      <input type="hidden" name="action" value="dialog">#}
+{#                      <input type="hidden" name="dialog_type" value="staff">#}
+{#                      <input class="form-control btn btn-info" type="submit" value="提交"#}
+{#                              {% if ticket.status != "processing" and ticket.status != "pending" %}disabled{% endif %}>#}
+{#                      <span class="help-block">处理中工单在没有任何其他操作的情况下，两小时后自动关闭</span>#}
+{#                    </form>#}
+{#                    {% endif %}#}
+{#                    {% endif %}#}
+{#                  </td>#}
+{#                </tr>#}
+
+              </tbody>
+            </table>
+            <div>
+              {% if request.user.perms.process_ticket %}
+                {% if request.user.username == ticket.last_edit_user.user.username %}
+                <form class="" action="" method="post">
+                  {% csrf_token %}
+                  <textarea class="form-control dialog-input" name="dialog_content" rows="6" placeholder="输入工单回复"
+                            {% if ticket.status != "processing" and ticket.status != "pending" %}disabled{% endif %} required=""></textarea>
+                  <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                  <input type="hidden" name="action" value="dialog">
+                  <input type="hidden" name="dialog_type" value="staff">
+                  <input class="form-control btn btn-info" type="submit" value="提交"
+                          {% if ticket.status != "processing" and ticket.status != "pending" %}disabled{% endif %}>
+                  <span class="help-block">处理中工单在没有任何其他操作的情况下，两小时后自动关闭</span>
+                </form>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Close Ticket Modal -->
+    <div class="modal" id="closeTicket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">关闭工单</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="" method="post"
+                  id="id-ticket-close-ticket-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-6">
+                  <h3>确定关闭这个工单？</h3>
+                  <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                  <input type="hidden" name="action" value="close">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="id-ticket-close-ticket">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Send Ticket To Me Form-->
+    <form action="" method="post" id="ticket-send-ticket-to-me-form">
+      {% csrf_token %}
+      <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+      <input type="hidden" name="action" value="send_to_me">
+    </form>
+
+    <!-- Send Ticket Modal -->
+    <div class="modal" id="sendTicket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">分派工单</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="" method="post"
+                  id="ticket-send-ticket-form">
+              {% csrf_token %}
+              <div class="form-group typeahead-field">
+                <label class="col-sm-2 control-label">分配</label>
+                <div class="col-sm-6 typeahead-container">
+                  <input type="search" name="send_to[query]" class="form-control" id="send_to-query"
+                         placeholder="用户邮箱" autocomplete="off">
+                  <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                  <input type="hidden" name="action" value="send">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="id-ticket-send-ticket">分配</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Attachment Modal -->
+    <div class="modal" id="attachment-preview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">附件预览</h4>
+          </div>
+          <div class="modal-body">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" id="id-default-txt-pic" value="{% static "images/upload_images/fileType/txt.png" %}">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finish Ticket Form -->
+    <form action="" method="post" id="ticket-finish-ticket-form">
+      {% csrf_token %}
+      <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+      <input type="hidden" name="action" value="finish">
+    </form>
+    <!-- Finish Ticket Form -->
+    <form action="" method="post" id="ticket-process-ticket-form">
+      {% csrf_token %}
+      <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+      <input type="hidden" name="action" value="process">
+    </form>
+    <script>
+
+    </script>
+{% endblock %}

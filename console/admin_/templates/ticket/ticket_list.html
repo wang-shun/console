@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}工单管理{% endblock %}
+
+{% block page %} 工单管理 {% endblock %}
+{% block parent_crumbs %} <span>工单中心</span> > {% endblock %}
+{% block crumbs %} 工单管理 {% endblock %}
+
+{% block content %}
+  <div class="table-controller-field">
+  </div>
+  <div>
+    <div class="pull-top-table">
+      <table id="id-ticket-table" class="table table-hover table-striped table-bordered">
+        <thead>
+          <th>ID</th>
+          <th>客户ID</th>
+          <th>提交时间</th>
+          <th>工单标题</th>
+          <th>状态</th>
+          <th>工单类型</th>
+          <th>最后处理人</th>
+          <th>最后处理时间</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

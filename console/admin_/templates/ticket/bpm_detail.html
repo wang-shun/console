@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}BPM流程管理{% endblock %}
+
+{% block page %} BPM流程管理 {% endblock %}
+
+{% block content %}
+
+<div class="col-md-8">
+    <div class="panel">
+        <div class="panel-heading">
+            <h4>基本信息</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <th style="width: 18%">字段</th>
+                <th>说明</th>
+                </thead>
+                <tbody id="bpm_table_body">
+
+                </tbody>
+            </table>
+            <div style="width: 500px; text-align: center;">
+                <button type="button" id="bpm_submit" class="btn btn-primary" disabled>同意</button>
+                <button type="button" id="bpm_esc" class="btn btn-danger" disabled>拒绝</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

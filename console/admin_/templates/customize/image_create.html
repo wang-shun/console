@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}镜像{% endblock %}
+
+{% block crumbs %} {% endblock %}
+{% block page %} 创建镜像 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="image_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>文件:
+        </label>
+        <div class="box-list-input" id="create_image_load">
+            <span class="create_image_filename"></span>
+            <button class="btn btn-info icon-add" id="create_image_file">选择</button>
+            <button class="btn btn-info icon-add" id="create_image_file_load" disabled>上传</button>
+            <i class="box-list-error" id="create_image_file_tip"></i>
+            <input type="file" id="create_image_file_hidden" style="display: none;">
+        </div>
+        <div class="box-list-input" style="display: none" id="create_image_success">
+            <span class="create_image_filename"></span>
+            <button class="btn btn-info icon-edit" id="edit_image_file">修改</button>
+            <button class="btn btn-info icon-edit" id="edit_image_file_upload">上传</button>
+            <button class="btn btn-info icon-edit" id="edit_image_file_esc">取消</button>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>格式:
+        </label>
+        <div class="box-list-input box-list-input-height">
+            <input type="radio" name='disk_format' checked="checked" value="vmdk"><span>VMDK</span>
+            <input type="radio" name='disk_format' value="raw"><span>RAW</span>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>镜像类型:
+        </label>
+        <div class="box-list-input box-list-input-height">
+            <input type="radio" name='image_type' checked="checked" value="linux"><span>Linux</span>
+            <input type="radio" name='image_type' value="windows"><span>Windows</span>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否保护:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button active" name="is_protect" value="true">保护</li>
+                    <li class="switch_button" name="is_protect" value="false">不保护</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否公开:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button active" name="is_public" value="true">公开</li>
+                    <li class="switch_button" name="is_public" value="false">不公开</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="创建" class="box-button btn" id="create_image">
+    </div>
+</div>
+
+<div class="modal" id="create-image-file-modal" tabindex="-1" role="dialog" aria-labelledby="closeComputer">
+    <div class="modal-dialog" role="document" style="width: 800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="text-danger" style="text-align: center" id="create-image-file-tip-modal">
+
+                    </div>
+                </div>
+                <div class="row well-sm">
+                    <div class="col-md-3 text-right">上传文件:</div>
+                    <div class="col-md-7">
+                        <span id="create-flavor-file-name-modal"></span>
+                    </div>
+                </div>
+                <div class="row well-sm">
+                    <div class="col-md-3 text-right">上传进度:</div>
+                    <div class="col-md-7">
+                        <span id="create-flavor-file-progress-modal"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="create-image-file-modal-reset">重新上传</button>
+                <button type="button" class="btn btn-primary" id="create-image-file-modal-goon">继续上传</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="create-flavor-modal" tabindex="-1" role="dialog" aria-labelledby="closeComputer">
+    <div class="modal-dialog" role="document" style="width: 800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">镜像上传</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row well-sm">
+                    <div class="col-md-3 text-right">上传文件:</div>
+                    <div class="col-md-7">
+                        <span id="create-flavor-name-modal"></span>
+                    </div>
+                </div>
+                <div class="row well-sm">
+                    <div class="col-md-3 text-right">上传进度:</div>
+                    <div class="col-md-7">
+                        <div class="progress" style="width: 100%">
+                            <div id="migrateProgress" class="progress-bar" style="width: 0%" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="progressNum" class="col-md-2 text-left">
+                        [0kb,0kb]
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-danger" style="text-align: center">
+                        镜像上传过程中，请不要执行其他操作！！！上传进度100%后，页面自动刷新！
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >取消上传</button>
+                <button type="button" class="btn btn-primary" id="moveFlavorsubmitBtn" data-type="start">开始上传</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

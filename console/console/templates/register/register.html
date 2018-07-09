@@ -1,0 +1,187 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CloudIn控制台--注册</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/register.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}" />
+    <link rel="icon" href="{% static "favicon.ico" %}">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?68d94b35e5291a1b41d0d8e0e4b2fb74";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+  <div class="header">
+    <div class="headerinside">
+      <h1 class="logo"></h1>
+      <ul>
+          <li><a href="https://www.cloudin.cn/index.html">首页</a></li>
+          <li><a href="https://www.cloudin.cn/product.html">产品</a></li>
+          <li><a href="https://console.cloudin.cn/">控制台</a></li>
+          <li><a href="https://www.cloudin.cn/about.html">关于</a></li>
+          <li><a href="https://www.cloudin.cn/docs.html">文档中心</a></li>
+          <li style="margin-left: 30px;"><a href="https://console.cloudin.cn/login">登录</a></li>
+          <li><a href="https://console.cloudin.cn/register">注册</a></li>
+      </ul>
+    </div>
+  </div>
+    <div id="top"></div>
+    <div class="bigcontainer">
+        <h2>注册</h2>
+        <form id="registerForm" action="" method="post">
+            {% csrf_token %}
+            <ul>
+                <li>
+                    <label>邮箱<s>*</s></label>
+                    <input type="email" name="email" value="" id="email" />
+                    <i></i>
+                    <div class="iWrapper">邮箱即为您的用户名，请确保长期有效</div>
+                </li>
+                <li style="margin-top: 20px;">
+                    <label>密码<s>*</s></label>
+                    <input type="password" name="password" value="" id="password" />
+                    <i></i>
+                    <div class="iWrapper">必须包含数字及大小写字母，长度8-20位</div>
+                </li>
+                <li style="margin-top: 20px;">
+                    <label>确认密码<s>*</s></label>
+                    <input type="password" name="confirm_password" id="confirmpwd" value="" />
+                    <i></i>
+                    <div class="iWrapper"></div>
+                </li>
+                <li>
+                    <label>手机号<s>*</s></label>
+                    <input type="text" name="cell_phone" value="" id="cell_phone" />
+                    <i></i>
+                    <div class="iWrapper"></div>
+                </li>
+                <li>
+                    <label>验证码<s>*</s></label><input type="text" class="shortInput" name="captcha_value"
+                                                     id="captcha_value" value="" />
+                    <img src="" />
+                    <input type="hidden" name="captcha_key" value="">
+                    <div class="refresh"></div>
+                    <i></i>
+                </li>
+                <li>
+                    <label>手机验证码<s>*</s></label>
+                    <input type="text" name="code" class="shortInput" value=""  id="code"/>
+                    <button type="button" class="btn btn-info" name="code_btn" disabled="disabled">获取验证码</button>
+                    <i></i>
+                </li>
+                <li><label>姓名</label><input type="text" name="name" value="" /></li>
+                <li><label>行业</label>
+                <div class="selectWrapperForCreate">
+                <select name="industry">
+                    <option value="1">互联网金融</option>
+                    <option value="2">视频</option>
+                    <option value="3">在线教育</option>
+                    <option value="4">游戏</option>
+                    <option value="5">电子商务</option>
+                    <option value="6">移动APP</option>
+                    <option value="7">媒体</option>
+                    <option value="8">大数据</option>
+                    <option value="9">科学</option>
+                    <option value="10">娱乐</option>
+                    <option value="11">商业</option>
+                    <option value="12">政府</option>
+                    <option value="13">个人</option>
+                    <option value="14">其他</option>
+                </select></div></li>
+                <li><label>公司名称</label><input type="text" name="company" value="" /></li>
+                <li><label>公司地址</label><input type="text" name="company_addr" value="" /></li>
+                <li><label>公司电话</label><input type="text" name="company_tel" value="" /></li>
+                <li><label>了解途径</label>
+                <div class="selectWrapperForCreate">
+                <select name="source">
+                    <option value="1">朋友推荐</option>
+                    <option value="2">展会</option>
+                    <option value="3">媒体报道</option>
+                    <option value="4">论坛</option>
+                    <option value="5">搜索引擎</option>
+                    <option value="6">官方微博</option>
+                    <option value="7">官方微信</option>
+                </select>
+                </div>
+                </li>
+                <li class="alreadyRead"><label></label><input type="checkbox" name="read_protocol" value="0" />我已阅读并同意《<a href="https://cloudin.cn/about.html#serviceInfo" target="_blank" id="showDescription">CloudIn平台用户协议</a>》</li>
+                <li><label></label><button type="button" class="formSubmit noClick" id="formSubmit">注册</button></li>
+            </ul>
+            {% if invite_register %}
+            <input type="hidden" name="invite_code" value="{{ code }}">
+            {% endif %}
+        </form>
+    </div>
+    <div class="footer">
+      <div class="footerinside">
+          <div class="menuleft">
+              <ul>
+                  <li>
+                      <div class="submenu">产品</div>
+                      <dl>
+                          <dt><a href="https://www.cloudin.cn/product.html#cloudHost">云主机</a></dt>
+                          <dt><a href="https://www.cloudin.cn/product.html#cloudDisk">云硬盘</a></dt>
+                          <dt><a href="https://www.cloudin.cn/product.html#cloudNet">专有网络</a></dt>
+                          <dt><a href="https://www.cloudin.cn/product.html#cloudSafety">云安全</a></dt>
+                          <dt><a href="https://www.cloudin.cn/product.html#cloudMonitor">云监控</a></dt>
+                          <dt class="disabled"><a href="javascript:;">数据库</a><div class="commingsoon" style="display: none;">>>>即将上线，敬请期待...</div></dt>
+                          <dt class="disabled"><a href="javascript:;">负载均衡</a><div class="commingsoon" style="display: none;">>>>即将上线，敬请期待...</div></dt>
+                          <dt class="disabled"><a href="javascript:;">对象存储</a><div class="commingsoon" style="display: none;">>>>即将上线，敬请期待...</div></dt>
+                      </dl>
+                  </li>
+                  <li>
+                      <div class="submenu">关于</div>
+                      <dl>
+                          <dt><a href="https://www.cloudin.cn/about.html">加入我们</a></dt>
+                          <dt><a href="https://www.cloudin.cn/about.html#contactCloudIn">联系我们</a></dt>
+                          <dt><a href="https://www.cloudin.cn/about.html#contactCloudIn">意见反馈</a></dt>
+                          <dt><a href="https://www.cloudin.cn/serviceInfo.html">服务条款</a></dt>
+                      </dl>
+                  </li>
+                  <li>
+                      <div class="submenu">法律声明</div>
+                      <dl>
+                          <dt><a href="https://www.cloudin.cn/serviceInfo.html">服务承诺</a></dt>
+                          <dt><a href="https://www.cloudin.cn/about.html#contactCloudIn">合作程序</a></dt>
+                          <dt><a href="https://www.cloudin.cn/serviceInfo.html">隐私保护</a></dt>
+                          <!-- <dt>Email: <a href="mailto:contact@cloudin.ren">contact@cloudin.ren</a></dt> -->
+                      </dl>
+                  </li>
+                  <li>
+                      <div class="submenu">联系我们</div>
+                      <dl>
+                          <dt class="icon_phone">电话：+86 400-666-9160</dt>
+                          <dt class="icon_fax">传真：+86 010-84159122</dt>
+                          <dt>QQ：3163787923</dt>
+                          <dt>邮箱: <a href="mailto:contact@cloudin.ren">contact@cloudin.ren</a></dt>
+                      </dl>
+                  </li>
+              </ul>
+          </div>
+          <div class="menuright">
+              <dl>
+                  <dt><img src="{% static "images/qrcode.jpg" %}" width="100%" /><span style="padding-left: 9px;">&nbsp;</span>扫一扫，关注更多最新资讯！</dt>
+                  <dt><div class="logoGrey"></div><p class="footSlogan">云英，做云时代的云</p></dt>
+              </dl>
+          </div>
+      </div>
+      <div class="footeroutside">
+        <div class="copyrightContain">
+          <div class="copyrightLogo"></div>
+          <span style="margin-left: 420px;">Copyright © 2015-2017 CloudIn 北京创云传奇科技有限公司</span><span style="margin-left: 80px;">京ICP备 15049889</span>
+          <!-- Copyright © 2015-2017 CloudIn 北京创云传奇科技有限公司 ｜京ICP备 15049889 -->
+        </div>
+      </div>
+  </div>
+
+<script type="text/javascript" src="{% static "js/extends/jquery-2.1.4.min.js" %}"></script>
+<script type="text/javascript" src="{% static "public/build/register.js" %}"></script>
+</body>
+</html>

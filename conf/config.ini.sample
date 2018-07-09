@@ -1,0 +1,332 @@
+[DEFAULT]
+max_resource = 10
+
+[database]
+db_engine = sqlite3
+db_name = db.sqlite3
+db_user = cloudin
+db_password = console
+db_host = 127.0.0.1
+db_port = 3306
+
+[api]
+api_version = v1.0
+
+[message_center]
+;api_key = 99d708e42ca05ccfadde889c49d2871f
+;sms_api = http://192.168.100.11:8087/api/v1/sms/
+;email_api = http://192.168.100.11:8087/api/v1/email/
+api_key = 2fe1112797e0ebf27652783e165e493f
+sms_api = http://223.202.85.7:8086/api/v1/sms/
+email_api = http://223.202.85.7:8086/api/v1/email/
+
+
+[alipay]
+key =
+input_charset = utf-8
+partner =
+seller_id =
+seller_email = "chuangyuncq@outlook.com"
+sign_type = MD5
+request_base = https://mapi.alipay.com/gateway.do?
+pay_timeout = 45m
+enabled_paymethod = creditCardExpress, directPay, bankPay
+
+[log]
+level = DEBUG
+
+[i18n]
+code = zh-hans
+timezone = Asia/Shanghai
+
+[statics]
+static_root = /var/www/statics
+media_root = /Users/wuyang/cloudin/private-cloud/console/console/media
+
+[record]
+actions = create, delete, resize
+
+[redis]
+host = 192.168.5.21
+port = 6379
+password = 1234
+db_keypair = 4
+db_celery = 5
+db_celery_backend = 6
+db_quota_monitor = 8
+db_billing_monitor = 8
+db_wallet_monitor = 8
+db_resource_info = 9
+monitor_key = billing_status
+db_notify = 10
+db_account = 11
+
+[mq]
+host = 223.202.85.102
+port = 5672
+username = openstack
+password = iafChewdIk2
+
+[celery]
+timezone = UTC
+enable_utc = true
+broker = redis
+result = false
+event = false
+
+[code]
+send_interval = 60
+expire_seconds = 1800
+dynamic_code_length = 6
+verify_code_length = 4
+
+[register]
+id_expire = 86400
+id_clean_delay = 864000
+email_from = no-reply@cloudin.cn
+
+[zone_map]
+bj = http://192.168.5.20:7701
+yz = http://192.168.5.20:7701
+drs = http://192.168.5.20:7701
+policy = http://192.168.5.20:7701
+test = http://192.168.5.20:7701
+dev = http://192.168.5.20:7701
+prod = http://192.168.5.20:7701
+license = http://192.168.5.20:7701
+
+[secret_key_map]
+default = VMbkCHAssyua6bw5jFTeGmGYISxFHl
+method = sha256
+
+[other]
+host_name = localhost:8000
+wallet_zone = center
+debug = true
+allowed_hosts = *
+; 金融云
+; env = admin, console, finance
+;
+; portal
+; env = portal
+env = admin
+register = normal
+zone_list = bj
+ticket_send_to = wechat
+max_subaccount_num = 10
+symmetric_encrypt_key = 498f2940ead775715e7a662eca1d3d9c
+encrypt_enable = true
+max_shared_link_num = 10
+;month
+wallet_card_expired_timedelta = 12
+vnc_address = localhost:8000
+
+[open_register]
+open_register_key = 3nts7kXysPgM3gF67Bq0QzlXg3DhGX
+open_register_valid_ips = 127.0.0.1
+
+[wallet]
+wallet_zone = yz
+
+[session]
+session_timeout = 1209600
+
+[lbs]
+api_key =
+
+[service]
+telephone = 010-88888888
+
+[memcache]
+cache_type = localmem
+host = 192.168.100.12
+port = 11211
+page_cache_timeout = 900     ;seconds
+
+[sentry]
+dsn = http://57fd02e899834e6c95458b76fabb372f:92f16c99654a4dccb5df2310df41c23e@223.202.85.102:9003/2
+
+
+[email]
+host =  223.202.85.16
+port = 25
+user =
+password =
+default_from = CloudIn <account@cloudin.cn>
+use_ssl = false
+receiver = sample_receiver_email@noreply.com
+
+[billing_report]
+xls_dir = /tmp
+send_to_default = billing_report@cloudin.ren
+send_to_cloudin = dinguoqiang@cloudin.ren
+send_to_yescai = dinguoqiang@cloudin.ren
+
+[zabbix]
+api_url = http://223.202.85.36:8080/api_jsonrpc.php
+api_key = bd24e22dd0ec6b2a10287d34d9cec010
+
+[ddos]
+qingsong_api=http://139.217.22.49:58443
+qingsong_api_token=600bc25d75549bab8d9fa0b9c072786e
+
+[cloudin_defender]
+host = 223.202.85.213
+agent_auth_path = /usr/local/ossec/bin/agent-auth
+images = img-mu7s6zra
+
+[wallet_notify]
+send_to_default = wallet_notify@cloudin.ren
+notify_interval = 7200
+notify_times = 1
+
+
+[resource]
+cpu = 10
+disk_num = 20
+disk_sata_cap = 500
+disk_ssd_cap = 500
+memory = 50
+instance = 20
+bandwidth = 20
+pub_nets = 10
+pri_nets = 10
+keypair = 10
+router = 10
+pub_ip = 10
+security_group = 10
+backup = 10
+instance_backup= 10
+disk_backup=10
+rds_num=5
+lb_num=5
+disk_cap=1000
+
+[total_resource]
+cpu = 2000
+disk_num = 200
+disk_sata_cap = 5000
+disk_ssd_cap = 5000
+memory = 1024
+instance = 1000
+bandwidth = 200
+pub_nets = 200
+pri_nets = 200
+keypair = 200
+router = 100
+pub_ip = 100
+security_group = 100
+backup = 100
+instance_backup= 100
+disk_backup=100
+rds_num=100
+lb_num=100
+disk_cap=10000
+
+
+[devops]
+; 默认配置项下发时间 minutes
+default_issued_interval = 5
+; 用户最多创建的子账号数量
+max_subaccount_num = 10
+
+; 多种虚拟化支持
+[virtualizations]
+supported =
+			KVM
+			POWERVM
+			VMWARE
+
+[KVM]
+components =
+			 instance
+			 disk
+
+[KVM_instance]
+availability_zone = nova
+
+[KVM_disk]
+availability_zone = nova
+type =
+	   vmdk
+	   sata
+	   lvm_pcie
+	   vmware
+	   lvm_ssd
+	   lvm_sata
+	   ssd
+
+[POWERVM]
+components =
+			 instance
+			 disk
+
+[POWERVM_instance]
+availability_zone = nova_compute:8205E6B_100FD5R
+use_hmc = true
+
+[POWERVM_disk]
+availability_zone = nova
+type =
+	   vmdk
+	   sata
+	   lvm_pcie
+	   vmware
+	   lvm_ssd
+	   lvm_sata
+	   ssd
+
+[VMWARE]
+components =
+			 instance
+			 disk
+
+[VMWARE_instance]
+availability_zone = vmware
+
+[VMWARE_disk]
+availability_zone = vmware
+type =
+	   vmdk
+
+; WAF
+[waf_info]
+waf_smc_ip = 223.202.85.8
+waf_smc_port = 80
+;waf_smc_ip = 123.59.184.196
+;waf_smc_port = 30080
+; token过期时间 秒
+waf_token_expiration = 3500
+user_name = master
+user_password = 123456
+http_proxy = http://172.31.1.233:90
+
+; MQ
+[mq_info]
+mq_host = http://223.202.85.18:3000/
+mq_db_host = 223.202.85.18
+mq_db_port = 3306
+mq_bd_db = tamboo_manager
+mq_db_user = root
+mq_bd_pwd = 123456
+
+; fortress
+[jumper_default]
+disk_type = SATA_TYPE
+service_net_name = service-subnet
+
+; 日报月报周报
+[report]
+; 收集哪些zone的数据
+zones =
+		test
+
+[flavor_filter]
+KVM =
+        ironic
+        PVC
+
+VMWARE =
+        ironic
+        PVC
+

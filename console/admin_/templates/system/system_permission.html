@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}权限管理{% endblock %}
+
+{% block page %} 权限管理 {% endblock %}
+{% block parent_crumbs %} <span>后台中心</span> > {% endblock %}
+{% block crumbs %} 权限管理 {% endblock %}
+
+{% block content %}
+  <div class="table-controller-field">
+    <button class="btn btn-info table-controller icon-add" id="id-create-perm-group">新增权限组</button>
+    <button class="btn btn-info table-controller sw-btn icon-rublish" id="id-delete-perm-group" disabled="disabled">删除权限组</button>
+    <button class="btn btn-default table-controller refresh icon-refresh" id="refresh">刷新</button>
+  </div>
+  <div class="pull-top-table">
+    <table id="id-perm-group-list-table" class="table table-hover table-striped table-bordered">
+      <thead>
+          <th>ID</th>
+          <th>权限组名</th>
+          <th>创建人</th>
+          <th>创建时间</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Create Permission Modal -->
+  <div class="modal" id="id-create-perm-group-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">创建权限组</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-create-perm-group-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">权限组</label>
+              <div class="col-md-6">
+                <input class="form-control" name="group_name" placeholder="权限组名称">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-create-perm-group-submit-btn">提交</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Permission Modal -->
+  <div class="modal" id="id-delete-perm-group-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">删除权限组</h4>
+        </div>
+        <div class="modal-body">
+          <h4 class="text-center">确认删除该权限组？</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-delete-perm-group-submit-btn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

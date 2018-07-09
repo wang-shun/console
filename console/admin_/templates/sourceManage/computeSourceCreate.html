@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}计算资源池管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 创建计算资源池 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="create_compute_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>计算类型:
+        </label>
+        <div class="box-list-input">
+            <select class="form-control" style="width:100px;" id="type">
+                <option value="KVM">kvm</option>
+                <option value="VMWARE-5.5">VMWARE-5.5</option>
+                <option value="VMWARE-6.0">VMWARE-6.0</option>
+                <option value="POWERVM">powervm</option>
+                <option value="X86Host">X86Host</option>
+            </select>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>配置主机:
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="创建" class="box-button" id="create_compute">
+    </div>
+</div>
+{% endblock%}

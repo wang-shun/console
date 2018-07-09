@@ -1,0 +1,19 @@
+$tabWidth: 108px;
+$tabHeight: 44px;
+$marginLeft: 8px;
+$marginTop: 16px;
+
+.nav-tabs{
+    &.nav>li{
+        margin-right: $_margin;
+        &>a{
+            width: $tabWidth;
+            height: $tabHeight;
+            line-height: $tabHeight;
+            padding: 0 $marginLeft;
+        }
+    }
+}
+.tab-pane{
+    padding-top: $_margin;
+}

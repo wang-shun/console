@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}路由{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 修改路由 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            网关:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-input">
+                <div class="box-list-content" id="router_gateway"></div>
+            </div>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>配置子网:
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="确定" class="box-button" id="create_router">
+    </div>
+</div>
+{% endblock%}

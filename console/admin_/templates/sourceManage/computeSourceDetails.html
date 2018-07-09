@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}计算资源池管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 计算资源池详情 {% endblock %}
+
+{% block content %}
+
+<div class="box">
+    <div class="box-list">
+        <label class="box-list-label">
+            名称:
+        </label>
+        <div class="box-list-input">
+            <span class="box-list-content" id="name"></span>
+        </div>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            宿主机台数:
+        </label>
+        <span class="box-list-content" id="host_count">
+        </span>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            宿主机列表:
+        </label>
+        <span class="box-list-content" id="hosts" style="height: auto">
+        </span>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            CPU利用率:
+        </label>
+        <span class="box-list-content" id="cpu">
+        </span>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            内存利用率:
+        </label>
+        <span class="box-list-content" id="memory">
+        </span>
+    </div>
+    <!--<div class="box-list">-->
+        <!--<label class="box-list-label">-->
+            <!--云主机台数:-->
+        <!--</label>-->
+        <!--<span class="box-list-content" id="instances_count">-->
+        <!--</span>-->
+    <!--</div>-->
+
+    <div class="box-buttons">
+        <a href="javascript:history.go(-1)">
+            <input type="button" value="返回" class="box-button">
+        </a>
+    </div>
+</div>
+
+{% endblock %}

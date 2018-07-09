@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load translate %}
+
+{% block title %}虚拟机列表{% endblock %}
+
+{% block page %} 虚拟机列表 {% endblock %}
+
+{% block content %}
+
+<div>
+  <div class="table-controller-field">
+    <button class="btn btn-info table-controller" id="virtualMoveBtn" disabled>虚拟机迁移</button>
+    <button  class="btn btn-info table-controller icon-rublish" id="delete_virtual" disabled>删除云主机</button>
+    <button class="btn btn-default table-controller refresh" id="refresh" title="刷新">
+      <i class="glyphicon glyphicon-refresh"></i>
+    </button>
+  </div>
+  <div class="pull-top-table">
+    <table class="table table-hover table-striped table-bordered" id="virtualList">
+      <thead>
+        <th>
+          <label>
+            <input type="checkbox" class="selectedAll"> 全选
+          </label>
+        </th>
+        <th>名称</th>
+        <th>状态</th>
+        <th>网络</th>
+        <th>模板</th>
+        <th>镜像</th>
+        <th>资源池</th>
+        <th>物理机</th>
+        <th>运行时间</th>
+      </thead>
+      <tbody>
+      </tbody>
+  </table>
+  </div>
+</div>
+<div class="modal" id="virtualMoveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">主机迁移</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" id="id-create-system-account-form">
+          <div class="form-group">
+            <label class="control-label col-md-3">主机</label>
+            <div class="col-md-6">
+              <label class="control-label" id="virtualName"></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3">资源池</label>
+            <div class="col-sm-6">
+              <label class="control-label" id="virtualPool"></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3">宿主机</label>
+            <div class="col-md-6">
+              <select class="form-control" name="type" id="virtualHost">
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="virtualMoveSubmit">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete -->
+<div class="modal" id="delete_virtual_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">删除虚拟机</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">确认删除该虚拟机？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delete_virtual_btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

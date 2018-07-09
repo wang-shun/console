@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}客户账号详情{% endblock %}
+{% block page %}客户账号详情{% endblock %}
+
+{% block content %}
+    <input type="hidden" id="id-customer-account-id" name="account_id" value="{{ account.user.username}}">
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>基本信息</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <tr>
+                <td>邮箱账号:</td><td>{{ account.email }}</td>
+              </tr>
+              <tr>
+                <td>客户ID:</td><td>{{ account.user.username }}</td>
+              </tr>
+              <tr>
+                <td>姓名:</td><td>{{ account.name | default:'未填写' }}</td>
+              </tr>
+              <tr>
+                <td>电话:</td><td>{{ account.telephone | default:'未填写' }}</td>
+              </tr>
+              <tr>
+                <td>昵称:</td><td>{{ account.nickname }}</td>
+              </tr>
+              <tr>
+                <td>用户类型:</td><td>{{ account.type|translate:"ACCOUNT_TYPE_MAP"|default_if_none:'普通用户' }}</td>
+              </tr>
+              <tr>
+                <td>注册时间:</td><td>{{ account.created_at | date:'Y-m-d H:i:s' }}</td>
+              </tr>
+              <tr>
+                <td>最后登录时间:</td><td>{{ account.last_logined_at | date:'Y-m-d H:i:s' }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>工单</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+              <tr>
+                <td>
+                  新工单
+                    <a href="{{ BASE_URL }}/admin/ticket">
+                      <span class="label label-success">
+                        {{ new_ticket_count|default_if_none:0 }}
+                      </span>
+                    </a> 个
+                </td>
+                <td>
+                  待处理工单
+                    <a href="{{ BASE_URL }}/admin/ticket">
+                      <span class="label label-success">
+                        {{ pending_ticket_count|default_if_none:0 }}
+                      </span>
+                    </a> 个
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  处理中工单
+                    <a href="{{ BASE_URL }}/admin/ticket">
+                      <span class="label label-success">
+                        {{ processing_ticket_count|default_if_none:0 }}
+                      </span>
+                    </a> 个
+                </td>
+                <td>
+                  已处理工单
+                    <a href="{{ BASE_URL }}/admin/ticket">
+                      <span class="label label-success">
+                        {{ finished_ticket_count|default_if_none:0 }}
+                      </span>
+                    </a>个
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  已关闭工单
+                    <a href="{{ BASE_URL }}/admin/ticket">
+                      <span class="label label-success">
+                        {{ closed_ticket_count|default_if_none:0 }}
+                      </span>
+                    </a>个
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>财务</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+              <tr>
+                <td>账户余额:</td><td><span class="label label-info">{{ balance|default_if_none:0 }} 元</span></td>
+              </tr>
+              <tr>
+                <td>累计消费:</td><td><span class="label label-info">{{ total_consume|default_if_none:0 }} 元</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>资源信息</h4>
+            <span class="pull-right">
+              北京
+              <i class="glyphicon glyphicon-edit"></i>
+            </span>
+          </div>
+          <div class="panel-body">
+            <div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>主机 [台]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-instance">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>硬盘 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-disk-num">
+                    <span>{{ disks_used }} / {{ disks_capacity }}</span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>公网IP [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-pub-ip">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>硬盘容量 SSD [GB]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-disk-ssd-cap">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>硬盘容量 SATA [GB]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-disk-sata-cap">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>CPU [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-cpu">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>内存 [GB]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-memory">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>带宽 [M]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-bandwidth">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>密钥 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-keypair">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>路由器 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-router">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>安全组 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-security-group">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>公有子网 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-pub-nets">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>私有子网 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-pri-nets">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4>备份 [个]</h4>
+                  <span class="pull-right account-quota" id="id-customer-quota-backup">
+                    <span></span> |
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="id-edit-customer-quota-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">修改用户配额</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="id-edit-customer-quota-form">
+              <div class="form-group">
+                <label class="control-label col-md-3"></label>
+                <div class="col-md-6">
+                  <input type="hidden" name="quota_used" value="">
+                  <input type="hidden" name="resource_id" value="">
+                  <input type="hidden" name="elem_id" value="">
+                  <input type="number" class="form-control" min="0" name="quota_value" value="">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="id-edit-customer-quota-submit">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

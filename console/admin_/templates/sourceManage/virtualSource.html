@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load translate %}
+
+{% block title %}资源总览{% endblock %}
+
+{% block page %} 资源总览 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+{% block content %}
+<div class="page-title2 page-title">
+  <h4>存储池概览</h4>
+</div>
+<div class="storage_resource" id="storage_resource">
+</div>
+<div class="page-title page-title2">
+  <h4>计算池概览</h4>
+</div>
+<div class="compute-resource" id="compute_resource">
+</div>
+{% endblock %}

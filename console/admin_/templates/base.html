@@ -1,0 +1,307 @@
+{% load staticfiles %}
+
+{% load startswith %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Console Admin{% endblock %}</title>
+        <meta name="description" content="Cloud Admin Panel" />
+        <meta name="author" content="Bootstrap Gallery" />
+        <link rel="shortcut icon" href="{% static "favicon.ico" %}">
+
+        <!-- Bootstrap CSS -->
+        <link href="{% static "libs/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+        {#<link href="{% static "libs/bootstrap/css/bootstrap-theme.min.css" %}" rel="stylesheet" media="screen">#}
+
+        <!-- Animate CSS -->
+        <link href="{% static "css/animate/animate.css" %}" rel="stylesheet" media="screen">
+
+        <!-- date range -->
+        <link rel="stylesheet" type="text/css" href="{% static "libs/daterange/css/daterange.css" %}">
+
+        <!-- Main CSS -->
+        <link href="{% static "css/index.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "admin-compass/stylesheets/index.css" %}" rel="stylesheet" media="screen">
+
+
+        <!-- Slidebar CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static "css/slidebar/slidebars.css" %}">
+
+        <!-- Metrize Fonts -->
+
+        <link href="{% static "libs/messenger/css/messenger.css" %}" rel="stylesheet">
+        <link href="{% static "libs/messenger/css/messenger-spinner.css" %}" rel="stylesheet">
+        <link href="{% static "libs/messenger/css/messenger-theme-air.css" %}" rel="stylesheet">
+        <link href="{% static "libs/datetime-picker/css/datetimepicker.min.css" %}" rel="stylesheet">
+        <link href="{% static "libs/jquery-typeahead/jquery.typeahead.min.css" %}" rel="stylesheet">
+
+        <link href="{% static "libs/datatable/css/dataTables.bootstrap.min.css" %}" rel="stylesheet">
+        <!-- Custom Css and Extension files -->
+        <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+
+
+        <link href="{% static "css/titatoggle-dist.css" %}" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <input type="hidden" name="public_platform_name" value="{{platform_names.admin_name}}">
+        <input type="hidden" id="owner">
+        <input type="hidden" value="bj" id="zone">
+        <!-- Left sidebar start -->
+        <aside id="sidebar">
+            <!-- Logo starts -->
+            <a href="/" class="logo">
+                <img src="{% static "images/console_logo_login_admin.png" %}" alt="logo">
+            </a>
+            <!-- Logo ends -->
+            <div class="user-box">
+                <a href="#" class="image">
+                {% if request.user.account.thumbnail %}
+                    <img src="{{ request.user.account.thumbnail.url }}" alt="" class="img-circle aside-logo-img"/>
+                {% else %}
+                    <img src="{% static "images/default_header_image.png" %}" alt="" class="img-circle aside-logo-img"/>
+                {% endif %}
+                </a>
+                <div class="aside-account">
+                    {% if request.user.account.nickname %}
+                      <span class = "aside-account-name">{{ request.user.account.nickname }}</span>
+                    {% else %}
+                      <span class = "aside-account-name">{{ request.user.account.name }}</span>
+                    {% endif %}
+
+                    <span class="aside-account-meg icon-message" style="display:none"><span class="aside-account-meg-num">{{1}}</span></span>
+                </div>
+            </div>
+
+            <!-- Menu start -->
+            <div id='menu'>
+                <ul class="menu-list">
+                    <li class='{% if page_name == "dashboard" %}highlight{% endif %}'>
+                        <a href='/admin/dashboard' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-overview"></i>
+                            </div>
+                            <span>总览</span>
+                        </a>
+                    </li>
+                    <li class="has-sub {% if page_name|startswith:"ticket" %} active {% endif %}" style="display:none">
+                        <a href='#' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-ticket"></i>
+                            </div>
+                            <span class="highlight">BPM</span>
+                        </a>
+                        <ul class="menu-list-content" style="display: {% if page_name|startswith:"ticket" %}block{% else %}none{% endif %}">
+                            <li class="hide">
+								<a href='/admin/ticket/queue' class="{% if page_name == "ticket_queue" %}active-page{% endif %}">
+									<span><i class="glyphicon glyphicon-hourglass"></i> 工单队列</span>
+								</a>
+							</li>
+							<li class="hide">
+								<a href='/admin/ticket/list' class="{% if page_name == "ticket_list" %}active-page{% endif %}">
+									<span><i class="glyphicon glyphicon-book"></i> 工单管理</span>
+								</a>
+							</li>
+							<li>
+								<a href='/admin/ticket/bpm' class="{% if page_name == "ticket_bpm_list" %}active-page{% endif %}">
+                                    <span><i class="glyphicon glyphicon-book"></i> BPM流程管理</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+                    <li class="has-sub {% if page_name|startswith:"customize" %} active {% endif %}">
+                        <a href='#' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-ticket"></i>
+                            </div>
+                            <span class="highlight">个性化模板</span>
+                        </a>
+                        <ul class="menu-list-content" style="display: {% if page_name|startswith:"customize" %}block{% else %}none{% endif %}">
+                            <li>
+                                <a href='/admin/customize/flavor' class="{% if page_name == "customize_flavor" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-hourglass"></i> Flavor</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/admin/customize/images' class="{% if page_name == "customize_image" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-book"></i> 镜像</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="hide has-sub {% if page_name|startswith:"nets" %} active {% endif %}">
+                        <a href='#' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-resourceConfig"></i>
+                            </div>
+                            <span class="highlight">网络</span>
+                        </a>
+                        <ul class="menu-list-content" style="display: {% if page_name|startswith:"nets" %}block{% else %}none{% endif %}">
+                            <li>
+                                <a href='/admin/nets/router' class="{% if page_name == "nets_router" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-hourglass"></i> 路由</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/admin/nets/subnets' class="{% if page_name == "nets_subnets" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-comment"></i> 子网</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="has-sub {% if page_name|startswith:"sourceManage" %} active {% endif %}">
+                        <a href='#' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-resourceConfig"></i>
+                            </div>
+                            <span class="highlight">资源管理</span>
+                        </a>
+                        <ul class="menu-list-content" style="display: {% if page_name|startswith:"sourceManage" %}block{% else %}none{% endif %}">
+<!--
+                            <li>
+                                <a href='/admin/sourceManage/virtualSource' class="{% if page_name == "sourceManage_virtualSource" %}active-page{% endif %}">
+                                    <span><i class="glyphicon glyphicon-hourglass"></i> 资源总览</span>
+                                </a>
+                            </li>
+-->
+                            <li>
+                                <a href='/admin/sourceManage/computeSource' class="{% if page_name == "sourceManage_compute_sourceManage" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-comment"></i> 计算资源</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href='/admin/sourceManage/topSpeed' class="{% if page_name == "sourceManage_topSpeed" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-comment"></i> 极速创建</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href='/admin/sourceManage/memorySource' class="{% if page_name == "sourceManage_memory_sourceManage" %}active-page{% endif %}">
+                                <span><i class="glyphicon glyphicon-comment"></i> 存储资源</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/admin/sourceManage/physicsSource' class="{% if page_name == "sourceManage_physics_sourceManage" %}active-page{% endif %}">
+                                    <span><i class="glyphicon glyphicon-comment"></i> 物理资源</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/admin/sourceManage/netSource' class="{% if page_name == "sourceManage_net_source" %}active-page{% endif %}">
+                                    <span><i class="glyphicon glyphicon-book"></i> 网络资源</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='has-sub hide  {% if page_name|startswith:"system" %} active{% endif %}'>
+                        <a href='#' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-backend"></i>
+                            </div>
+                            <span>后台中心</span>
+                        </a>
+                        <ul class="menu-list-content" style="display: {% if page_name|startswith:"system" %}block{% else %}none{% endif %}">
+                            <li>
+                                <a href='/admin/system/account' class="{% if page_name == "system_account" %}active-page{% endif %}">
+                                    <span><i class="glyphicon glyphicon-modal-window"></i> 后台账号</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/admin/system/permission' class="{% if page_name == "system_perm" %}active-page{% endif %}">
+                                    <span><i class="glyphicon  glyphicon-lock"></i> 权限管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class='has-sub  {% if page_name|startswith:"config" %} active{% endif %}'>
+                        <a href='#' class="menu-list-title">
+                            <div class="fs1" aria-hidden="true">
+                                <i class="icon-config"></i>
+                            </div>
+                            <span>系统设置</span>
+                        </a>
+                        <ul class="menu-list-content" style="display:  {% if page_name|startswith:"config" %}block{% else %}none{% endif %}">
+                            <li>
+                                <a href='/admin/setting/advanced_config' class="{% if page_name == "config_advanced" %}active-page{% endif %}">
+                                    <span><i class="glyphicon glyphicon-modal-window"></i> 高级设置</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </div>
+            <!-- Menu End -->
+        </aside>
+        <!-- Left sidebar end -->
+
+        <!-- Dashboard Wrapper Start -->
+        <div class="dashboard-wrapper">
+            <!-- Header start -->
+            <header>
+                <ul>
+                    <li>
+                        <h2 class='admin-name'>{{platform_names.admin_name}}</h2>
+                    </li>
+                    <li>
+                      <a href="/logout" style="float:right" class='login-out'>退出登录</a>
+                    </li>
+                </ul>
+            </header>
+            <!-- Header ends -->
+
+            <!-- Main Container Start -->
+            <div class="main-container">
+                <!-- Top Bar Starts -->
+                <div class="top-bar clearfix">
+                   <div class="page-crumbs" id="page_crumbs">
+                         {% block parent_crumbs %}{% endblock %}{% block crumbs %} 工作台 {% endblock %}
+                   </div>
+                </div>
+                <!-- Top Bar Ends -->
+
+                <!-- Container fluid Starts -->
+                <div class="message">
+                   <div class="page-title">
+                       <h4>
+                         {% block page %} 工作台 {% endblock %}
+                       </h4>
+                   </div>
+                    {% if messages %}
+                    <ul class="messenger-theme-air">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="panel">
+						<div class="panel-body">
+							{% block content %}
+							{% endblock %}
+						</div>
+					</div>
+                    <input type="hidden" name="base_url">
+                </div>
+                <!-- Container fluid ends -->
+
+            </div>
+            <!-- Main Container End -->
+
+            <!-- Footer Start -->
+            <footer>
+                <p class="text-center">Copyright CloudIn <span>2015</span>. All Rights Reserved.</p>
+            </footer>
+            <!-- Footer end -->
+        </div>
+        <!-- Dashboard Wrapper End -->
+
+        <script src="{% static "js/lib/require.js" %}"></script>
+        <script src="{% static "js/admin/router.js" %}"></script>
+        <!-- Other script files -->
+        {% block custom_script %}{% endblock %}
+    </body>
+</html>

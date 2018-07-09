@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load tz %}
+{% load translate %}
+
+{% block title %}账号管理{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+       <li><a href="">客户中心</a></li>
+       <li><a href="">用户数据</a></li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div>
+      <button class="btn btn-default refresh-buttons"><span class="glyphicon glyphicon-refresh"></span></button>
+      <a class="btn btn-info" href="{{ BASE_URL }}/customer/showdata?send_email=true">发送报表</a>
+      <hr/>
+      <div class="col-sm-6">
+        <h4>用户操作错误记录种类</h4>
+        <canvas id="id-operation-failed-data" width="200" height="60"></canvas>
+      </div>
+      <div class="col-sm-12">
+        <div class="col-sm-6">
+          <h4>资源总览</h4>
+          <table class="table table-hover table-bordered" width="60%">
+            <thead class="danger">
+              <th>资源</th>
+              <th>已使用</th>
+              <th>今日新增</th>
+              <th>集群总量</th>
+              <th>资源利用率</th>
+            </thead>
+            <tbody>
+
+              <tr class="success">
+                  <td>公网IP</td>
+                  <td>{{ all_resource.pub_ip|default_if_none:0  }}个</td>
+                  <td>{{ today_resource.pub_ip|default_if_none:0  }}个</td>
+                  <td>{{ max_ip }}个</td>
+                  <td>{{ ip_rate|floatformat:3 }}%</td>
+               </tr>
+{#              <tr class="info">#}
+{#                  <td>硬盘数量</td>#}
+{#                  <td>{{ all_resource.disk_num }}</td>#}
+{#                  <td>{{ today_resource.disk_num }}</td>#}
+{#               </tr>#}
+              <tr class="info">
+                  <td>硬盘SSD</td>
+                  <td>{{ all_resource.disk_ssd_cap |default_if_none:0 }}GB</td>
+                  <td>{{ today_resource.disk_ssd_cap|default_if_none:0 }}GB</td>
+                  <td>{{ max_ssd_cap }}GB</td>
+                  <td>{{ ssd_rate|floatformat:3 }}%</td>
+               </tr>
+              <tr class="info">
+                  <td>硬盘SATA</td>
+                  <td>{{ all_resource.disk_sata_cap |default_if_none:0 }}GB</td>
+                  <td>{{ today_resource.disk_sata_cap|default_if_none:0 }}GB</td>
+                  <td>{{ max_sata_cap }}GB</td>
+                  <td>{{ sata_rate|floatformat:3 }}%</td>
+               </tr>
+              <tr class="info">
+                  <td>内存</td>
+                  <td>{{ all_resource.memory }}GB</td>
+                  <td>{{ today_resource.memory|default_if_none:0  }}GB</td>
+                  <td>{{ max_memery }}GB</td>
+                  <td>{{ memery_rate|floatformat:3 }}%</td>
+               </tr>
+              <tr class="info">
+                  <td>CPU</td>
+                  <td>{{ all_resource.cpu }}核</td>
+                  <td>{{ today_resource.cpu }}核</td>
+                  <td>{{ max_cpu }}核</td>
+                  <td>{{ cpu_rate|floatformat:3 }}%</td>
+               </tr>
+              <tr class="info">
+                  <td>主机</td>
+                  <td>{{ all_resource.instance|default_if_none:0   }}个 </td>
+                  <td>{{ today_resource.instance|default_if_none:0  }}个</td>
+
+              </tr>
+              <tr class="info">
+                  <td>带宽</td>
+                  <td>{{ all_resource.bandwidth }}M</td>
+                  <td>{{ today_resource.bandwidth }}M</td>
+               </tr>
+              <tr class="info">
+                  <td>公共子网</td>
+                  <td>{{ all_resource.pub_nets }}个</td>
+                  <td>{{ today_resource.pub_nets }}个</td>
+               </tr>
+              <tr class="info">
+                  <td>私有子网</td>
+                  <td>{{ all_resource.pri_nets }}个</td>
+                  <td>{{ today_resource.pri_nets }}个</td>
+               </tr>
+              <tr class="info">
+                  <td>密匙</td>
+                  <td>{{ all_resource.keypair }}个</td>
+                  <td>{{ today_resource.keypair }}个</td>
+               </tr>
+              <tr class="info">
+                  <td>路由器</td>
+                  <td>{{ all_resource.router }}个</td>
+                  <td>{{ today_resource.router }}个</td>
+               </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+        <script src="{% static "js/custom/show-data.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "account/account_base.html" %}
+
+{% block form %}
+<form action="" method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-info">添加权限</button>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}充值账单{% endblock %}
+
+{% block page %} 充值账单 {% endblock %}
+
+{% block content %}
+  <div>
+    <table id="id-recharge-list-table" class="table table-hover table-striped table-bordered">
+      <thead>
+          <th>ID</th>
+          <th>充值信息</th>
+          <th>客户账号</th>
+          <th>支付渠道</th>
+          <th>渠道支付状态</th>
+          <th>充值入账状态</th>
+          <th>充值金额(元)</th>
+          <th>充值时间</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "libs/messenger/css/messenger.css" %}" rel="stylesheet">
+    <link href="{% static "libs/messenger/css/messenger-spinner.css" %}" rel="stylesheet">
+    <link href="{% static "libs/messenger/css/messenger-theme-flat.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/signin.css" %}" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{{ BASE_URL }}/admin/">
+              CloudIn
+            </a>
+          </div>
+        </div>
+    </nav>
+    <div class="container">
+      <script src="{% static "js/jquery.min.js" %}"></script>
+      <script src="{% static "js/bootstrap.min.js" %}"></script>
+      <script src="{% static "libs/messenger/js/messenger.min.js" %}"></script>
+      <script src="{% static "libs/messenger/js/messenger-theme-flat.js" %}"></script>
+      <script src="{% static "libs/datetime-picker/js/datetimepicker.min.js" %}"></script>
+      <script src="{% static "libs/datetime-picker/js/locales/datetimepicker.uk.js" %}"></script>
+      <script src="{% static "libs/datetime-picker/js/locales/datetimepicker.zh-CN.js" %}"></script>
+      <script src="{% static "libs/datetime-picker/js/locales/datetimepicker.zh-TW.js" %}"></script>
+      <script src="{% static "js/main.js" %}"></script>
+      {% if messages %}
+         {% for message in messages %}
+{#           <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>#}
+
+             <input type="hidden" name="error_message" class="{{ message.tags|lower }}" value="{{ message }}">
+         {% endfor %}
+      {% endif %}
+      {% block form %}
+      {% endblock %}
+      <script>
+        Messenger.options = {
+            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+            theme: 'flat'
+        }
+        var error_message = $("input[name='error_message']").val();
+        var msg_type = $("input[name='error_message']").attr("class");
+        if(msg_type == "danger")
+            msg_type = "error";
+        console.log(msg_type)
+        if(error_message){
+            Messenger().post({
+                message: error_message,
+                type: msg_type,
+                showCloseButton: true
+            });
+        }
+      </script>
+    </div> <!-- /container -->
+
+  </body>
+</html>

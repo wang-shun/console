@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'icomoon';
+    src:url('../../fonts/aicomoon.eot?g8srw0');
+    src:url('../../fonts/aicomoon.eot?#iefixg8srw0') format('embedded-opentype'),
+    url('../../fonts/aicomoon.ttf?g8srw0') format('truetype'),
+    url('../../fonts/aicomoon.woff?g8srw0') format('woff'),
+    url('../../fonts/aicomoon.svg?g8srw0#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon', 'Microsoft YaHei', Monaco, Menlo, Consolas, "Courier New", monospace;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+$svgIcon: (
+    rublish:\e604,
+    add:\e617,
+    edit: \e900,
+    log: \e901,
+    ticket: \e902,
+    backend: \e903,
+    config: \e904,
+    message: \e905,
+    resourceConfig: \e906,
+    overview: \e907,
+    sortDown: \e908,
+    sort: \e90a,
+    sortUp: \e90b,
+    shut: \e90d,
+    close: \e90e,
+    start: \e90f,
+    removeTo: \e910,
+    ok: \e911,
+    refresh: \e912,
+    search: \e913,
+    ipmi: \e914,
+);
+@each $name, $icon in $svgIcon{
+    .icon-#{$name}:before{
+        content: unquote("\"#{$icon}\"");
+        padding-right: 4px;
+    }
+}

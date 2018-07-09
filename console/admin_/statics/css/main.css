@@ -1,0 +1,392 @@
+
+/*.form-password {*/
+  /*max-width: 330px;*/
+  /*padding: 15px;*/
+  /*margin: 0 auto;*/
+/*}*/
+
+/*.form-password input[type="password"] {*/
+  /*margin-bottom: 10px;*/
+  /*border-top-left-radius: 0;*/
+  /*border-top-right-radius: 0;*/
+
+/*}*/
+
+/*.form-password .form-control {*/
+  /*position: relative;*/
+  /*height: auto;*/
+  /*-webkit-box-sizing: border-box;*/
+     /*-moz-box-sizing: border-box;*/
+          /*box-sizing: border-box;*/
+  /*padding: 10px;*/
+  /*font-size: 16px;*/
+/*}*/
+
+/*.sms-report-page {*/
+  /*max-width: 100px;*/
+/*}*/
+
+/*.form-quota {*/
+    /*max-width: 500px;*/
+/*}*/
+
+/*.filters {*/
+    /*padding: 10px;*/
+/*}*/
+
+/*.control-buttons {*/
+    /*margin-right: 10px;*/
+/*}*/
+
+/*.refresh-buttons{*/
+    /*margin-right: 10px;*/
+/*}*/
+
+/*.search-form-group {*/
+    /*margin-right: 15px;*/
+    /*margin-top: 10px;*/
+/*}*/
+
+/*.account-table-block {*/
+    /*margin-top: 15px;*/
+/*}*/
+
+/*.account-table {*/
+    /*margin-top: 15px;*/
+/*}*/
+
+/*.page-progress{*/
+    /*margin-right: 10px;*/
+/*}*/
+
+/*.search-button-field {*/
+    /*margin-top: 10px;*/
+/*}*/
+
+/*.search-button {*/
+    /*margin-right: 10px;*/
+/*}*/
+
+/*.sidebar li a{*/
+    /*color: #000000;*/
+/*}*/
+
+/*.info-block {*/
+    /*background-color: rgba(119, 119, 119, 0.09);*/
+    /*padding: 10px;*/
+/*}*/
+
+/*.msg-control {*/
+    /*margin: 20px;*/
+/*}*/
+
+/*.msg-subject{*/
+    /*padding: 10px;*/
+/*}*/
+
+/*.msg-subject p {*/
+    /*font-weight: bold;*/
+    /*font-size: 150%;*/
+/*}*/
+
+/*.msg-subject p span {*/
+    /*font-weight: bold;*/
+    /*font-size: 100%;*/
+/*}*/
+
+/*.msg-meta {*/
+    /*font-weight: normal;*/
+    /*font-size: 100%;*/
+    /*padding: 5px;*/
+    /*margin-bottom: 10px;*/
+/*}*/
+
+/*.msg-meta-info {*/
+    /*margin-right:15px;*/
+    /*display: inline;*/
+/*}*/
+
+/*.msg-content {*/
+    /*font-weight: normal;*/
+    /*font-size: 150%;*/
+    /*padding: 10px;*/
+/*}*/
+
+/*.msgMetaInfo {*/
+    /*margin: 10px;*/
+/*}*/
+
+/*.ticket-type {*/
+    /*padding: 10px;*/
+    /*display: inline-block;*/
+    /*white-space: nowrap;*/
+/*}*/
+
+/*.ticket-control {*/
+    /*margin: 10px;*/
+/*}*/
+
+/*.ticket-subject {*/
+    /*font-size: 20px;*/
+/*}*/
+
+/*.ticket-subject-line {*/
+    /*bottom: auto;*/
+/*}*/
+
+/*.ticket-content{*/
+    /*display: block;*/
+    /*height: 350px;*/
+    /*overflow: auto;*/
+/*}*/
+
+/*.dialog-create-datetime {*/
+    /*text-align: left;*/
+    /*font-size: 12px;*/
+/*}*/
+
+/*.dialog-create-datetime1{*/
+    /*text-align: right;*/
+    /*font-size: 12px;*/
+/*}*/
+
+/*.ticket-field{*/
+    /*width: 100%;*/
+/*}*/
+
+/*.customer-dialog{*/
+    /*float:left*/
+/*}*/
+
+/*.customer-dialog-content {*/
+    /*min-width: 120px;*/
+    /*border: solid thin;*/
+    /*padding: 15px;*/
+    /*border-radius: 10px;*/
+    /*margin: 10px;*/
+    /*background: rgba(0, 136, 204, 0.30);*/
+    /*word-break: break-all;*/
+    /*font-size: 12px;*/
+/*}*/
+
+/*.staff-dialog-content {*/
+    /*text-align: right;*/
+    /*min-width: 120px;*/
+    /*margin:0 10px 10px 0;*/
+    /*border: solid thin;*/
+    /*padding: 15px;*/
+    /*border-radius: 10px;*/
+    /*background: rgba(46, 204, 26, 0.30);*/
+    /*word-break: break-all;*/
+    /*font-size: 12px;*/
+/*}*/
+
+/*.dialog {*/
+    /*display: inline-block;*/
+/*}*/
+
+
+/*.dialog-input {*/
+
+/*}*/
+
+/*.ticket-subject {*/
+    /*border-top: solid thin;*/
+    /*margin-top: 12px;*/
+    /*width: 100%;*/
+    /*padding-top: 5px;*/
+/*}*/
+
+/*.ticket-content-item{*/
+    /*float: left;*/
+/*}*/
+
+/*.dialog-list-item{*/
+    /*width: 100%;*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*.staff-dialog {*/
+    /*float: right;*/
+/*}*/
+
+/*.staff-nickname {*/
+    /*float: right;*/
+/*}*/
+
+/*.staff-content {*/
+/*}*/
+
+/*.multiselectable {*/
+    /*display:block;*/
+    /*overflow: hidden;*/
+    /*width: 100%;*/
+/*}*/
+
+/*.multiselectable select, .multiselectable div {*/
+    /*width: 350px; float:left;*/
+/*}*/
+
+/*.multiselectable div * {*/
+    /*display: block;*/
+    /*margin: 0 auto;*/
+/*}*/
+
+/*.multiselectable div {*/
+    /*display: inline;*/
+/*}*/
+
+/*.multiselectable .m-selectable-controls {*/
+    /*margin-top: 3em; width: 50px;*/
+/*}*/
+
+/*.multiselectable .m-selectable-controls button {*/
+    /*margin-top: 1em;*/
+/*}*/
+
+/*.github.ribbon {*/
+	/*position: fixed;*/
+	/*display: block;*/
+	/*top: 40px;*/
+	/*right: 0;*/
+	/*border: 0;*/
+	/*z-index: 1001;*/
+/*}*/
+
+/*.prettyprint {*/
+	/*padding: 10px!important;*/
+/*}*/
+
+/*#wrap {*/
+	/*padding-top: 70px;*/
+/*}*/
+
+/*#home h1 {*/
+	/*margin-bottom: 30px;*/
+/*}*/
+/*#demo,*/
+/*#examples,*/
+/*#support,*/
+/*#download {*/
+	/*padding-top: 40px;*/
+/*}*/
+
+/*.save-perm {*/
+    /*margin-top: 10px;*/
+/*}*/
+
+/*.page-size {*/
+    /*margin-bottom: 5px;*/
+/*}*/
+
+/*table thead {*/
+    /*background: #f4f4f4;*/
+/*}*/
+
+/*.ticket-table {*/
+    /*background: #ffffff;*/
+/*}*/
+
+/*.differentTable, .differentTable td{*/
+   /*border-color: #d9edf7;*/
+/*}*/
+
+/*.table {*/
+  /*border-color: #ffffff;*/
+/*}*/
+
+/*.navbar {*/
+    /*background: #333344;*/
+    /*height: 10px;*/
+/*}*/
+
+/*.navbar-brand {*/
+    /*color: #cecece;*/
+/*}*/
+
+/*.message-label {*/
+    /*color: #cecece;*/
+/*}*/
+
+/*.breadcrumb {*/
+    /*background: #ffffff;*/
+/*}*/
+
+/*.sidebar {*/
+    /*background: #333344;*/
+/*}*/
+
+/*.main-block {*/
+    /*width: 90%;*/
+/*}*/
+
+/*.table-info {*/
+    /*background: #ffffff;*/
+/*}*/
+
+/*.time-count {*/
+    /*color: #d4706e;*/
+    /*font-size: 13px;*/
+/*}*/
+
+/*.time-warning {*/
+    /*color: #cfbf12;*/
+/*}*/
+
+/*.time-critical {*/
+    /*color: #d4706e;*/
+/*}*/
+
+/*.ticket-title {*/
+    /*font-size: 20px;*/
+    /*display: block;*/
+    /*font-weight: bold;*/
+/*}*/
+
+/*.able-table {*/
+    /*color: #ff0000;*/
+/*}*/
+
+/*.main-menu {*/
+    /*color: #d7d7d7;*/
+/*}*/
+
+/*.sub-menu {*/
+    /*color: #cecece;*/
+/*}*/
+
+/*#dLabel {*/
+    /*color: #cecece;*/
+/*}*/
+
+/*.color-green1{*/
+    /*background-color: #00e09e;*/
+/*}*/
+
+/*.color-green2{*/
+    /*background-color: #3de1ad;*/
+/*}*/
+
+/*.color-green3{*/
+    /*background-color: #2add9c;*/
+/*}*/
+
+/*.color-green4{*/
+    /*background-color: #2edfa3;*/
+/*}*/
+
+/*.color-green5{*/
+    /*background-color: #a4e2c6;*/
+/*}*/
+
+/*.color-green6{*/
+    /*background-color: #7bcfa6;*/
+/*}*/
+
+/*.color-green7{*/
+    /*background-color: #1bd1a5;*/
+/*}*/
+
+/*.color-green8{*/
+    /*background-color: #549688;*/
+/*}*/

@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+{% load translate %}
+{% load msg_edit %}
+{% load msg_delete %}
+{% load msg_submit %}
+{% load msg_review %}
+{% load msg_revoke %}
+
+{% block title %}消息详情{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+       <li><a href="">客户中心</a></li>
+       <li><a href="{{ BASE_URL }}/admin/customer/message">消息管理</a></li>
+       <li><a href="">{{ msg_id }}</a></li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="">
+      {% if request.user.perms.edit_message %}
+      <button class="btn btn-info msg-control" data-toggle="modal" data-target="#editMessage"
+              {% if not msg.msg_id|msg_edit %}disabled{% endif %}>
+          修改消息
+      </button>
+      {% endif %}
+      {% if request.user.perms.delete_message %}
+      <button class="btn btn-info msg-control" data-toggle="modal" data-target="#deleteMessage"
+              {% if not msg.msg_id|msg_delete %}disabled{% endif %}>
+          删除消息
+      </button>
+      {% endif %}
+      {% if request.user.perms.submit_message %}
+      <button class="btn btn-info msg-control" data-toggle="modal" data-target="#submitMessage"
+              {% if not msg.msg_id|msg_submit %}disabled{% endif %}>
+          提交审核
+      </button>
+      {% endif %}
+      {% if request.user.perms.review_message %}
+      <button class="btn btn-info msg-control" data-toggle="modal" data-target="#reviewMessage"
+              {% if not msg.msg_id|msg_review %}disabled{% endif %}>
+          审核推送
+      </button>
+      {% endif %}
+      {% if request.user.perms.revoke_message %}
+      <button class="btn btn-info msg-control" data-toggle="modal" data-target="#revokeMessage"
+        {% if not msg.msg_id|msg_revoke %}disabled{% endif %}>
+          撤回消息
+      </button>
+      {% endif %}
+    </div>
+    <table class="table table-bordered">
+      <tr>
+        <td>
+          <div class="msg-subject">
+            <p>{{ msg.subject }} <span class="text-success">{{ msg.msg_status|translate:"MESSAGE_STATUS_MAP" }}</span></p>
+          </div>
+          <div class="msg-meta">
+            {% if msg.last_edit_user %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="lastEditUser">最后编辑人: {{ msg.last_edit_user.nickname }}</span>
+            </div>
+            {% endif %}
+            {% if msg.last_edit_datetime %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="lastEditDatetime">
+                  最后编辑时间: {{ msg.last_edit_datetime|date:"Y-m-d H:i:s" }}
+              </span>
+            </div>
+            {% endif %}
+            {% if msg.msg_type %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgType">消息类型: {{ msg.msg_type|translate:"MESSAGE_TYPE_MAP" }}</span>
+            </div>
+            {% endif %}
+            {% if msg.zone %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgZone">推送区域: {{ msg.zone|translate:"ZONE_MAP" }}</span>
+            </div>
+            {% endif %}
+            {% if msg.msg_to %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgTo">推送目标: {{ msg.msg_to|translate:"MESSAGE_TO_MAP" }}</span>
+            </div>
+            {% endif %}
+            {% if msg.push_datetime %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgSendDatetime">推送时间: {{ msg.push_datetime|date:"Y-m-d H:i:s" }}</span>
+            </div>
+            {% endif %}
+            {% if msg.review_user %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgReviewUser">审核人: {{ msg.review_user.nickname }}</span>
+            </div>
+            {% endif %}
+            {% if msg.review_datetime %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgReviewUser">审核时间: {{ msg.review_datetime|date:"Y-m-d H:i:s" }}</span>
+            </div>
+            {% endif %}
+            {% if msg.revoke_user %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgRevokeUser">撤回人: {{ msg.revoke_user.nickname }}</span>
+            </div>
+            {% endif %}
+            {% if msg.revoke_datetime %}
+            <div class="msg-meta-info">
+              <span class="msgMetaInfo" id="msgRevokeUser">撤回时间: {{ msg.revoke_datetime|date:"Y-m-d H:i:s" }}</span>
+            </div>
+            {% endif %}
+          </div>
+          <div class="msg-content">
+            {{ msg.content }}
+          </div>
+        </td>
+      </tr>
+    </table>
+
+
+    <!-- Model -->
+    <div class="modal fade" id="editMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">编辑消息</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="{{ BASE_URL }}/customer/message/{{ msg_id }}" method="post"
+                  id="id-customer-edit-message-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label">消息类型</label>
+                <div class="col-sm-6">
+                  <select class="form-control" name="msg_type">
+                    <option value="product">产品消息</option>
+                    <option value="security">安全消息</option>
+                    <option value="activity">活动消息</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="id-customer-message-subject" class="col-sm-2 control-label">标题</label>
+                <div class="col-sm-6">
+                  <input class="form-control" name="subject" value="{{ msg.subject }}" placeholder="消息标题">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label">内容</label>
+                <div class="col-sm-6">
+                  <textarea class="form-control" name="content" cols="10" rows="10"
+                            placeholder="消息内容">{{ msg.content }}</textarea>
+                  <input type="hidden" name="msg_id" value="{{ msg.msg_id }}">
+                  <input type="hidden" name="action" value="edit">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="id-customer-save-edit-msg">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 删除消息 -->
+    <div class="modal fade" id="deleteMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">删除消息</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="{{ BASE_URL }}/customer/message/{{ msg_id }}" method="post"
+                  id="id-customer-delete-message-form">
+              {% csrf_token %}
+              <h3>确认删除消息: {{ msg.msg_id }}?</h3>
+              <input type="hidden" name="msg_id" value="{{ msg.msg_id }}">
+              <input type="hidden" name="action" value="delete">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="id-customer-delete-msg">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 提交消息 -->
+    <div class="modal fade" id="submitMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">推送消息</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="{{ BASE_URL }}/customer/message/{{ msg_id }}" method="post"
+                  id="id-customer-push-message-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label">推送时间</label>
+                <div class="col-sm-6">
+                  <input class="form-control datetimepicker" name="push_datetime" placeholder="推送时间">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label">推送区域</label>
+                <div class="col-sm-6">
+                  <select class="form-control" name="zone">
+                    <option value="bj">北京1区</option>
+                    <option value="yz">扬州</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label">推送目标</label>
+                <div class="col-sm-6">
+                  <select class="form-control" name="msg_to">
+                    <option value="all">全体用户</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label">审核人</label>
+                <div class="col-sm-6">
+                  <select class="form-control" name="review_user">
+                    {% for user in reviewer_list %}
+                      <option value="{{ user.email }}">{{ user.nickname }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <input type="hidden" name="msg_id" value="{{ msg.msg_id }}">
+              <input type="hidden" name="action" value="submit">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="id-customer-push-msg">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 审核消息 -->
+    <div class="modal fade" id="reviewMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">推送消息</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="{{ BASE_URL }}/customer/message/{{ msg_id }}" method="post"
+                  id="id-customer-review-message-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label"></label>
+                <div class="col-sm-6">
+                  <h3>确认该消息审核通过?</h3>
+                  <h3>该消息将于{{ msg.send_datetime|date:"Y-m-d H:i:s" }}
+                      推送给{{ msg.msg_to|translate:"MESSAGE_TO_MAP" }}</h3>
+                </div>
+              </div>
+              <input type="hidden" name="msg_id" value="{{ msg.msg_id }}">
+              <input type="hidden" name="action" value="review">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="id-customer-review-msg">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 审核消息 -->
+    <div class="modal fade" id="revokeMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">撤回消息</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="{{ BASE_URL }}/customer/message/{{ msg_id }}" method="post"
+                  id="id-customer-revoke-message-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id-user-perm-new-group" class="col-sm-2 control-label"></label>
+                <div class="col-sm-6">
+                  <h3>确认撤回该消息?</h3>
+                </div>
+              </div>
+              <input type="hidden" name="msg_id" value="{{ msg.msg_id }}">
+              <input type="hidden" name="action" value="revoke">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="id-customer-revoke-msg">撤回</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

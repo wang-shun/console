@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}工作台{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+       <li><a href="">工单中心</a></li>
+       <li><a href="">工作台</a></li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div>
+      <div class="tab-content">
+        <div class="panel" id="processing">
+          <div class="panel-heading">
+            <h4>处理中工单</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-responsive table-hover ticket-processing-table" id="processing-ticket-table">
+              <thead class="ticket-table">
+                <th style="width: 10%"></th>
+                <th style="width: 10%"></th>
+                <th></th>
+                <th style="width: 10%"></th>
+                <th style="width: 20%"></th>
+                <th style="width: 20%"></th>
+              </thead>
+              <tbody>
+              {% for ticket in processing_ticket_list %}
+                <tr class="{% cycle "table-info" "default" %}">
+                  <td><span class="glyphicon glyphicon-comment"></span></td>
+                  <td><a href="{{ BASE_URL }}/admin/ticket/detail/{{ ticket.ticket_id }}">{{ ticket.ticket_id }}</a></td>
+                  <td>{{ ticket.subject }}</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <input type="hidden" class="start-datetime" name="start_datetime"
+                           value="{{ ticket.start_datetime|date:'Y-m-d H:i:s' }}">
+                    <span class="time-count text-muted"></span>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>没有处理中工单</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel" id="pending">
+          <div class="panel-heading">
+            <h4>待处理工单</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-responsive table-hover ticket-pending-table" id="pending-ticket-table">
+              <thead class="ticket-table">
+                <th style="width: 10%"></th>
+                <th style="width: 10%"></th>
+                <th></th>
+                <th style="width: 10%"></th>
+                <th style="width: 20%"></th>
+                <th style="width: 20%"></th>
+              </thead>
+              <tbody>
+              {% for ticket in pending_ticket_list %}
+                <tr class="{% cycle "table-info" "default" %}">
+                  <td><span class="glyphicon glyphicon-tasks"></span></td>
+                  <td><a href="{{ BASE_URL }}/admin/ticket/detail/{{ ticket.ticket_id }}">{{ ticket.ticket_id }}</a></td>
+                  <td>{{ ticket.subject }}</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <input type="hidden" class="start-datetime" name="start_datetime"
+                           value="{{ ticket.start_datetime|date:'Y-m-d H:i:s' }}">
+                    <span class="time-count text-muted"></span>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>没有待处理工单</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      <div id="new">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>工单池</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-responsive table-hover ticket-new-table" id="new-ticket-table">
+              <thead class="ticket-table">
+                <th style="width: 10%"></th>
+                <th style="width: 10%"></th>
+                <th></th>
+                <th></th>
+                <th style="width: 20%"></th>
+                <th style="width: 10%"></th>
+                <th style="width: 10%"></th>
+              </thead>
+              <tbody>
+              {% for ticket in ret_list %}
+                <tr class="{% cycle "table-info" "default" %}">
+                  <td><span class="glyphicon glyphicon-list-alt"></span></td>
+                  <td><a href="{{ BASE_URL }}/admin/ticket/detail/{{ ticket.ticket_id }}">{{ ticket.ticket_id }}</a></td>
+                  <td>{{ ticket.subject }}</td>
+                  <td></td>
+                  <td>
+                    <input type="hidden" class="create-datetime" name="create_datetime"
+                           value="{{ ticket.create_datetime|date:'Y-m-d H:i:s' }}">
+                    <span class="time-count text-muted"></span>
+                  </td>
+                  <td>
+                    <!-- Send Ticket To Me Form-->
+                    {% if request.user.perms.process_ticket %}
+                    <form action="{{ BASE_URL }}/ticket/detail/{{ ticket.ticket_id }}" method="post"
+                          id="ticket-send-ticket-to-me-form">
+                      {% csrf_token %}
+                      <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                      <input type="hidden" name="action" value="send_to_me">
+                      <button type="submit" class="btn btn-info">我来处理</button>
+                    </form>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if request.user.perms.send_ticket %}
+                    <button class="btn btn-info send-new-ticket" data-toggle="modal" data-target="#sendTicket">
+                    分配工单
+                    </button>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>没有新的工单</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="sendTicket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">分配工单</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="{{ BASE_URL }}/ticket/detail/" method="post"
+                  id="ticket-send-ticket-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label class="col-sm-2 control-label">分配</label>
+                <div class="col-sm-6 typeahead-container">
+                  <input type="text" class="form-control" name="send_to[query]" id="send_to-query"
+                         placeholder="用户邮箱" autocomplete="off" required>
+                </div>
+              </div>
+              <input type="hidden" name="ticket_id" value="">
+              <input type="hidden" name="action" value="send">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="id-ticket-send-ticket">分配</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

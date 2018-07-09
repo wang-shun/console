@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}路由{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 创建路由 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="create_router_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>开启公网:
+        </label>
+        <div class="box-list-input box-list-input-height">
+            <input type="radio" name='enable_gateway' checked="checked" value="true"><span>是</span>
+            <input type="radio" name='enable_gateway' value=""><span>否</span>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>配置子网:
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="创建" class="box-button" id="create_router">
+    </div>
+</div>
+{% endblock%}

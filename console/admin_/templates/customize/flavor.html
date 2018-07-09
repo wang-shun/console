@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}Flavor{% endblock %}
+
+{% block crumbs %} {% endblock %}
+{% block page %} Flavor {% endblock %}
+
+{% block content %}
+<div class="table-controller-field">
+    <a href="/admin/customize/create_flavor" class="btn btn-info table-controller icon-add"
+       id="create_flavor">创建Flavor</a>
+    <a href="javascript:;" data-href="/admin/customize/edit_flavor" class=" hide btn btn-info table-controller icon-edit"
+       id="edit_flavor" disabled>修改Flavor</a>
+    <button class="btn btn-info table-controller icon-rublish" id="delete_flavor" disabled>删除Flavor</button>
+    <button class="btn btn-default table-controller refresh icon-refresh" title="刷新" id="refresh">刷新</button>
+</div>
+<div class="pull-top-table">
+    <table id="flavor_list" class="table table-striped table-bordered">
+        <thead>
+        <th>
+            <label>
+              <input type="checkbox" class="selectedAll"> 全选
+            </label>
+        </th>
+        <th>名称</th>
+        <th>CPU(核)</th>
+        <th>内存(GB)</th>
+        <th>系统盘(GB)</th>
+        <th>是否公开</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete -->
+<div class="modal" id="delete_flavor_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">删除Flavor</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">确认删除该Flavor？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delete_flavor_btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

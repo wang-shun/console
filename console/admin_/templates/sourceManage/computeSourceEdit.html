@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}计算资源池管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 修改计算资源池 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="edit_compute_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            资源池类型:
+        </label>
+        <span class="box-list-content" id="type"></span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>配置主机:
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="保存" class="box-button" id="edit_compute">
+    </div>
+</div>
+
+<!-- remove -->
+<div class="modal" id="warning_remove_host_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">移除物理机</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">此物理机存在虚拟机无法移除，请在物理资源模块下进行虚拟机迁移或者驱散。</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <a href="/admin/sourceManage/physicsSource" class="btn btn-primary">物理资源</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- remove -->
+<div class="modal" id="remove_host_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">移除物理机</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">此物理机存在虚拟机，移除此物理机后，所在虚拟机将无法恢复，是否强制移除？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="remove_host_btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

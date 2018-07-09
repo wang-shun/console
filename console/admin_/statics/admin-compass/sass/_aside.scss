@@ -1,0 +1,153 @@
+@import "_icon.scss";
+
+aside#sidebar {
+  width: $asideWidth;
+  min-height: 100%;
+  @include position(absolute,left,0,top,0);
+  background: #21222d;
+  @include box-shadow(inset -6px 0px 6px -6px rgba(0, 0, 0, 0.25))
+}
+@include respond-to(sm){
+  aside#sidebar {
+    left: -220px;
+    z-index: 1000;
+    height: 100%;
+  }
+}
+
+.logo {
+  width: 170px;
+  margin: 10px auto;
+  display: block;
+  text-align: center;
+  img{
+    max-width: 170px;
+  }
+}
+.user-box{
+  margin-top: 24px;
+  .aside-logo-img{
+    margin-left:26px;
+    @include size(67px,67px);
+    float:left;
+    border: solid 2px #fff;
+  }
+  .aside-account{
+    width:80px;
+    float:left;
+    margin-left:16px;
+  }
+  .aside-account-name{
+    width:87px;
+    float:left;
+    margin-top:10px;
+    font-size:16px;
+    color:#fff;
+    margin-bottom:18px;
+  }
+  .aside-account-meg{
+    color:#fff;
+    font-size:18px;
+    position:relative;
+    cursor:pointer;
+  }
+  .aside-account-meg-num{
+    position:absolute;
+    @include size(18px,18px);
+    background:#fb7475;
+    color:#fff;
+    text-align:center;
+    line-height:16px;
+    right:0;
+    top:-6px;
+    @include border-radius(100%);
+    font-size:14px;
+  }
+  .aside-account-edit{
+    @extend .aside-account-meg;
+    margin-left:20px;
+  }
+}
+
+@include respond-to(sm){
+  .logo img {
+    max-width: 80px;
+  }
+}
+
+#menu {
+  width:100%;
+  float:left;
+  margin-top:30px;
+  ul.menu-list,li{
+    position:relative;
+    @include transition(.3s background);
+  }
+  ul.menu-list{
+    a.menu-list-title,ul.menu-list-content a{
+      position:relative;
+      @include transition(.3s background);
+      font-size: 14px;
+      display: block;
+      color:$aside-title ;
+      padding: $asidePadding;
+      line-height: 20px;
+      text-decoration: none;
+      &:hover{
+        color:#fff !important;
+        i{
+          color: #fff;
+        }
+      }
+      .fs1{
+        font-size: 16px;
+        margin-right: 10px;
+        color: $aside-title;
+        width: 20px;
+        float: left;
+        line-height: 18px;
+        text-align: center;
+      }
+      span i{
+        border:2px solid;
+        width:0px;
+        height:0px;
+        font-size:0px;
+        line-height:0px;
+        vertical-align:super;
+        margin-right: $asideSubMarginRight;
+      }
+    }
+    li.highlight{
+      background:$aside-title-hover;
+      a{
+        color:white;
+        .fs1{
+          color:white;
+        }
+      }
+    }
+    li.active{
+      ul{
+        background:$aside-title-active;
+        a.active-page {
+          color: #fff;
+        }
+      }
+    }
+    li.has-sub{
+      >a span{
+        display:block;
+        width: 169px;
+      }
+      >a span{
+        background: url(../../img/icon_plus.png) 100% center no-repeat;
+      }
+    }
+    li.has-sub.active{
+      >a span{
+        background: url(../../img/icon_minus.png) 100% center no-repeat;
+      }
+    }
+  }
+}

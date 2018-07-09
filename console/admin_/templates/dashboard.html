@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %} 总览 {% endblock %}
+{% block page %} 总览 {% endblock %}
+{% block crumbs %} 总览 {% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+      <div class="pull-right pull-top popup-container">
+        <span id="id-config-dashboard" class="setting">显示面板设置 <i class="icon-config"></i></span>
+        <!-- 用户面板配置modal -->
+        <div class="modal dashboard-popup" id="id-config-dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document" id="id-config-dashboard-content">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">显示面板设置</h4>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li>
+                    <div class="switch" data-on="primary" data-off="info">
+                      <input type="checkbox" class="dashboard-config-item" name="account_counts"/> 一周新增用户趋势图
+                    </div>
+                  </li>
+                  <li>
+                    <div class="switch" data-on="primary" data-off="info">
+                      <input type="checkbox" class="dashboard-config-item" name="account_count_month"/> 一个月新增用户趋势图
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="col-md-6 left">
+  <div class="panel" style="margin-bottom:0">
+    <div class="panel-heading dashboard-box-heading">
+      <h4>资源总览</h4>
+    </div>
+    <div class="panel-body" id="resources_list">
+    </div>
+  </div>
+</div>
+<div class="col-md-6 right">
+  <div class="panel">
+    <div class="panel-heading dashboard-box-heading">
+      <h4>资源总览趋势图</h4>
+    </div>
+    <div class="resources-map-legend">
+      <i style="background:#6ec8fb"></i>
+      <span>未使用率</span>
+      <i style="background:#f8e36f"></i>
+      <span>使用率</span>
+    </div>
+    <div class="panel-body resources-box" style=" display: -webkit-flex;">
+      <div style="flex:1;text-align: center">
+        <canvas height="114" width="114" id="id-resources-map1"></canvas>
+        <p class="resources-tip" id="resources_tip1"></p>
+      </div>
+      <div style="flex:1;text-align: center">
+        <canvas height="114" width="114" id="id-resources-map2"></canvas>
+        <p class="resources-tip" id="resources_tip2"></p>
+      </div>
+      <div style="flex:1;text-align: center">
+        <canvas height="114" width="114" id="id-resources-map3"></canvas>
+        <p class="resources-tip" id="resources_tip3"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <div class="col-md-6 hidden left" id="id-account-counts">
+      <div class="panel">
+        <div class="panel-heading dashboard-box-heading">
+          <h4>一周新增用户趋势图</h4>
+        </div>
+        <div class="panel-body">
+          <canvas id="id-new-account-today-count" height="230" width="450"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 hidden right" id="id-account-count-month">
+      <div class="panel">
+        <div class="panel-heading dashboard-box-heading">
+          <h4>一个月新增用户趋势图</h4>
+        </div>
+        <div class="panel-body">
+          <canvas id="id-new-account-today-count-one-month" height="230" width="450"></canvas>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

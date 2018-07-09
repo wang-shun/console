@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}充值转账详情{% endblock %}
+{% block page %}充值转账详情{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+       <li><a href="">财务中心</a></li>
+       <li><a href="">转账账单</a></li>
+       <li><a href="">转账详情</a></li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>基本信息</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+              <tr>
+                <td>ID:</td><td>{{ exchange.exchange_id }}</td>
+              </tr>
+              <tr>
+                <td>客户ID:</td><td>{{ exchange.account_id }}</td>
+              </tr>
+              <tr>
+                <td>客户账号:</td><td>{{ exchange.account_email }}</td>
+              </tr>
+              <tr>
+                <td>姓名:</td><td>{{ exchange.name|default_if_none:'' }}</td>
+              </tr>
+              <tr>
+                <td>公司:</td><td>{{ exchange.company|default_if_none:''}}</td>
+              </tr>
+              <tr>
+                <td>交易类型:</td><td>{{ exchange.trade_type_t }}</td>
+              </tr>
+              <tr>
+                <td>交易状态:</td><td>{{ exchange.trade_status_t }}</td>
+              </tr>
+              <tr>
+                <td>充值金额:</td><td>{{ exchange.exchange_amount }} 元</td>
+              </tr>
+              <tr>
+                <td>充值后账户余额:</td><td>{{ exchange.balance|default_if_none:'' }} 元</td>
+              </tr>
+              <tr>
+                <td>充值时间:</td><td>{{ exchange.exchange_datetime|default_if_none:''|date:'Y-m-d H:i:s' }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4>交易详细信息</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table {% if exchange.trade_type == 'alipay' %}hide{% endif %}">
+              <tr>
+                <td>付款人姓名:</td><td>{{ exchange.payer_name }}</td>
+              </tr>
+              <tr>
+                <td>付款来源:</td><td>{{ exchange.pay_source }}</td>
+              </tr>
+              <tr>
+                <td>付款账号:</td><td>{{ exchange.pay_account }}</td>
+              </tr>
+              <tr>
+                <td>付款金额:</td><td>{{ exchange.exchange_amount }}</td>
+              </tr>
+              <tr>
+                <td>付款时间:</td><td>{{ exchange.pay_datetime|date:'Y-m-d H:i:s' }}</td>
+              </tr>
+              <tr>
+                <td>录入人:</td><td>{{ exchange.recorder.name }}</td>
+              </tr>
+              <tr>
+                <td>录入时间:</td><td>{{ exchange.create_datetime|date:'Y-m-d H:i:s' }}</td>
+              </tr>
+              <tr>
+                <td>审核人:</td><td>{{ exchange.reviewer.name }}</td>
+              </tr>
+            </table>
+            <table class="table {% if exchange.trade_type == 'bank_exchange' %}hide{% endif %}">
+              <tr>
+                <td>付款人姓名:</td><td></td>
+              </tr>
+              <tr>
+                <td>付款来源:</td><td></td>
+              </tr>
+              <tr>
+                <td>付款账号:</td><td></td>
+              </tr>
+              <tr>
+                <td>付款金额:</td><td></td>
+              </tr>
+              <tr>
+                <td>付款时间:</td><td></td>
+              </tr>
+              <tr>
+                <td>录入人:</td><td></td>
+              </tr>
+              <tr>
+                <td>录入时间:</td><td></td>
+              </tr>
+              <tr>
+                <td>审核人:</td><td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

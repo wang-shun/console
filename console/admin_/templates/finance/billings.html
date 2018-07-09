@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}计费账单{% endblock %}
+
+{% block page %} 计费账单 {% endblock %}
+
+{% block content %}
+  <div>
+    <table id="id-billing-list-table" class="table table-hover table-striped table-bordered">
+      <thead>
+          <th>客户ID</th>
+          <th>客户账号</th>
+          <th>区域</th>
+          <th>产品</th>
+          <th>资源ID</th>
+          <th>产品详情</th>
+          <th>价格(元)</th>
+          <th>使用时间/量</th>
+          <th>消费金额(元)</th>
+          <th>创建时间</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

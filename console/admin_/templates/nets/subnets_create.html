@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}子网管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 创建子网 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <pre class="bg-warning" style="overflow:hidden;">
+
+    CIDR采用8~30位可变网络ID,可灵活配置IP段范围
+    例如:
+        192.168.2.0/24 可用IP （192.168.2.2－192.168.2.254）（192.168.2.1为网关保留地址 192.168.2.255 为服务保留地址）
+        172.16.0.0/16 可用IP （172.16.0.2－172.16.255.254）（172.16.0.1为网关保留地址 172.16.255.255 为服务保留地址）
+
+    可自定义IP段范围 来对可用IP进行保留。
+    例如:
+        CIDER为 192.168.3.0/24 想要保留 192.168.3.100 到192.168.3.110范围的IP，
+        可在IP段配置可用IP段为 192.168.3.2-192.168.3.99 ，192.168.3.111-192.168.3.254。来对中间地址进行保留。
+    </pre>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="create_subnets_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>CIDR:
+        </label>
+        <div class="box-list-input">
+            <div class="box-from-input-ip-point" id="create_subnets_cidr">
+                <input type="text" index="0" />
+                <span>.</span>
+                <input type="text" index="1" />
+                <span>.</span>
+                <input type="text" index="2" />
+                <span>.</span>
+                <input type="text" index="3" />
+                <span>/</span>
+                <input type="text" />
+            </div>
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list" id="switch_ivp4_list">
+        <label class="box-list-label">
+            IP段:
+        </label>
+        <div class="box-list-input" id="create_subnets_ip_group">
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否公开:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button active" id="open_gateway">公开</li>
+                    <li class="switch_button" id="close_gateway">不公开</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box-list noEmpty" id="box-select-content" style="display: none">
+        <label class="box-list-label">
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="创建" class="box-button" id="create_subnets">
+    </div>
+</div>
+
+<div class="modal" id="alertPubNet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">操作提示</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center" id="alertText">一台主机只能绑定一个开启网关的子网！</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

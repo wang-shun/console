@@ -1,0 +1,34 @@
+.advanced-config{
+  .logo-img{
+    height:30px;
+  }
+  .advanced-btn{
+    color:$content-active-color;
+    border:none;
+    background:none;
+    text-indent:1em;
+    padding-left:20px;
+  }
+  .glyphicon:before{
+    position:absolute;
+    top:3px;
+    left:2px;
+  }
+  .checkbox-slider--b{
+    margin:0px auto 0px 10px;
+    input:checked + span:before{
+      background:$content-active-color;
+    }
+    input:checked + span:after{
+      margin-left:40px;
+    }
+    input + span:before{
+      width:60px;
+    }
+  }
+}
+.input-text-tip{
+  font-size:80% !important;
+  margin-top:10px;
+  display:none;
+}

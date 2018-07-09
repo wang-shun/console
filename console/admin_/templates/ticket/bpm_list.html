@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}BPM流程管理{% endblock %}
+
+{% block page %} BPM流程管理 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+{% block content %}
+<div class="panel">
+    <div class="panel-body">
+      <div class="bpm_search_box">
+        <ul>
+            <li>
+                <label>客户ID:</label>
+                <input type="text" class="" placeholder="" id="user_id">
+            </li>
+            <li>
+                <label>客户账号:</label>
+                <input type="text" class="" placeholder="" id="user_name">
+            </li>
+            <li>
+                <label>处理人:</label>
+                <input type="text" class="" placeholder="" id="edited_user_name">
+            </li>
+            <li>
+                <label>标题:</label>
+                <input type="text" class="" placeholder="" id="title">
+            </li>
+            <li>
+                <label>提交时间:</label>
+                <input type="date" class="" placeholder="" id="started_at">
+            </li>
+            <li>
+                <label>至</label>
+                <input type="date" class="" placeholder="" id="ended_at">
+            </li>
+            <li></li>
+            <li>
+              <label></label>
+              <div class="bpm-search-btns">
+                <button type="reset" class="bpm-search-btn bpm-search-reset" id="bpm_reset"><i class="glyphicon glyphicon-refresh"></i> 重置</button>
+                <button type="submit" class="bpm-search-btn bpm-search-submit" id="bpm_search"><i class="glyphicon glyphicon-search"></i> 搜索</button>
+              </div>
+            </li>
+        </ul>
+    </div>
+    <table id="bpm_table_list" class="table table-hover table-striped table-bordered">
+        <thead>
+        <th>ID</th>
+        <th>客户ID</th>
+        <th>提交时间</th>
+        <th>申请标题</th>
+        <th>状态</th>
+        <th>最后处理时间</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

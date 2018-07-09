@@ -1,0 +1,12 @@
+waf,sunyainfo,0.0,all
+mysql,cloudin,0.0,all
+mq,cloudin,0.0,all
+waf,sunyainfo,0.0,dev
+mysql,cloudin,0.0,dev
+mq,cloudin,0.0,dev
+waf,sunyainfo,0.0,prod
+mysql,cloudin,0.0,prod
+mq,cloudin,0.0,prod
+waf,sunyainfo,0.0,test
+mysql,cloudin,0.0,test
+mq,cloudin,0.0,test

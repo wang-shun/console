@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load translate %}
+
+{% block title %}物理资源详情{% endblock %}
+
+{% block page %} 物理资源详情 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+{% block content %}
+
+<div>
+
+  <div class="row well-sm">
+    <div class="col-md-1 text-right top-margin6"><a href="virtualList" id="vmHref" style="color:blue">VM总计:</a></div>
+    <div class="col-md-3"><input class="form-control heigth30" type="text" value="" id="vmNum" disabled></div>
+    <div class="col-md-1 text-right top-margin6">服务器型号:</div>
+    <div class="col-md-3"><input class="form-control heigth30" type="text" value="" id="model" disabled></div>
+    <div class="col-md-1 text-right top-margin6" >网卡数量:</div>
+    <div class="col-md-3"><input class="form-control heigth30" type="text" value="" id="networkNum" disabled></div>
+  </div>
+  <div class="row well-sm">
+    <div class="col-md-1 text-right top-margin6">管理IP:</div>
+    <div class="col-md-3"><input class="form-control heigth30" type="text" value="" id="manage_ip" disabled></div>
+    <div class="col-md-1 text-right top-margin6">IPMI IP:</div>
+    <div class="col-md-3"><input class="form-control heigth30" type="text" value="" id="ipmi_ip" disabled></div>
+    <div class="col-md-1 text-right top-margin6">操作系统:</div>
+    <div class="col-md-3"><input class="form-control heigth30" type="text" value="" id="uname" disabled></div>
+  </div>
+  <div class="row well-sm">
+    <div class="col-md-1 text-right">CPU使用:</div>
+    <div class="col-md-5">
+      <div id="cpuUseDetail" class="popover fade top in" style="display: none;position:absolute;top:-45px;left:0;background: #d7f6ff">
+        <div class="arrow" style="left:50%;"></div>
+        <div class="popover-content" id="cpuUsepro"></div>
+      </div>
+      <div id="cpuUse" class="progress" style="width: 100%;position:relative;margin-bottom:0px">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+             style="width: 0%;" id="cpuUsebar">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2" id="cpuScale"></div>
+  </div>
+  <div class="row well-sm">
+    <div class="col-md-1 text-right">内存使用:</div>
+    <div class="col-md-5">
+      <div id="memoryUseDetail" class="popover fade top in" style="display: none;position:absolute;top:-45px;left:0;background: #d7f6ff">
+        <div class="arrow" style="left:50%;"></div>
+        <div class="popover-content" id="memoryUsepro"></div>
+      </div>
+      <div id="memoryUse" class="progress" style="width: 100%;margin-bottom:0px">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+             style="width: 0%;" id="memoryUsebar">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2" id="memoryScale"></div>
+  </div>
+  <div class="row well-sm">
+    <div class="col-md-1 text-right top-margin6">监控项:</div>
+    <div class="col-md-2">
+      <select class="form-control input-sm" name="" id="SupervisorOption">
+        <option value="cpu">CPU使用率</option>
+        <option value="mem">内存使用率</option>
+        <option value="network">网卡1</option>
+      </select>
+    </div>
+    <div class="col-md-1 col-md-offset-1 text-right top-margin6">监控周期:</div>
+    <div class="col-md-2">
+      <select class="form-control input-sm" name="" id="SupervisorCycle">
+        <option value="six_hour">最近6小时</option>
+        <option value="real_time">实时</option>
+        <option value="one_day">最近1天</option>
+        <option value="two_week">最近2周</option>
+        <option value="one_month">最近1月</option>
+      </select>
+    </div>
+  </div>
+  <div class="row well-sm">
+    <div class="col-md-offset-1">
+      <div class="margin-top: 20px" id="SupervisorCanvasDiv">
+        <canvas id="SupervisorCanvas" width="900" height="320"></canvas>
+      </div>
+      <p class="text-center"></p>
+      <!--<p class="text-center">CPU使用率</p>-->
+    </div>
+    <!--<div class="col-md-4">-->
+      <!--<canvas id="memory"></canvas>-->
+      <!--<p class="text-center">内存使用率</p>-->
+    <!--</div>-->
+    <!--<div class="col-md-4">-->
+      <!--<canvas id="net"></canvas>-->
+      <!--<p class="text-center">网卡</p>-->
+    <!--</div>-->
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}镜像{% endblock %}
+
+{% block crumbs %} {% endblock %}
+{% block page %} 修改镜像 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            格式:
+        </label>
+        <span class="box-list-content" id="format">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+             状态:
+        </label>
+        <span class="box-list-content" id="status">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            镜像类型:
+        </label>
+        <span class="box-list-content" id="image_type">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否保护:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button" id="open_protect" name="is_protect" value="true">保护</li>
+                    <li class="switch_button" id="close_protect" name="is_protect" value="false">不保护</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否公开:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button" id="open_public" name="is_public" value="true">公开</li>
+                    <li class="switch_button" id="close_public" name="is_public" value="false">不公开</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="修改" class="box-button" id="edit">
+    </div>
+</div>
+{% endblock%}

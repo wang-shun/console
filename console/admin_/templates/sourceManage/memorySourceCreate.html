@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}计算资源池管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 创建存储资源池 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="name">
+            <i class="box-list-error" id="name_error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>存储类型:
+        </label>
+        <div class="box-list-input">
+            <select class="form-control" style="width:100px;" id="type">
+                <option value="SATA">SATA</option>
+                <option value="SSD">SSD</option>
+            </select>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            单台设备容量:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="odd_count"></div>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>设备数量:
+        </label>
+        <div class="box-list-input" id="osd_number">
+
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            存储池容量:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="count"></div>
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="创建" class="box-button btn disabled"  id="create_memory">
+    </div>
+</div>
+{% endblock%}

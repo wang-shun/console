@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}子网管理{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} 修改子网 {% endblock %}
+
+{% block content %}
+<div class="box" style="width: 100%;">
+    <pre class="bg-warning" style="overflow:hidden; width: 100%; display: none;" id="tip">
+
+        子网关联云主机数量不为0时，无法修改ip段
+    </pre>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>名称:
+        </label>
+        <div class="box-list-input">
+            <input type="text" class="box-from-input" id="subnets_name">
+            <i class="box-list-error"></i>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            CIDR:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="subnets_cidr"></div>
+        </div>
+    </div>
+    <div class="box-list" id="switch_ivp4_list">
+        <label class="box-list-label">
+            IP段:
+        </label>
+        <div class="box-list-input box-list-content" style="height: auto" id="subnets_ip_group">
+        </div>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            DNS解析:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="subnets_dns"></div>
+        </div>
+    </div>
+    <div class="box-list">
+        <label class="box-list-label">
+            主机列表:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-content" id="host_list"></div>
+        </div>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            <span>*</span>是否公开:
+        </label>
+        <div class="box-list-input">
+            <div class="box-list-switch">
+                <ul>
+                    <li class="switch_button active" id="open_gateway">公开</li>
+                    <li class="switch_button" id="close_gateway">不公开</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box-list noEmpty" id="box-select-content" style="display: none">
+        <label class="box-list-label">
+            <span>*</span>用户列表:
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+    <div class="box-buttons">
+        <input type="button" value="修改" class="box-button" id="edit_subnets">
+    </div>
+</div>
+{% endblock%}

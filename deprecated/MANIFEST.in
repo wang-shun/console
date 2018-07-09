@@ -1,0 +1,6 @@
+include *.js
+include *.html
+include *.py
+include README
+include requirements.txt
+recursive-include statics *

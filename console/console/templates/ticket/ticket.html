@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>工单</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/zyupload.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/ticket.css" %}" />
+    <link rel="icon" href="{% static "favicon.ico" %}">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?68d94b35e5291a1b41d0d8e0e4b2fb74";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<input type="hidden" name="public_platform_name" value="{{platform_names.console_name}}"/>
+
+<!-- 头部公用 -->
+<header id="header">
+
+</header>
+<section id="bodyContain">
+    <!-- 右侧通用容器 -->
+    <section id="content">
+
+    </section>
+</section>
+<script type="text/javascript" src="{% static "js/extends/jquery-2.1.4.min.js" %}"></script>
+<script type="text/javascript" src="{% static "public/build/jquery.nanoscroller.min.js" %}"></script>
+<script type="text/javascript" src="{% static "public/build/zyuoload.js" %}"></script>
+<script type="text/javascript" src="{% static "public/build/ticket.js" %}"></script>
+</body>
+</html>

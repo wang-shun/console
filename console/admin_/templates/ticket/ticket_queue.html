@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}工单队列{% endblock %}
+{% block page %}工单队列{% endblock %}
+{% block parent_crumbs %} <span>工单中心</span> > {% endblock %}
+{% block crumbs %} 工单队列 {% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+       <li><a href="">工单中心</a></li>
+       <li><a href="">工单队列</a></li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="{% if queue == "processing" %}active{% endif %}">
+                <a href="#processing" aria-controls="processing" name="processing"
+                   role="tab" data-toggle="tab" class="ticket-queue-tab">处理中({{ processing_ticket_num|default:0 }})</a>
+            </li>
+            <li role="presentation" class="{% if queue == "pending" %}active{% endif %}">
+                <a href="#pending" aria-controls="pending" name="pending"
+                   role="tab" data-toggle="tab" class="ticket-queue-tab">待处理({{ pending_ticket_num|default:0 }})</a>
+            </li>
+            <li role="presentation" class="{% if queue == "new" %}active{% endif %}">
+                <a href="#new" aria-controls="new" name="new"
+                   role="tab" data-toggle="tab" class="ticket-queue-tab">新工单({{ new_ticket_num|default:0 }})</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane {% if queue == "processing" %}active{% endif %}" id="processing">
+                <table class="table table-responsive table-hover ticket-queue-table" id="processing-ticket-table">
+                    <thead class="ticket-table">
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 10%">问题</th>
+                        <th style="width: 20%">最后处理人</th>
+                        <th style="width: 20%">创建时间</th>
+                    </thead>
+                    <tbody>
+                    {% for ticket in ret_list %}
+                        <tr class="{% cycle "table-info" "default" %}">
+                            <td><a href="{{ BASE_URL }}/admin/ticket/detail/{{ ticket.ticket_id }}">{{ ticket.ticket_id }}</a></td>
+                            <td>{{ ticket.subject }}</td>
+                            <td>{{ ticket.last_edit_user.nickname }}</td>
+                            <td>
+                                <input type="hidden" class="start-datetime" name="start_datetime"
+                                     value="{{ ticket.start_datetime|date:'Y-m-d H:i:s' }}">
+                                <span class="time-count"></span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="pull-left form-inline page-size">
+                    <span>每页显示</span>
+                    <select name="page_size" class="form-control ticket-queue-page-size" id="ticket-queue-processing-page-size">
+                        {% for page_size in default_page_size_list %}
+                        <option value="{{ page_size }}" {% if paginator.page_size == page_size %}selected{% endif %}>
+                          {{ page_size }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+              <div class="form-inline pull-right">
+                    {{ paginator.page_num }}/{{ paginator.num_pages }}
+                    <select class="form-control ticket-queue-page" id="ticket-queue-processing-page">
+                    {% for page in paginator.page_range %}
+                        <option value="{{ page }}" {% if paginator.page_num == page %}selected{% endif %}>{{ page }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane {% if queue == "pending" %}active{% endif %}" id="pending">
+                <br/>
+                <table class="table table-responsive table-hover ticket-queue-table" id="pending-ticket-table">
+                    <thead class="ticket-table">
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 60%">问题</th>
+                        <th style="width: 20%">时间</th>
+                        <th style="width: 10%">操作</th>
+                        <th style="width: 10%"></th>
+                    </thead>
+                    <tbody>
+                    {% for ticket in ret_list %}
+
+                        <tr class="{% cycle "table-info" "default" %}">
+                            <td><a href="{{ BASE_URL }}/admin/ticket/detail/{{ ticket.ticket_id }}">{{ ticket.ticket_id }}</a></td>
+                            <td>{{ ticket.subject }}</td>
+                            <td>
+                                <input type="hidden" class="start-datetime" name="start_datetime"
+                                   value="{{ ticket.start_datetime|date:'Y-m-d H:i:s' }}">
+                                <span></span>
+                            </td>
+                            <td>
+                                <form action="{{ BASE_URL }}/ticket/detail/{{ ticket.ticket_id }}" method="post" id="ticket-send-ticket-to-me-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                                    <input type="hidden" name="action" value="send_to_me">
+                                    <button type="submit" class="btn btn-info">我来处理</button>
+                                </form>
+                            </td>
+                            <td>
+                                <button class="btn btn-info send-pending-ticket" data-toggle="modal" data-target="#sendTicket">
+                                分配工单
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="page-size form-inline">
+                    <span>每页显示</span>
+                    <select name="page_size" class="form-control ticket-queue-page-size" id="ticket-queue-pending-page-size">
+                      {% for page_size in default_page_size_list %}
+                      <option value="{{ page_size }}" {% if paginator.page_size == page_size %}selected{% endif %}>
+                          {{ page_size }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div class="pull-right form-inline">
+                    {{ paginator.page_num }}/{{ paginator.num_pages }}
+                    <select class="form-control ticket-queue-page" id="ticket-queue-pending-page">
+                     {% for page in paginator.page_range %}
+                       <option value="{{ page }}" {% if paginator.page_num == page %}selected{% endif %}>{{ page }}</option>
+                     {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane {% if queue == "new" %}active{% endif %}" id="new">
+                <table class="table table-responsive table-hover ticket-queue-table" id="new-ticket-table">
+                    <thead class="ticket-table">
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 50%">问题</th>
+                        <th style="width: 20%">时间</th>
+                        <th style="width: 10%">操作</th>
+                        <th style="width: 10%"></th>
+                    </thead>
+                    <tbody>
+                    {% for ticket in ret_list %}
+                        <tr class="{% cycle "table-info" "default" %}">
+                            <td><a href="{{ BASE_URL }}/admin/ticket/detail/{{ ticket.ticket_id }}">{{ ticket.ticket_id }}:</a></td>
+                            <td>{{ ticket.subject }}</td>
+                            <td>
+                                <input type="hidden" class="create-datetime" value="{{ ticket.create_datetime|date:'Y-m-d H:i:s' }}">
+                                <span class="time-count"></span>
+                            </td>
+                            <td>
+                                <!-- Send Ticket To Me Form-->
+                                <form action="{{ BASE_URL }}/ticket/detail/{{ ticket.ticket_id }}" method="post" id="ticket-send-ticket-to-me-form">
+                                   {% csrf_token %}
+                                    <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                                    <input type="hidden" name="action" value="send_to_me">
+                                    <button type="submit" class="btn btn-info">我来处理</button>
+                                </form>
+                            </td>
+                            <td>
+                                <button class="btn btn-info send-new-ticket" data-toggle="modal" data-target="#sendTicket">
+                                分配工单
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class=" page-size form-inline">
+                    <span>每页显示</span>
+                    <select name="page_size" class="form-control ticket-queue-page-size" id="ticket-queue-new-page-size">
+                      {% for page_size in default_page_size_list %}
+                      <option value="{{ page_size }}" {% if paginator.page_size == page_size %}selected{% endif %}>
+                          {{ page_size }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div class="pull-right form-inline">
+                {{ paginator.page_num }}/{{ paginator.num_pages }}
+                    <select class="form-control ticket-queue-page" id="ticket-queue-new-page">
+                     {% for page in paginator.page_range %}
+                       <option value="{{ page }}" {% if paginator.page_num == page %}selected{% endif %}>{{ page }}</option>
+                     {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="sendTicket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">分配工单</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="{{ BASE_URL }}/ticket/detail" method="post" id="ticket-send-ticket-form">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">分配</label>
+                            <div class="col-sm-6 typeahead-container" >
+                              <input type="text" class="form-control" name="send_to[query]" id="send_to-query"
+                                     placeholder="用户邮箱" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <input type="hidden" name="ticket_id" value="">
+                        <input type="hidden" name="action" value="send">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="id-ticket-send-ticket">分配</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

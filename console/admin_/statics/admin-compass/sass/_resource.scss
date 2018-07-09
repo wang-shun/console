@@ -1,0 +1,44 @@
+#compute_resource{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  .panel{
+    width:33%;
+    .usage-line{
+      li{
+        label{
+          width:200px !important;
+        }
+      }
+    }
+  }
+  .compute-resource-name{
+    float:left;
+    width:100%;
+    border-bottom:1px dotted $line-color;
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+}
+#storage_resource{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  .panel{
+    width:33%;
+    .usage-line{
+      li{
+        label{
+          width:200px !important;
+        }
+      }
+    }
+  }
+  .compute-resource-name{
+    float:left;
+    width:100%;
+    border-bottom:1px dotted $line-color;
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load translate %}
+
+{% block title %}网络资源{% endblock %}
+
+{% block page %} 网络资源 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+{% block content %}
+<div class="table-controller-field">
+</div>
+<div class="pull-top-table">
+  <table id="netSourceTable" class="table table-hover table-striped table-bordered">
+    <thead>
+      <th>ID</th>
+      <th>状态</th>
+      <th>已分配</th>
+      <th>线路</th>
+      <th>总带宽(Mbps)</th>
+      <th>地址详情</th>
+      <th>IP数目</th>
+    </thead>
+    <tbody>
+      <!--<tr>-->
+        <!--<th>对外服务</a></th>-->
+        <!--<th><a href="/sourceManage/outServer" style="color:blue">地址详情</a></th>-->
+        <!--<th>可用</th>-->
+        <!--<th>15</th>-->
+        <!--<th>方正带宽</th>-->
+        <!--<th>4Mbps</th>-->
+      <!--</tr>-->
+    </tbody>
+  </table>
+</div>
+{% endblock %}

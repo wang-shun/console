@@ -1,0 +1,96 @@
+{
+  "name": "private-console-admin",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "fix-lint": "eslint js/*.js js/**/*.js --fix",
+    "lint": "eslint js/*.js js/**/*.js"
+  },
+  "author": "",
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "comma-spacing": [
+        "warn"
+      ],
+      "key-spacing": [
+        "warn"
+      ],
+      "keyword-spacing": [
+        "warn"
+      ],
+      "linebreak-style": [
+        "warn",
+        "unix"
+      ],
+      "no-dupe-args": [
+        "warn"
+      ],
+      "no-dupe-keys": [
+        "warn"
+      ],
+      "no-duplicate-case": [
+        "warn"
+      ],
+      "no-extra-semi": [
+        "warn"
+      ],
+      "no-multi-spaces": [
+        "warn"
+      ],
+      "no-multiple-empty-lines": [
+        "warn"
+      ],
+      "no-redeclare": [
+        "warn"
+      ],
+      "no-tabs": [
+        "warn"
+      ],
+      "no-trailing-spaces": [
+        "warn"
+      ],
+      "no-undef-init": [
+        "warn"
+      ],
+      "no-unsafe-negation": [
+        "warn"
+      ],
+      "object-curly-spacing": [
+        "warn"
+      ],
+      "semi": [
+        "warn"
+      ],
+      "semi-spacing": [
+        "warn"
+      ],
+      "space-before-blocks": [
+        "warn"
+      ],
+      "space-before-function-paren": [
+        "warn",
+        "never"
+      ],
+      "space-in-parens": [
+        "warn"
+      ],
+      "space-infix-ops": [
+        "warn"
+      ],
+      "spaced-comment": [
+        "warn"
+      ]
+    }
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.15.0"
+  }
+}

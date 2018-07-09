@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load translate %}
+
+{% block title %}极速创建{% endblock %}
+
+{% block page %} 极速创建 {% endblock %}
+{% block crumbs %}  {% endblock %}
+
+{% block content %}
+<div class="table-controller-field">
+    <button class="btn btn-info table-controller" id="createTopSpeed">创建资源</button>
+    <button class="btn btn-default table-controller refresh" id="refresh" title="刷新">
+        <i class="glyphicon glyphicon-refresh"></i>
+    </button>
+</div>
+<div class="pull-top-table">
+    <table id="topSpeedTable" class="table table-hover table-striped table-bordered">
+        <thead>
+        <th>用户</th>
+        <th>全部配置</th>
+        <th>全部镜像</th>
+        <th>网络配置</th>
+        <th>资源池</th>
+        <th>剩余数量</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+<!-- 创建资源 -->
+<div class="modal" id="createTopSpeedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">极速创建</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="id-create-system-account-form">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">资源池：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="pool" id="pool">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">镜像：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="image" id="image">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">flavor：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="flavor" id="flavor">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">公网子网：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="public_net" id="public_nets">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">子网：</label>
+                        <div class="col-md-6" id="net_list" style="max-height: 200px; overflow-y: scroll">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">资源数量：</label>
+                        <div class="col-md-6">
+                            <input class="form-control" name="number" placeholder="请填写数量" id="count">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">用户：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="usergroup" id="select_user">
+                                <option id='none'>默认用户组</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">密码：</label>
+                        <div class="col-md-6" title="默认密码为123456,创建主机完成后需要重新设置密码">
+                            <input class="form-control" type="text" name="password" placeholder="账号密码" value="123456" disabled id="password">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="createTopSpeedModalBtn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

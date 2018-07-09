@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}Flavor{% endblock %}
+
+{% block crumbs %}  {% endblock %}
+{% block page %} Flavor详情 {% endblock %}
+
+{% block content %}
+<div class="box">
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            名称:
+        </label>
+        <span class="box-list-content" id="edit_flavor_name">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            VCPUS:
+        </label>
+        <span class="box-list-content" id="edit_vcpus">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            内存:
+        </label>
+        <span class="box-list-content" id="edit_ram">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            系统盘:
+        </label>
+        <span class="box-list-content" id="edit_disk">
+        </span>
+    </div>
+    <div class="box-list noEmpty">
+        <label class="box-list-label">
+            是否公开:
+        </label>
+        <span class="box-list-content" id="edit_public">
+        </span>
+    </div>
+    <div class="box-list noEmpty" id="box-select-content">
+        <label class="box-list-label">
+        </label>
+        <div class="box-select-box" id="box-select-box">
+
+        </div>
+    </div>
+</div>
+{% endblock%}

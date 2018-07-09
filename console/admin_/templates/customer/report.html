@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <title>每日报表</title>
+  </head>
+  <body>
+    <div style="overflow: hidden;">
+      <div style="display: block; font-family: 'Microsoft Yahei'; min-width: 640px;">
+        <div style="padding: 45px 6%; background-color: #f4f6f6;">
+          <table style="width: 100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+            <tr>
+              <td colspan="2">
+                <p style="padding: 95px 0 15px 0; font-size: 36px; color: #333333; line-height: 30px; margin: 0; text-align: center; background-image: url(mail_decoration.png); height: 40px; background-position: right top; background-repeat: no-repeat;">
+                  <span style="color: #27a8f5;">Cloud</span><span style="color: #5eaa3a;">In</span>后台运营数据报表
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <p style="padding: 60px 0 15px 0; font-size: 20px; color: #27a8f5; line-height: 10px; margin: 0; text-align: center; background-image: url(mail_decoration.png); height: 40px; background-position: right top; background-repeat: no-repeat;">
+                    当前总用户：{{ all_people }}   今日新增用户：{{ today_people | default_if_none:0 }}
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <p style="width: 100%; height: 40px; border-bottom: 1px solid #b5b5b5;">
+                </p>
+              </td>
+            </tr>
+{#            <tr>#}
+{#              <td>#}
+{#                <a href="www.cloudin.cn" style="padding-left: 66px; text-decoration: none; color: #27a8f5; font-size: 18px;">cloudin官网</a>#}
+{#              </td>#}
+{#              <td>#}
+{#                <p style="padding-right: 66px; text-align: right; color: #27a8f5; font-size: 18px;">#}
+{#                  <span style="color: #c0c1c2">/</span> <a href="console.cloudin.cn/help" style="text-decoration: none; color: #27a8f5;">用户指南</a>#}
+{#                    <span style="color: #c0c1c2">/</span> <a href="www.cloudin.cn/product.html" style="color: #27a8f5; text-decoration: none;">产品</a>#}
+{#                    <span style="color: #c0c1c2">/</span> <a href="www.cloudin.cn/about.html" style="color: #27a8f5; text-decoration: none;">关于</a>#}
+{#                </p>#}
+{#              </td>#}
+{#             </tr>#}
+        </table>
+        <table style="width: 100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+          <thead>
+              <th>资源</th>
+              <th>已使用</th>
+              <th>今日新增</th>
+              <th>外部资源利用率</th>
+              <th>总量资源利用率</th>
+          </thead>
+
+            <thead>
+                <th>公网IP</th>
+                <th>{{ all_resource.pub_ip|default_if_none:0  }}个</th>
+                <th>{{ today_resource.pub_ip|default_if_none:0  }}个</th>
+                <th>{{ all_resource_outside.ip_rate|floatformat:3 }}%</th>
+                <th>{{ all_resource.ip_rate|floatformat:3 }}%</th>
+             </thead>
+
+            <thead>
+                <th>硬盘SSD</th>
+                <th>{{ all_resource.disk_ssd_cap |default_if_none:0 }}GB</th>
+                <th>{{ today_resource.disk_ssd_cap|default_if_none:0 }}GB</th>
+                <th>{{ all_resource_outside.ssd_rate|floatformat:3 }}%</th>
+                <th>{{ all_resource.ssd_rate|floatformat:3 }}%</th>
+             </thead>
+            <thead>
+                <th>硬盘SATA</th>
+                <th>{{ all_resource.disk_sata_cap |default_if_none:0 }}GB</th>
+                <th>{{ today_resource.disk_sata_cap|default_if_none:0 }}GB</th>
+                <th>{{ all_resource_outside.sata_rate|floatformat:3 }}%</th>
+                <th>{{ all_resource.sata_rate|floatformat:3 }}%</th>
+             </thead>
+            <thead>
+                <th>内存</th>
+                <th>{{ all_resource.memory }}GB</th>
+                <th>{{ today_resource.memory|default_if_none:0  }}GB</th>
+                <th>{{ all_resource_outside.memery_rate|floatformat:3 }}%</th>
+                <th>{{ all_resource.memery_rate|floatformat:3 }}%</th>
+             </thead>
+            <thead>
+                <th>CPU</th>
+                <th>{{ all_resource.cpu }}核</th>
+                <th>{{ today_resource.cpu }}核</th>
+                <th>{{ all_resource_outside.cpu_rate|floatformat:3 }}%</th>
+                <th>{{ all_resource.cpu_rate|floatformat:3 }}%</th>
+             </thead>
+            <thead>
+                <th>主机</th>
+                <th>{{ all_resource.instance|default_if_none:0   }}个 </th>
+                <th>{{ today_resource.instance|default_if_none:0  }}个</th>
+            </thead>
+
+
+          </table>
+        </div>
+        <div style="padding: 100px 0 45px 0; background-color: #f4f6f6">
+          <table style="width: 100%" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <p style="text-align: center; font-size: 18px; color: #8a8a8a;">
+                  如需查看详细的用户信息和使用资源情况，请打开附件报表
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

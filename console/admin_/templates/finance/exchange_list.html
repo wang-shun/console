@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% load translate %}
+
+{% block title %}转账账单{% endblock %}
+
+{% block page %} 转账账单 {% endblock %}
+
+{% block content %}
+  <div class="table-controller-field">
+    <button class="btn btn-default table-controller refresh">
+      <i class="glyphicon glyphicon-refresh"></i>
+    </button>
+    <button class="btn btn-info table-controller" id="id-create-exchange-record">转账录入</button>
+    <button class="btn btn-info table-controller" id="id-review-exchange-record" disabled>转账确认</button>
+  </div>
+  <div>
+    <table id="id-exchange-list-table" class="table table-hover table-striped table-bordered">
+      <thead>
+          <th>ID</th>
+          <th>客户ID</th>
+          <th>姓名</th>
+          <th>公司</th>
+          <th>交易状态</th>
+          <th>审核人</th>
+          <th>充值金额</th>
+          <th>创建时间</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Create Exchange Record -->
+  <div class="modal" id="id-create-exchange-record-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">转账录入</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-create-exchange-record-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">审核人 * </label>
+              <div class="col-md-6">
+                <select class="form-control" name="reviewer_id">
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">充入账号 * </label>
+              <div class="col-md-6">
+                <input class="form-control" name="account_id" placeholder="充入账号">
+                <span class="help-block">充入账号为用户的ID: usr-********</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">用户姓名 </label>
+              <div class="col-md-6">
+                <input class="form-control" name="account_name" placeholder="用户姓名">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">用户公司 </label>
+              <div class="col-md-6">
+                <input class="form-control" name="account_company" placeholder="用户公司">
+                <span class="help-block"> 用户姓名和公司用于对邮箱账号的额外校验</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账金额 * </label>
+              <div class="col-md-6">
+                <input class="form-control" type="number" name="exchange_amount" placeholder="转账金额">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账人姓名 * </label>
+              <div class="col-md-6">
+                <input class="form-control" name="payer_name" placeholder="转账人姓名">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账银行 * </label>
+              <div class="col-md-6">
+                <input class="form-control" name="pay_source" placeholder="转账银行">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账账号 * </label>
+              <div class="col-md-6">
+                <input class="form-control" name="pay_account" placeholder="转账账号">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账时间 * </label>
+              <div class="col-md-6">
+                <input class="form-control" type="datetime" name="pay_datetime" placeholder="转账时间">
+                <span class="help-block">日期时间格式: 1970-01-01 00:00:00</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-create-exchange-record-submit">提交</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Exchange Record -->
+  <div class="modal" id="id-review-exchange-record-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">审核转账记录</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="id-review-exchange-record-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">充入账号</label>
+              <div class="col-md-6">
+                <input class="form-control" name="account_id" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">用户姓名</label>
+              <div class="col-md-6">
+                <input class="form-control" name="account_name" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">用户公司</label>
+              <div class="col-md-6">
+                <input class="form-control" name="account_company" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账金额</label>
+              <div class="col-md-6">
+                <input class="form-control" name="exchange_amount" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账人姓名</label>
+              <div class="col-md-6">
+                <input class="form-control" name="payer_name" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账银行</label>
+              <div class="col-md-6">
+                <input class="form-control" name="pay_source" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账账号</label>
+              <div class="col-md-6">
+                <input class="form-control" name="pay_account" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">转账时间</label>
+              <div class="col-md-6">
+                <input class="form-control" name="pay_datetime" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">创建时间</label>
+              <div class="col-md-6">
+                <input class="form-control" name="create_datetime" readonly>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="id-review-exchange-record-submit-revoke">作废</button>
+          <button type="button" class="btn btn-primary" id="id-review-exchange-record-submit-succ">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

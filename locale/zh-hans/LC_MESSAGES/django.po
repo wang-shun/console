@@ -1,0 +1,1167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# CHENLEI <select603@gmail.com>, 2015.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-18 16:05+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator:Language-Team: CLOUDIN <LL@li.org>\n"
+"Language: zh-hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: console/apps/account/helper.py:27
+msgid "邮箱未注册"
+msgstr ""
+
+#: console/apps/account/helper.py:35 console/apps/account/helper.py:64
+msgid "用户未找到"
+msgstr ""
+
+#: console/apps/account/helper.py:44 console/apps/account/helper.py:53
+msgid "手机号格式不正确"
+msgstr ""
+
+#: console/apps/account/helper.py:56
+msgid "手机号未注册"
+msgstr ""
+
+#: console/apps/account/helper.py:117
+msgid "验证码必须是数字"
+msgstr ""
+
+#: console/apps/account/helper.py:122
+msgid "图片验证码不存在"
+msgstr ""
+
+#: console/apps/account/helper.py:131 console/apps/account/helper.py:133
+#: console/apps/account/views.py:384
+msgid "图片验证码输入错误"
+msgstr ""
+
+#: console/apps/account/helper.py:163
+msgid "动态密码错误"
+msgstr ""
+
+#: console/apps/account/helper.py:165
+msgid "手机动态密码输入错误"
+msgstr ""
+
+#: console/apps/account/helper.py:178
+msgid "验证码已过期"
+msgstr ""
+
+#: console/apps/account/helper.py:182
+msgid "验证码错误"
+msgstr ""
+
+#: console/apps/account/models.py:9 console/apps/account/serializers.py:36
+msgid "人民币"
+msgstr "人民币"
+
+#: console/apps/account/models.py:9 console/apps/account/serializers.py:37
+msgid "美元"
+msgstr ""
+
+#: console/apps/account/models.py:9 console/apps/account/serializers.py:38
+msgid "港币"
+msgstr "港币"
+
+#: console/apps/account/models.py:235
+msgid "北京"
+msgstr ""
+
+#: console/apps/account/serializers.py:25
+#: console/apps/account/serializers.py:321
+msgid "验证码"
+msgstr ""
+
+#: console/apps/account/serializers.py:26
+#: console/apps/account/serializers.py:305
+msgid "动态密码"
+msgstr ""
+
+#: console/apps/account/serializers.py:31
+msgid "密码登录"
+msgstr ""
+
+#: console/apps/account/serializers.py:32
+msgid "动态密码登录"
+msgstr ""
+
+#: console/apps/account/serializers.py:106
+msgid "邮箱字段必须唯一"
+msgstr ""
+
+#: console/apps/account/serializers.py:108
+#: console/apps/account/serializers.py:341
+msgid "邮箱"
+msgstr ""
+
+#: console/apps/account/serializers.py:116
+#: console/apps/account/serializers.py:281
+msgid "密码"
+msgstr ""
+
+#: console/apps/account/serializers.py:124
+#: console/apps/account/serializers.py:376
+msgid "确认密码"
+msgstr ""
+
+#: console/apps/account/serializers.py:130
+msgid "昵称"
+msgstr ""
+
+#: console/apps/account/serializers.py:137
+#: console/apps/account/serializers.py:298
+#: console/apps/account/serializers.py:315
+msgid "手机号"
+msgstr ""
+
+#: console/apps/account/serializers.py:145
+msgid "姓名"
+msgstr ""
+
+#: console/apps/account/serializers.py:152
+msgid "行业"
+msgstr ""
+
+#: console/apps/account/serializers.py:159
+msgid "公司"
+msgstr ""
+
+#: console/apps/account/serializers.py:166
+msgid "公司地址"
+msgstr ""
+
+#: console/apps/account/serializers.py:173
+msgid "公司电话"
+msgstr ""
+
+#: console/apps/account/serializers.py:180
+msgid "了解渠道"
+msgstr ""
+
+#: console/apps/account/serializers.py:213
+msgid "图片验证码"
+msgstr ""
+
+#: console/apps/account/serializers.py:221
+msgid "手机验证码"
+msgstr ""
+
+#: console/apps/account/serializers.py:243
+#: console/apps/account/serializers.py:384
+msgid "两次密码输入不一致"
+msgstr ""
+
+#: console/apps/account/serializers.py:274
+msgid "邮箱或手机号"
+msgstr ""
+
+#: console/apps/account/serializers.py:351
+msgid "用户名"
+msgstr ""
+
+#: console/apps/account/serializers.py:364
+msgid "原密码"
+msgstr ""
+
+#: console/apps/account/serializers.py:370
+msgid "新密码"
+msgstr ""
+
+#: console/apps/account/serializers.py:381
+msgid "原密码不正确"
+msgstr ""
+
+#: console/apps/account/views.py:121
+msgid "用户未激活"
+msgstr ""
+
+#: console/apps/account/views.py:128
+msgid "登录成功"
+msgstr ""
+
+#: console/apps/account/views.py:132 console/console/messages.py:254
+msgid "用户认证失败"
+msgstr ""
+
+#: console/apps/account/views.py:197
+msgid "验证码校验失败"
+msgstr ""
+
+#: console/apps/account/views.py:240
+msgid "这个是激活页面"
+msgstr ""
+
+#: console/apps/account/views.py:304
+msgid "请提供验证码后再试"
+msgstr ""
+
+#: console/apps/account/views.py:330
+#, python-format
+msgid "发送动态密码过于频繁，请休息%d秒后再试"
+msgstr ""
+
+#: console/apps/account/views.py:332
+#, python-format
+msgid "发送验证码过于频繁，请休息%d秒后再试"
+msgstr ""
+
+#: console/apps/backups/helper.py:188
+msgid "不是有效的备份ID"
+msgstr ""
+
+#: console/apps/backups/helper.py:207
+msgid "备份没有找到"
+msgstr ""
+
+#: console/apps/backups/models.py:57 console/apps/backups/serializers.py:14
+#: console/apps/quotas/models.py:12 console/apps/records/models.py:6
+msgid "云主机"
+msgstr ""
+
+#: console/apps/backups/models.py:58 console/apps/backups/serializers.py:15
+#: console/apps/records/models.py:7
+msgid "硬盘"
+msgstr ""
+
+#: console/apps/backups/models.py:92
+msgid "未知"
+msgstr ""
+
+#: console/apps/billings/helper.py:22
+msgid "这个资源ID未找到"
+msgstr ""
+
+#: console/apps/billings/helper.py:75
+msgid "资源ID不存在"
+msgstr ""
+
+#: console/apps/billings/helper.py:429
+msgid "计费模式或者资源未找到"
+msgstr ""
+
+#: console/apps/billings/helper.py:483
+msgid "找不到资源数据"
+msgstr ""
+
+#: console/apps/billings/helper.py:490
+msgid "找不到消费历史数据!"
+msgstr ""
+
+#: console/apps/billings/serializers.py:9
+#: dist/console-0.1.0/console/apps/billings/serializers.py:9
+#, fuzzy
+#| msgid "instance"
+msgid "Instance"
+msgstr "主机"
+
+#: console/apps/billings/serializers.py:10
+#: dist/console-0.1.0/console/apps/billings/serializers.py:10
+msgid "Disk"
+msgstr "硬盘"
+
+#: console/apps/billings/serializers.py:11
+#: dist/console-0.1.0/console/apps/billings/serializers.py:11
+msgid "Public IP"
+msgstr "公网IP"
+
+#: console/apps/images/helper.py:37
+#: dist/console-0.1.0/console/apps/images/helper.py:37
+msgid "The search key not a valid column in the model"
+msgstr ""
+
+#: console/apps/images/models.py:10
+#: dist/console-0.1.0/console/apps/images/models.py:10
+msgid "Windows"
+msgstr "Windows"
+
+#: console/apps/images/models.py:11
+#: dist/console-0.1.0/console/apps/images/models.py:11
+msgid "Linux"
+msgstr "Linux"
+
+#: console/apps/images/models.py:16
+#: dist/console-0.1.0/console/apps/images/models.py:16
+msgid "Available"
+msgstr "可用"
+
+#: console/apps/images/models.py:17
+#: dist/console-0.1.0/console/apps/images/models.py:17
+msgid "Not Available"
+msgstr "不可用"
+
+#: console/apps/instances/helper.py:69
+msgid "主机不存在"
+msgstr ""
+
+#: console/apps/instances/helper.py:71
+#, python-format
+msgid "主机%s不存在"
+msgstr ""
+
+#: console/apps/ips/models.py:14
+msgid "bandwidth"
+msgstr "带宽"
+
+#: console/apps/ips/models.py:15
+msgid "netflow"
+msgstr "流量"
+
+#: console/apps/nets/helper.py:305
+#: dist/console-0.1.0/console/apps/disks/helper.py:215
+#: dist/console-0.1.0/console/apps/instances/helper.py:211
+#: dist/console-0.1.0/console/apps/ips/helper.py:230
+#: dist/console-0.1.0/console/apps/nets/helper.py:194
+msgid "Unknown"
+msgstr "未知"
+
+#: console/apps/nets/helper.py:546
+#, python-format
+msgid "%s has joined public net or base-net"
+msgstr ""
+
+#: console/apps/nets/helper.py:621
+msgid "公网网络地址必须为192.168.*.0/24, 内网网络地址必须为172.16.*.0/24"
+msgstr ""
+
+#: console/apps/nets/helper.py:629
+msgid "请确保网络地址合法"
+msgstr ""
+
+#: console/apps/nets/helper.py:635
+msgid "请确保网关地址合法"
+msgstr ""
+
+#: console/apps/nets/helper.py:640
+msgid "缺少主机实例"
+msgstr ""
+
+#: console/apps/nets/helper.py:647 console/apps/nets/helper.py:650
+#, python-format
+msgid "子网%s不存在"
+msgstr ""
+
+#: console/apps/nets/helper.py:655
+msgid "子网ID列表不存在"
+msgstr ""
+
+#: console/apps/nets/helper.py:669
+msgid "排序关键字不存在"
+msgstr ""
+
+#: console/apps/nets/helper.py:674
+msgid "网络类型只能为private或者public"
+msgstr ""
+
+#: console/apps/notice_center/helper.py:48
+msgid "消息ID未找到"
+msgstr ""
+
+#: console/apps/notice_center/models.py:121
+msgid "The expire datetime should not lower than effect datetime"
+msgstr ""
+
+#: console/apps/notice_center/models.py:197
+#, fuzzy
+#| msgid "The account for owner id not found"
+msgid "notice id did not found"
+msgstr "用户账号不存在"
+
+#: console/apps/notice_center/models.py:201
+msgid "the notice is already read"
+msgstr ""
+
+#: console/apps/quotas/helper.py:24 console/apps/quotas/helper.py:72
+#: console/apps/quotas/helper.py:133
+msgid "不是有效的配额类型"
+msgstr ""
+
+#: console/apps/quotas/helper.py:41
+msgid "全局配额记录不存在"
+msgstr ""
+
+#: console/apps/quotas/helper.py:86
+msgid "超过了配额上限"
+msgstr ""
+
+#: console/apps/quotas/helper.py:149
+msgid "超过配额上限"
+msgstr ""
+
+#: console/apps/quotas/helper.py:160
+msgid "配额记录不存在"
+msgstr ""
+
+#: console/apps/quotas/models.py:13
+msgid "内存"
+msgstr ""
+
+#: console/apps/quotas/models.py:14 console/apps/records/models.py:13
+msgid "备份"
+msgstr ""
+
+#: console/apps/quotas/models.py:15
+msgid "CPU"
+msgstr ""
+
+#: console/apps/quotas/models.py:16
+msgid "硬盘数量"
+msgstr ""
+
+#: console/apps/quotas/models.py:17
+msgid "硬盘配额"
+msgstr ""
+
+#: console/apps/quotas/models.py:18 console/apps/records/models.py:14
+msgid "公网IP"
+msgstr ""
+
+#: console/apps/quotas/models.py:19 console/apps/records/models.py:9
+msgid "子网"
+msgstr ""
+
+#: console/apps/quotas/models.py:20
+msgid "带宽"
+msgstr ""
+
+#: console/apps/quotas/models.py:21 console/apps/records/models.py:12
+msgid "路由器"
+msgstr ""
+
+#: console/apps/quotas/models.py:22 console/apps/records/models.py:17
+msgid "安全组"
+msgstr ""
+
+#: console/apps/quotas/models.py:23 console/apps/records/models.py:15
+msgid "密钥对"
+msgstr ""
+
+#: console/apps/records/models.py:8
+msgid "镜像"
+msgstr ""
+
+#: console/apps/records/models.py:10
+msgid "配额"
+msgstr ""
+
+#: console/apps/records/models.py:11
+msgid "工单"
+msgstr ""
+
+#: console/apps/records/models.py:16
+msgid "监控"
+msgstr ""
+
+#: console/apps/records/models.py:18
+msgid "区"
+msgstr ""
+
+#: console/apps/records/models.py:19
+msgid "钱包"
+msgstr ""
+
+#: console/apps/records/models.py:20
+msgid "计费"
+msgstr ""
+
+#: console/common/helper.py:49
+msgid ""
+"路由的action名字不正确，action名字组成规则: 大写字母的单词 + app名字首字母大"
+"写 + 其他大写开头的单词"
+msgstr ""
+
+#: console/common/helper.py:52
+msgid "用于路由的action参数不是合法参数"
+msgstr ""
+
+#: console/common/helper.py:57
+msgid "owner指定用户不存在"
+msgstr ""
+
+#: console/common/helper.py:96
+msgid "这个区为找到"
+msgstr ""
+
+#: console/common/helper.py:140
+msgid "如果要获取记录列表，many这个参数必须传入且为True"
+msgstr ""
+
+#: console/common/middlewares.py:20 console/console/messages.py:115
+msgid "未知错误"
+msgstr ""
+
+#: console/common/serializers.py:34 console/common/serializers.py:54
+#: console/common/serializers.py:72 console/common/serializers.py:87
+#: console/common/serializers.py:102 console/common/serializers.py:116
+#: console/common/serializers.py:131
+msgid "这个是必填字段"
+msgstr ""
+
+#: console/common/serializers.py:35 console/common/serializers.py:55
+#: console/common/serializers.py:73 console/common/serializers.py:88
+#: console/common/serializers.py:103 console/common/serializers.py:117
+#: console/common/serializers.py:132
+msgid "这个字段不允许为null"
+msgstr ""
+
+#: console/common/serializers.py:36 console/common/serializers.py:74
+msgid "这个字段不允许为空"
+msgstr ""
+
+#: console/common/serializers.py:37
+#, python-brace-format
+msgid "请确保这个字段的长度不超过{max_length}字节"
+msgstr ""
+
+#: console/common/serializers.py:38
+#, python-brace-format
+msgid "请确保这个字段的长度至少为{max_length}字节"
+msgstr ""
+
+#: console/common/serializers.py:56
+msgid "请输入合法的整数"
+msgstr ""
+
+#: console/common/serializers.py:57
+#, python-brace-format
+msgid "请确保值小于或等于{max_value}"
+msgstr ""
+
+#: console/common/serializers.py:58
+#, python-brace-format
+msgid "请确保值大于或等于{min_value}"
+msgstr ""
+
+#: console/common/serializers.py:59
+msgid "字符串数值过长"
+msgstr ""
+
+#: console/common/serializers.py:75
+msgid "请输入有效的邮箱地址"
+msgstr ""
+
+#: console/common/serializers.py:89
+msgid "请输入有效的IPv4或者IPv6地址"
+msgstr ""
+
+#: console/common/serializers.py:104
+#, python-brace-format
+msgid "\"{input}\" 不是有效的选项"
+msgstr ""
+
+#: console/common/serializers.py:118
+#, python-brace-format
+msgid "\"{input}\" 不是有效的布尔值"
+msgstr ""
+
+#: console/common/serializers.py:133
+#, python-brace-format
+msgid "日期格式错误. 请使用以下格式之一: {format}"
+msgstr ""
+
+#: console/common/serializers.py:134
+msgid "请输入日期和时间"
+msgstr ""
+
+#: console/common/serializers.py:142
+#, python-format
+msgid "%s是必填的"
+msgstr ""
+
+#: console/common/serializers.py:143
+#, python-format
+msgid "%s不能为null"
+msgstr ""
+
+#: console/common/serializers.py:144
+#, python-format, python-brace-format
+msgid "%s过长，请小于或等于{max_length}字符"
+msgstr ""
+
+#: console/common/serializers.py:145
+#, python-format, python-brace-format
+msgid "%s过短，请大于或等于{min_length}字符"
+msgstr ""
+
+#: console/common/serializers.py:146
+#, python-format
+msgid "%s不能为空"
+msgstr ""
+
+#: console/common/utils.py:106 dist/console-0.1.0/console/common/utils.py:47
+msgid "The action is not valid, should be like ActionModuleInfo"
+msgstr "操作不合法"
+
+#: console/common/utils.py:120 dist/console-0.1.0/console/common/utils.py:61
+#, fuzzy
+#| msgid "The account for owner id not found"
+msgid "The user did not found"
+msgstr "用户账号不存在"
+
+#: console/common/validators.py:9
+msgid "这个字段必须唯一"
+msgstr ""
+
+#: console/console/messages.py:105
+msgid "参数错误"
+msgstr ""
+
+#: console/console/messages.py:106
+msgid "API响应错误"
+msgstr ""
+
+#: console/console/messages.py:107
+msgid "API无响应"
+msgstr ""
+
+#: console/console/messages.py:108
+msgid "请求API被拒绝"
+msgstr ""
+
+#: console/console/messages.py:109
+msgid "API资源不存在"
+msgstr ""
+
+#: console/console/messages.py:110
+msgid "API内部错误"
+msgstr ""
+
+#: console/console/messages.py:111
+msgid "API服务器繁忙"
+msgstr ""
+
+#: console/console/messages.py:112
+msgid "API资源不足"
+msgstr ""
+
+#: console/console/messages.py:113
+msgid "API服务器更新中"
+msgstr ""
+
+#: console/console/messages.py:176
+msgid "参数action不合法"
+msgstr ""
+
+#: console/console/messages.py:177
+msgid "参数owner不合法"
+msgstr ""
+
+#: console/console/messages.py:178
+msgid "参数zone不合法"
+msgstr ""
+
+#: console/console/messages.py:179
+msgid "参数sort_key不合法"
+msgstr ""
+
+#: console/console/messages.py:180
+msgid "参数page_size不合法"
+msgstr ""
+
+#: console/console/messages.py:181
+msgid "参数page不合法"
+msgstr ""
+
+#: console/console/messages.py:182
+msgid "参数count不合法"
+msgstr ""
+
+#: console/console/messages.py:185
+msgid "参数net_id不合法"
+msgstr ""
+
+#: console/console/messages.py:186
+msgid "参数nets不合法"
+msgstr ""
+
+#: console/console/messages.py:187
+msgid "子网名称不合法"
+msgstr ""
+
+#: console/console/messages.py:188
+msgid "网关地址不合法"
+msgstr ""
+
+#: console/console/messages.py:189
+msgid "网络类型不合法"
+msgstr ""
+
+#: console/console/messages.py:190
+msgid "参数enable_dhcp不合法"
+msgstr ""
+
+#: console/console/messages.py:191
+msgid "网络地址不合法"
+msgstr ""
+
+#: console/console/messages.py:194
+msgid "参数ip_id不合法"
+msgstr ""
+
+#: console/console/messages.py:195
+msgid "参数ips不合法"
+msgstr ""
+
+#: console/console/messages.py:196
+msgid "公网IP名称不合法"
+msgstr ""
+
+#: console/console/messages.py:197
+msgid "公网IP计费模式不合法"
+msgstr ""
+
+#: console/console/messages.py:198
+msgid "公网IP计费带宽不合法"
+msgstr ""
+
+#: console/console/messages.py:199
+msgid "公网IP地址不合法"
+msgstr ""
+
+#: console/console/messages.py:202
+msgid "参数router_id不合法"
+msgstr ""
+
+#: console/console/messages.py:203
+msgid "参数routers不合法"
+msgstr ""
+
+#: console/console/messages.py:204
+msgid "路由器名称不合法"
+msgstr ""
+
+#: console/console/messages.py:205
+msgid "参数enable_gateway不合法"
+msgstr ""
+
+#: console/console/messages.py:208
+msgid "参数instance_id不合法"
+msgstr ""
+
+#: console/console/messages.py:209
+msgid "参数instances不合法"
+msgstr ""
+
+#: console/console/messages.py:210
+msgid "主机名称不合法"
+msgstr ""
+
+#: console/console/messages.py:211
+msgid "参数instance_type_id不合法"
+msgstr ""
+
+#: console/console/messages.py:212
+msgid "参数use_basenet不合法"
+msgstr ""
+
+#: console/console/messages.py:213
+msgid "参数login_mode不合法"
+msgstr ""
+
+#: console/console/messages.py:214
+msgid "参数login_keypair不合法"
+msgstr ""
+
+#: console/console/messages.py:215
+msgid "参数login_password不合法"
+msgstr ""
+
+#: console/console/messages.py:216
+msgid "参数reboot_type不合法"
+msgstr ""
+
+#: console/console/messages.py:217
+msgid "参数console_type不合法"
+msgstr ""
+
+#: console/console/messages.py:218
+msgid "参数preserve_device不合法"
+msgstr ""
+
+#: console/console/messages.py:219
+msgid "参数disk_config不合法"
+msgstr ""
+
+#: console/console/messages.py:220
+msgid "参数mac_address不合法"
+msgstr ""
+
+#: console/console/messages.py:223
+msgid "参数keypair_id不合法"
+msgstr ""
+
+#: console/console/messages.py:224
+msgid "参数keypairs不合法"
+msgstr ""
+
+#: console/console/messages.py:225
+msgid "参数keypair_name不合法"
+msgstr ""
+
+#: console/console/messages.py:226
+msgid "参数encryption_method不合法"
+msgstr ""
+
+#: console/console/messages.py:227
+msgid "参数public_key不合法"
+msgstr ""
+
+#: console/console/messages.py:228
+msgid "参数disable_password不合法"
+msgstr ""
+
+#: console/console/messages.py:231
+msgid "参数disk_id不合法"
+msgstr ""
+
+#: console/console/messages.py:232
+msgid "参数disks不合法"
+msgstr ""
+
+#: console/console/messages.py:233
+msgid "参数disk_name不合法"
+msgstr ""
+
+#: console/console/messages.py:234
+msgid "参数size不合法"
+msgstr ""
+
+#: console/console/messages.py:235
+msgid "参数many不合法"
+msgstr ""
+
+#: console/console/messages.py:236
+msgid "参数new_size不合法"
+msgstr ""
+
+#: console/console/messages.py:237
+msgid "参数backup_id不合法"
+msgstr ""
+
+#: console/console/messages.py:240
+msgid "参数resource_id不合法"
+msgstr ""
+
+#: console/console/messages.py:241
+msgid "参数backup_name不合法"
+msgstr ""
+
+#: console/console/messages.py:244 console/console/messages.py:247
+msgid "参数 不合法"
+msgstr ""
+
+#: console/console/messages.py:251
+msgid "账号未找到"
+msgstr ""
+
+#: console/console/messages.py:252
+msgid "账号未激活"
+msgstr ""
+
+#: console/console/messages.py:253
+msgid "保存用户登录历史错误"
+msgstr ""
+
+#: console/console/messages.py:255
+msgid "手机验证码错误或失效"
+msgstr ""
+
+#: console/console/messages.py:256
+msgid "用户原始密码错误"
+msgstr ""
+
+#: console/console/messages.py:257
+msgid "手机验证码发送过于频繁"
+msgstr ""
+
+#: console/console/messages.py:258
+msgid "图片验证码错误"
+msgstr ""
+
+#: console/console/messages.py:259
+msgid "未找到用户信息"
+msgstr ""
+
+#: console/console/messages.py:260
+msgid "发送用户激活邮件失败"
+msgstr ""
+
+#: console/console/messages.py:261
+msgid "手机动态密码发送失败"
+msgstr ""
+
+#: console/console/messages.py:265
+msgid "部分子网删除失败"
+msgstr ""
+
+#: console/console/messages.py:266
+msgid "部分实例加入子网失败"
+msgstr ""
+
+#: console/console/messages.py:267
+msgid "实例加入子网失败"
+msgstr ""
+
+#: console/console/messages.py:268
+msgid "实例离开子网失败"
+msgstr ""
+
+#: console/console/messages.py:269
+msgid "实例加入基础网络失败"
+msgstr ""
+
+#: console/console/messages.py:270
+msgid "实例离开基础网络失败"
+msgstr ""
+
+#: console/console/messages.py:271
+msgid "保存子网失败"
+msgstr ""
+
+#: console/console/messages.py:272
+msgid "保存网络失败"
+msgstr ""
+
+#: console/console/messages.py:273
+msgid "获取网络失败"
+msgstr ""
+
+#: console/console/messages.py:274
+msgid "主机已经加入公网子网或基础网络"
+msgstr ""
+
+#: console/console/messages.py:281
+msgid "查找配额失败"
+msgstr ""
+
+#: console/console/router.py:40
+#: dist/console-0.1.0/console/console/router.py:40
+msgid "The action is not valid"
+msgstr "操作名不合法"
+
+#: console/console/router.py:60
+#: dist/console-0.1.0/console/console/router.py:60
+#, fuzzy
+#| msgid "view class was not implemented"
+msgid "view class was not implemented"
+msgstr "这个显示类没有实现"
+
+#: dist/console-0.1.0/console/apps/account/helper.py:78
+msgid "欢迎注册Cloudin云服务，请点击激活链接完成注册"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/models.py:7
+#: dist/console-0.1.0/console/apps/account/serializers.py:129
+msgid "RMB"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/models.py:7
+#: dist/console-0.1.0/console/apps/account/serializers.py:129
+msgid "USD"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/models.py:7
+msgid "HKD"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/models.py:168
+msgid "Beijing"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/serializers.py:129
+msgid "HKB"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/serializers.py:219
+msgid "The password should not be empty"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/serializers.py:222
+msgid "The two password do not match"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/views.py:58
+#: dist/console-0.1.0/console/apps/account/views.py:65
+msgid "The account for owner id not found"
+msgstr "用户账号不存在"
+
+#: dist/console-0.1.0/console/apps/account/views.py:80
+msgid "This is the login page"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/views.py:95
+#, fuzzy
+#| msgid "The action is not valid"
+msgid "The account is not active"
+msgstr "操作名不合法"
+
+#: dist/console-0.1.0/console/apps/account/views.py:102
+msgid "Login success"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/views.py:105
+msgid "Account authenticate failed"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/views.py:119
+msgid "Logout success"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/views.py:194
+msgid "This is the activate page"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/account/views.py:227
+msgid "The original password is not correct"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/backups/helper.py:75
+#, fuzzy
+#| msgid "The action is not valid"
+msgid "The backup id is not valid"
+msgstr "操作名不合法"
+
+#: dist/console-0.1.0/console/apps/backups/helper.py:77
+#, fuzzy
+#| msgid "The account for owner id not found"
+msgid "The backup id not found"
+msgstr "用户账号不存在"
+
+#: dist/console-0.1.0/console/apps/backups/models.py:55
+#: dist/console-0.1.0/console/apps/records/models.py:6
+msgid "instance"
+msgstr "主机"
+
+#: dist/console-0.1.0/console/apps/backups/models.py:56
+#: dist/console-0.1.0/console/apps/records/models.py:7
+msgid "disk"
+msgstr "硬盘"
+
+#: dist/console-0.1.0/console/apps/billings/helper.py:29
+#, fuzzy
+#| msgid "The account for owner id not found"
+msgid "The resource id is not valid"
+msgstr "用户账号不存在"
+
+#: dist/console-0.1.0/console/apps/billings/helper.py:32
+#, fuzzy
+#| msgid "The account for owner id not found"
+msgid "The resource id not found"
+msgstr "用户账号不存在"
+
+#: dist/console-0.1.0/console/apps/quotas/views.py:21
+msgid "Quota not found"
+msgstr ""
+
+#: dist/console-0.1.0/console/apps/records/models.py:8
+msgid "image"
+msgstr "镜像"
+
+#: dist/console-0.1.0/console/apps/records/models.py:9
+msgid "net"
+msgstr "子网"
+
+#: dist/console-0.1.0/console/apps/records/models.py:10
+msgid "quota"
+msgstr "配额"
+
+#: dist/console-0.1.0/console/apps/records/models.py:11
+msgid "ticket"
+msgstr "工单"
+
+#: dist/console-0.1.0/console/apps/records/models.py:12
+msgid "router"
+msgstr "路由器"
+
+#: dist/console-0.1.0/console/apps/records/models.py:13
+msgid "backup"
+msgstr "备份"
+
+#: dist/console-0.1.0/console/apps/records/models.py:14
+msgid "ip"
+msgstr "公网IP"
+
+#: dist/console-0.1.0/console/apps/records/models.py:15
+msgid "keypair"
+msgstr "密钥"
+
+#: dist/console-0.1.0/console/apps/records/models.py:16
+msgid "monitor"
+msgstr "监控"
+
+#: dist/console-0.1.0/console/apps/records/models.py:17
+msgid "security"
+msgstr "安全组"
+
+#: dist/console-0.1.0/console/apps/records/models.py:18
+msgid "zone"
+msgstr "域"
+
+#: dist/console-0.1.0/console/apps/records/models.py:19
+msgid "wallet"
+msgstr "钱包"
+
+#: dist/console-0.1.0/console/apps/records/models.py:20
+msgid "billing"
+msgstr "计费"
+
+#: dist/console-0.1.0/console/common/helper.py:41
+#, python-format
+msgid "Invalid Router Action Name %(action)s, should be one of %(modules)s"
+msgstr ""
+
+#: dist/console-0.1.0/console/common/helper.py:133
+msgid "If you want to get list of records, many parameter should be true"
+msgstr ""
+
+#, fuzzy
+#~| msgid "The account for owner id not found"
+#~ msgid "Notice id did not found"
+#~ msgstr "用户账号不存在"
+
+#, fuzzy
+#~| msgid "The account for owner id not found"
+#~ msgid "The backup backup id not found"
+#~ msgstr "用户账号不存在"
+
+#, fuzzy
+#~| msgid "backup"
+#~ msgid "Backup"
+#~ msgstr "备份"
+
+#, fuzzy
+#~| msgid "bandwidth"
+#~ msgid "BandWidth"
+#~ msgstr "带宽"
+
+#, fuzzy
+#~| msgid "router"
+#~ msgid "Router"
+#~ msgstr "路由器"
+
+#, fuzzy
+#~| msgid "security"
+#~ msgid "SecurityGroup"
+#~ msgstr "安全组"
+
+#, fuzzy
+#~| msgid "The action is not valid"
+#~ msgid "The quota type is not valid"
+#~ msgstr "操作名不合法"
+
+#~ msgid "US Dollar"
+#~ msgstr "美元"
+
+#, fuzzy
+#~| msgid "Invalid Router Action Name %(action)s, should be one of %(modules)s"
+#~ msgid "Invalid Router Service Name %(service)s"
+#~ msgstr "名字不合法 %(service)s"

@@ -1,0 +1,51 @@
+{% extends "auth/base.html" %}
+{% load staticfiles %}
+{% block title %}注册激活{% endblock %}
+{% block content %}
+
+    {% if not activate_link_error %}
+    <div class="sendBlockHome">
+        <h3>注册成功</h3>
+        <h4>恭喜您成功开通创云平台账号！</h4>
+        <p>您的用户名即为邮箱账号：{{ email }}，您可使用邮箱进行登录或者进入<a href="/user" class="toPersonalConfig">个人设置</a>中设置新用户名。</p>
+        <p><span></span>秒后将自动跳转至中控台首页</p>
+        <p><a href="/login">立即跳转</a></p>
+    </div>
+    <hr />
+    <script>
+        var counter = 10;
+        var interval = setInterval(function () {
+            counter--;
+            $(".sendBlockHome").find("p span").text(counter);
+            if (counter == 0) {
+                clearInterval(interval);
+                location.href = "/console"
+            }
+        }, 1000);
+    </script>
+    {% else %}
+    <hr />
+    <div id="registerComplete">
+    {% if account.is_active %}
+        <h3>用户已激活</h3>
+    {% else %}
+        <h3>激活链接无效</h3>
+    {% endif %}
+    <p><span>10</span>秒后自动跳转至控制台</p>
+    <p><a href="/login">立即跳转</a></p>
+
+    </div>
+
+    <script>
+        var counter = 10;
+        var interval = setInterval(function () {
+            counter--;
+            $("#registerComplete").find("p span").text(counter);
+            if (counter == 0) {
+                clearInterval(interval);
+                location.href = "/login"
+            }
+        }, 1000);
+    </script>
+    {% endif %}
+{% endblock %}
